@@ -162,7 +162,7 @@ void BraggPeak::PreEventLoop( bool Dbg ) {
   }
   
   // Set up histograms etc. prior to event loop:
-  TH1F *Bragg = new TH1F("Bragg", "Bragg curve", 100, 0., 200.);
+  TH1F *Bragg = new TH1F("Bragg", "Bragg curve", 100, 0., 300.);
   Analysis::TH1Flist.push_back(Bragg);
     
   if ( BraggPeak::getDebug() ) {
