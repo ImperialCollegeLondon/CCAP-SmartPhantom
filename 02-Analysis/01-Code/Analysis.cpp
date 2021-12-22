@@ -184,15 +184,9 @@ void BraggPeak::EventLoop( bool Dbg ) {
 	      << nEvt << " entries" << std::endl;
   }
 
+  Double_t vals[8];
   Double_t Edep, HitTime, EventN, PosX, PosY, PosZ, StepLength, DeltaT;
-  Analysis::getEvent_ch()->SetBranchAddress("Edep",        &Edep);
-  Analysis::getEvent_ch()->SetBranchAddress("HitTime",     &HitTime);
-  Analysis::getEvent_ch()->SetBranchAddress("EventN",      &EventN);
-  Analysis::getEvent_ch()->SetBranchAddress("PosX",        &PosX);
-  Analysis::getEvent_ch()->SetBranchAddress("PosY",        &PosY);
-  Analysis::getEvent_ch()->SetBranchAddress("PosZ",        &PosZ);
-  Analysis::getEvent_ch()->SetBranchAddress("StepLength",  &StepLength);
-  Analysis::getEvent_ch()->SetBranchAddress("DeltaT",      &DeltaT);
+  Analysis::getEvent_ch()->SetBranchAddress("WaterBox", &vals);
 
   TH1F *Bragg = Analysis::TH1Flist[0];
 
@@ -203,7 +197,10 @@ void BraggPeak::EventLoop( bool Dbg ) {
       std::cout << "          ----> Event: " << i << std::endl;
     }
 
+    PosZ = vals[5];
+    Edep = vals[0];
     z = PosZ + 150.;
+    std::cout << "z, Edep: " << z << " " << Edep << std::endl;
     Bragg->Fill(z, Edep);
     
   }
