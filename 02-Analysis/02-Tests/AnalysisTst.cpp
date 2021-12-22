@@ -14,11 +14,18 @@ int main(int nArgs, char **ArgV){
   if ( RC->getDebug() )
     RC->print();
 
-  // Initialse analysis:
+  // Initialse skeleton analysis:
   Analysis* A = new Analysis(RC->getDebug());
   A->PreEventLoop();
   A->EventLoop();
   A->PostEventLoop();
   A->HistFitDo();
+  
+  // Execute built-in Bragg peak analysis test:
+  BraggPeak* B = new BraggPeak(RC->getDebug());
+  B->PreEventLoop();
+  B->EventLoop();
+  B->PostEventLoop();
+  B->HistFitDo();
   
 }

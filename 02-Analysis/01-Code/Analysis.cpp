@@ -162,8 +162,8 @@ void BraggPeak::PreEventLoop( bool Dbg ) {
   }
   
   // Set up histograms etc. prior to event loop:
-  TH1F *Bragg = new TH1I("Bragg", "Bragg curve", 100, 0., 3.);
-  nuAnalysis::TH1Flist.push_back(Bragg);
+  TH1F *Bragg = new TH1F("Bragg", "Bragg curve", 100, 0., 3.);
+  Analysis::TH1Flist.push_back(Bragg);
     
   if ( BraggPeak::getDebug() ) {
     std::cout << " <---- Leaving Pre-event loop method." << std::endl;
@@ -174,7 +174,7 @@ void BraggPeak::PreEventLoop( bool Dbg ) {
 void BraggPeak::EventLoop( bool Dbg ) {
 
   if ( BraggPeak::getDebug() ) {
-    std::cout << " ----> nuAnalysis: Event loop method entered:" << std::endl;
+    std::cout << " ----> Analysis: Event loop method entered:" << std::endl;
   }
 
   // Loop over neutrinos in flux ntuple:
@@ -194,21 +194,21 @@ void BraggPeak::EventLoop( bool Dbg ) {
   Analysis::getEvent_ch()->SetBranchAddress("StepLength",  &StepLength);
   Analysis::getEvent_ch()->SetBranchAddress("DeltaT",      &DeltaT);
 
-  TH1F *Brag = Analysis::TH1Flist[0];
+  TH1F *Bragg = Analysis::TH1Flist[0];
 
   Double_t z = 0.;
   for (int i=0 ; i<nEvt ; i++) {
     Analysis::getEvent_ch()->GetEntry(i);
-    if ( nuAnalysis::getDebug() and i<10) {
+    if ( Analysis::getDebug() and i<10) {
       std::cout << "          ----> Event: " << i << std::endl;
     }
 
     z = PosZ + 150.;
-    hmumass->Fill(z, Edep);
+    Bragg->Fill(z, Edep);
     
   }
   
-  if ( nuAnalysis::getDebug() ) {
+  if ( Analysis::getDebug() ) {
     std::cout << " <---- Leaving event loop method." << std::endl;
   }
  
@@ -216,7 +216,7 @@ void BraggPeak::EventLoop( bool Dbg ) {
 
 void BraggPeak::PostEventLoop( bool Dbg ) {
 
-  if ( nuAnalysis::getDebug() ) {
+  if ( Analysis::getDebug() ) {
     std::cout << " ----> BraggPeak: Post event loop method entered:"
 	      << std::endl;
   }
@@ -231,7 +231,7 @@ void BraggPeak::PostEventLoop( bool Dbg ) {
   Bragg->Draw();
   c->Print(PltFile.c_str());
   
-  if ( nuAnalysis::getDebug() ) {
+  if ( Analysis::getDebug() ) {
     std::cout << " <---- Leaving post event loop method." << std::endl;
   }
  
