@@ -36,3 +36,27 @@ public:
   TChain*           getEvent_ch(){ return Event_ch; };
 
 };
+
+class BraggPeak : public Analysis{
+
+public: 
+  BraggPeak( bool Dbg=true );
+  ~BraggPeak() {  }
+
+  void PreEventLoop( bool Dbg=true ); 
+  void EventLoop( bool Dbg=true );
+  void PostEventLoop( bool Dbg=true );
+
+};
+
+class UserAnal : public Analysis{
+
+public: 
+  UserAnal( bool Dbg=true );
+  ~UserAnal() {  }
+
+  void PreEventLoop( bool Dbg=true ); 
+  void EventLoop( bool Dbg=true );
+  void PostEventLoop( bool Dbg=true );
+
+};
