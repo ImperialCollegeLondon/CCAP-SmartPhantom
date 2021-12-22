@@ -1,0 +1,67 @@
+ CppAnal: integration tests starts
+ ========
+
+ RunControl help: explanation of arguments:
+	 -h 		 Generates this help printout to show use of flags etc.
+	 -d 		 Sets debug flag: RunControl::Debug = true
+	 -f <filename> 	 Sets ROOT <filename> to be read (single file).
+			 If -f is specified, <filename> must exist or execution is
+			 terminated
+	 -c <dir name> 	 Sets directory containing ROOT files to be chained.
+			 If -c is specified, <dir name> must exist or execution is
+			 terminated
+	 Note that -f and -c can be used together, all files will be read.
+ RunControl::ParseArgs:Error! Void file name; STOP!
+ Successfully caught no file error
+ RunControl::ParseArgs:Error! File crp does not exist, STOP!
+ Successfully caught bad file error
+ RunControl::ParseArgs:Error! Void directory name; STOP!
+  RunControl::ParseArgs:Error! Directory crp does not exist. STOP!
+ Successfully caught bad directory error
+ Successfully loaded file
+ Successfully loaded directory
+Start tests of RunControl class:
+    Test 0: test singleton nature of class:
+    ----> Initial RunControl instance: 0x600001ff3f80
+ RunControl::print: RunControl initialised with parameters:
+                Debug: 1
+       ROOT file name: Initaliation dummy
+ ROOT chain directory: Initaliation dummy
+    ----> Second RunControl instance: 0x600001ff3f80
+        ----> SUCCESS!  A singleton!
+    Test 1: test parsing of input arguments:
+    ----> Number of input arguments: 7
+ RunControl help: explanation of arguments:
+	 -h 		 Generates this help printout to show use of flags etc.
+	 -d 		 Sets debug flag: RunControl::Debug = true
+	 -f <filename> 	 Sets ROOT <filename> to be read (single file).
+			 If -f is specified, <filename> must exist or execution is
+			 terminated
+	 -c <dir name> 	 Sets directory containing ROOT files to be chained.
+			 If -c is specified, <dir name> must exist or execution is
+			 terminated
+	 Note that -f and -c can be used together, all files will be read.
+ RunControl::ParseArgs:Debug: parsed 7 arguments 
+     ----> Argument: 0 value: 12-Bin/RunControlTst.exe
+     ----> Argument: 1 value: -d
+     ----> Argument: 2 value: -h
+     ----> Argument: 3 value: -f
+     ----> Argument: 4 value: TestFile.tmp
+     ----> Argument: 5 value: -c
+     ----> Argument: 6 value: TestDir
+     ----> Flags: Debug=1, FileFlag=1, ChainFlag=1, 
+    ----> RunControl parameters:
+ RunControl::print: RunControl initialised with parameters:
+                Debug: 1
+       ROOT file name: TestFile.tmp
+ ROOT chain directory: TestDir
+    Test 2: test getters:
+RunControl initialised with parameters:
+                Debug: 1
+             FileFlag: 1
+            ChainFlag: 1
+       ROOT file name: TestFile.tmp
+ ROOT chain directory: TestDir
+
+ CppAnal: integration tests done
+ ========
