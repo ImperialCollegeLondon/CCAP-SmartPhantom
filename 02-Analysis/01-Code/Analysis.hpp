@@ -9,8 +9,7 @@ private:
   
   bool        Debug;  // Global debug flag
 
-  TChain* Event1_ch;  // Initalise attribute of type TChain for Event1 ntuple
-  TChain*  Event_ch;  // Initalise attribute of type TChain for Event ntuple
+  TChain* Event_ch;  // Initalise attribute of type TChain for Event ntuple
 
 public:
   std::vector<TH1F*> TH1Flist;
@@ -30,12 +29,10 @@ public:
 
   //--> Setters:
   void                 setDebug( bool Dbg );
-  void             setEvent1_ch( TChain* rInfo_ch );
-  void              setEvent_ch( TChain* bm_ch );
+  void              setEvent_ch( TChain* Evt_ch );
   
   //--> Getters:
   bool                 getDebug(){ return Debug; };
-  TChain*          getEvent1_ch(){ return Event1_ch; };
   TChain*           getEvent_ch(){ return Event_ch; };
 
 };

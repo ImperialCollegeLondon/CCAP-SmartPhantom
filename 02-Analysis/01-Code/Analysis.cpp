@@ -143,3 +143,96 @@ void Analysis::HistFitDo() {
 void Analysis::setDebug(bool Dbg) {
   Analysis::Debug = Dbg;
 }
+
+BraggPeak::BraggPeak(bool Dbg) {
+
+  Analysis::setDebug(Dbg);
+  if ( Analysis::getDebug() ) {
+    std::cout << " BraggPeak::BraggPeak: create instance, start of" \
+	      << " Debug print:" << std::endl;
+  }
+
+}
+
+void BraggPeak::PreEventLoop( bool Dbg ) {
+  
+  if ( BraggPeak::getDebug() ) {
+    std::cout << " ----> BraggPeak: Pre-event loop method entered:"
+	      << std::endl;
+  }
+  
+  // Set up histograms etc. prior to event loop:
+  TH1F *Bragg = new TH1I("Bragg", "Bragg curve", 100, 0., 3.);
+  nuAnalysis::TH1Flist.push_back(Bragg);
+    
+  if ( BraggPeak::getDebug() ) {
+    std::cout << " <---- Leaving Pre-event loop method." << std::endl;
+  }
+    
+}
+
+void BraggPeak::EventLoop( bool Dbg ) {
+
+  if ( BraggPeak::getDebug() ) {
+    std::cout << " ----> nuAnalysis: Event loop method entered:" << std::endl;
+  }
+
+  // Loop over neutrinos in flux ntuple:
+  int nEvt = Analysis::getEvent_ch()->GetEntries();
+  if ( Analysis::getDebug() ) {
+    std::cout << "     ----> Beam ntuple has "
+	      << nEvt << " entries" << std::endl;
+  }
+
+  Double_t Edep, HitTime, EventN, PosX, PosY, PosZ, StepLength, DeltaT;
+  Analysis::getEvent_ch()->SetBranchAddress("Edep",        &Edep);
+  Analysis::getEvent_ch()->SetBranchAddress("HitTime",     &HitTime);
+  Analysis::getEvent_ch()->SetBranchAddress("EventN",      &EventN);
+  Analysis::getEvent_ch()->SetBranchAddress("PosX",        &PosX);
+  Analysis::getEvent_ch()->SetBranchAddress("PosY",        &PosY);
+  Analysis::getEvent_ch()->SetBranchAddress("PosZ",        &PosZ);
+  Analysis::getEvent_ch()->SetBranchAddress("StepLength",  &StepLength);
+  Analysis::getEvent_ch()->SetBranchAddress("DeltaT",      &DeltaT);
+
+  TH1F *Brag = Analysis::TH1Flist[0];
+
+  Double_t z = 0.;
+  for (int i=0 ; i<nEvt ; i++) {
+    Analysis::getEvent_ch()->GetEntry(i);
+    if ( nuAnalysis::getDebug() and i<10) {
+      std::cout << "          ----> Event: " << i << std::endl;
+    }
+
+    z = PosZ + 150.;
+    hmumass->Fill(z, Edep);
+    
+  }
+  
+  if ( nuAnalysis::getDebug() ) {
+    std::cout << " <---- Leaving event loop method." << std::endl;
+  }
+ 
+}
+
+void BraggPeak::PostEventLoop( bool Dbg ) {
+
+  if ( nuAnalysis::getDebug() ) {
+    std::cout << " ----> BraggPeak: Post event loop method entered:"
+	      << std::endl;
+  }
+  RunControl* RC = RunControl::getInstance();
+
+  TH1F *Bragg    = Analysis::TH1Flist[0];
+
+  TCanvas *c = new TCanvas();
+  gErrorIgnoreLevel = kWarning;
+  
+  std::string PltFile = RC->getOUTPUTdirname() + "BraggPeak.png";
+  Bragg->Draw();
+  c->Print(PltFile.c_str());
+  
+  if ( nuAnalysis::getDebug() ) {
+    std::cout << " <---- Leaving post event loop method." << std::endl;
+  }
+ 
+}
