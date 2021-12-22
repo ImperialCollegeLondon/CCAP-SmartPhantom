@@ -4,7 +4,7 @@
 #include <iostream>
 
 #include "RunControl.hpp"
-#include "nuAnalysis.hpp"
+#include "Analysis.hpp"
 
 int main(int nArgs, char **ArgV){
 
@@ -15,16 +15,10 @@ int main(int nArgs, char **ArgV){
     RC->print();
 
   // Initialse analysis:
-  nuAnalysis* nuA = new nuAnalysis(RC->getDebug());
-  nuA->PreEventLoop();
-  nuA->EventLoop();
-  nuA->PostEventLoop();
-  nuA->HistFitDo();
-  
-  nuSIMtstRestFrame* nuB = new nuSIMtstRestFrame(RC->getDebug());
-  nuB->PreEventLoop();
-  nuB->EventLoop();
-  nuB->PostEventLoop();
-  nuB->HistFitDo();
+  Analysis* A = new Analysis(RC->getDebug());
+  A->PreEventLoop();
+  A->EventLoop();
+  A->PostEventLoop();
+  A->HistFitDo();
   
 }
