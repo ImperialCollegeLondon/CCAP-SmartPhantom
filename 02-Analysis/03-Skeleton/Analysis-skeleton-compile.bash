@@ -1,3 +1,3 @@
 #!/bin/bash
 
-g++ $nuAnalysisCPATH/RunControl.cpp $nuAnalysisCPATH/nuAnalysis.cpp ./nuAnalysis-skeleton.cpp -I$nuAnalysisCPATH `root-config --cflags --libs` -o nuAnalysis-skeleton.exe
+g++ $AnalysisCPATH/RunControl.cpp $AnalysisCPATH/Analysis.cpp ./Analysis-skeleton.cpp -I$AnalysisCPATH `root-config --cflags --libs` -o Analysis-skeleton.exe
