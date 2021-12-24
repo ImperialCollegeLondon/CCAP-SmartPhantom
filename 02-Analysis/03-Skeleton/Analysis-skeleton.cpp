@@ -7,19 +7,19 @@
 #include "RunControl.hpp"
 #include "Analysis.hpp"
 
-nuSIMUserAnal::nuSIMUserAnal(bool Dbg) {
+UserAnal::UserAnal(bool Dbg) {
 
   Analysis::setDebug(Dbg);
   if ( Analysis::getDebug() ) {
-    std::cout << " nuSIMUserAnal: create instance, start of Debug print:" << std::endl;
+    std::cout << " UserAnal: create instance, start of Debug print:" << std::endl;
   }
 
 }
 
-void nuSIMUserAnal::PreEventLoop( bool Dbg ) {
+void UserAnal::PreEventLoop( bool Dbg ) {
   
   if ( Analysis::getDebug() ) {
-    std::cout << " ----> nuSIMUserAnal: Pre-event loop method entered:"
+    std::cout << " ----> UserAnal: Pre-event loop method entered:"
 	      << std::endl;
   }
     
@@ -29,21 +29,21 @@ void nuSIMUserAnal::PreEventLoop( bool Dbg ) {
     
 }
 
-void nuSIMUserAnal::EventLoop( bool Dbg ) {
+void UserAnal::EventLoop( bool Dbg ) {
 
   if ( Analysis::getDebug() ) {
-    std::cout << " ----> nuSIMUserAnal: Event loop method entered:" << std::endl;
+    std::cout << " ----> UserAnal: Event loop method entered:" << std::endl;
   }
 
   // Loop over neutrinos in flux ntuple:
-  int nEvt = Analysis::getbeam_ch()->GetEntries();
+  int nEvt = Analysis::getEvent_ch()->GetEntries();
   if ( Analysis::getDebug() ) {
-    std::cout << "     ----> Beam ntuple has "
+    std::cout << "     ----> Event ntuple has "
 	      << nEvt << " entries" << std::endl;
   }
     
   for (int i=0 ; i<nEvt ; i++) {
-    Analysis::getbeam_ch()->GetEntry(i);
+    Analysis::getEvent_ch()->GetEntry(i);
     if ( Analysis::getDebug() and i<10) {
       std::cout << "          ----> Event: " << i << std::endl;
     }
@@ -56,10 +56,10 @@ void nuSIMUserAnal::EventLoop( bool Dbg ) {
  
 }
 
-void nuSIMUserAnal::PostEventLoop( bool Dbg ) {
+void UserAnal::PostEventLoop( bool Dbg ) {
 
   if ( Analysis::getDebug() ) {
-    std::cout << " ----> nuSIMUserAnal: Post event loop method entered:"
+    std::cout << " ----> UserAnal: Post event loop method entered:"
 	      << std::endl;
   }
   RunControl* RC = RunControl::getInstance();
@@ -78,7 +78,7 @@ int main(int nArgs, char **ArgV){
   if ( RC->getDebug() )
     RC->print();
 
-  nuSIMUserAnal* A = new nuSIMUserAnal(RC->getDebug());
+  UserAnal* A = new UserAnal(RC->getDebug());
   A->PreEventLoop();
   A->EventLoop();
   A->PostEventLoop();
