@@ -1,6 +1,6 @@
 #----------------------------------------------------------------------------
 # Setup the project
-cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
+cmake_minimum_required(VERSION 2.7 FATAL_ERROR)
 project(SmartPhantom)
 
 #----------------------------------------------------------------------------
@@ -43,8 +43,6 @@ set(_SCRIPTS
   init_vis.mac
   vis.mac
   run1.mac
-  root2Ascii.cpp
-  example_proton.dat
   test_file.dat
   )
 
@@ -62,3 +60,13 @@ endforeach()
 install(TARGETS SmartPhantom DESTINATION bin)
 install(FILES ${_SCRIPTS} DESTINATION share/SmartPhantom)
 
+#----------------------------------------------------------------------------
+# Copies the MatMaker directory upon successful build
+#
+add_custom_command(TARGET SmartPhantom POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/Analysis/ $<TARGET_FILE_DIR:SmartPhantom>)
+
+add_custom_command(TARGET SmartPhantom POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/KWave/ $<TARGET_FILE_DIR:SmartPhantom>)

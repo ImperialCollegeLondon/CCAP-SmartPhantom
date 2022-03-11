@@ -47,7 +47,9 @@ SciFiSD::SciFiSD(G4String name)
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 SciFiSD::~SciFiSD()
-{}
+{
+    collectionName.clear();
+}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -59,7 +61,6 @@ void SciFiSD::Initialize(G4HCofThisEvent* hce)
     hce->AddHitsCollection(fHCID,fHitsCollection);
     
     // Fill hits with zero energy GetTotalEnergyDeposit
-    DetectorConstruction detector;
     SciFiHit* hit = new SciFiHit(0);
     fHitsCollection->insert(hit);    
 }
