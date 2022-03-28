@@ -73,6 +73,7 @@ public:
     G4bool GetToggleScifi() { return toggleScifi; };
     
     // UI Commands
+    // **************************************************************
     void SetWorldVolume(G4ThreeVector vec);
     void SetPhantomVolume(G4ThreeVector vec);
     void SetWaterVolume(G4ThreeVector vec);

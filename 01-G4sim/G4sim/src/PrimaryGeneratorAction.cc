@@ -48,28 +48,32 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
 : G4VUserPrimaryGeneratorAction(),     
   fParticleGun(0), fProton(0), fMessenger(nullptr)
 {
-    // Default IO names
-    fInputFile = "test_file.dat";
-    fOutputFile = "waterhits";
+    /*
+        Initialise a bunch of variables
+    */
     
-    fParticleGun  = new G4ParticleGun(1);
+    fInputFile = "test_file.dat";                                           // Default input Coordinates File
+    fOutputFile = "waterhits";                                              // Default output ROOT file anme
+    
+    fParticleGun  = new G4ParticleGun(1);                                   // Particle gun to fire particles
  
-    G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();    
+    G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();   // Table of particles to fire
     G4String particleName;
 
-    fProton = particleTable->FindParticle(particleName="proton");
+    fProton = particleTable->FindParticle(particleName="proton");           // Select protons
     
-    fParticleGun->SetParticleDefinition(fProton);
+    fParticleGun->SetParticleDefinition(fProton);                           // Add protons to gun
     
     fManager = G4RunManager::GetRunManager();
     
     DefineCommands();
+
+    startLine = 0;                                                          // Lines from start to skip
+    startTime = 0;                                                          // Earliest time in input file
     
-    startLine = 0;
-    startTime = 0;
-    
-    checkedTime = false;
-    resetSL = false;
+    checkedTime = false;                                                    // Has time column been checked
+    resetSL = false;                                                        // Reset skip line for when events exceeds
+                                                                            // coordinates in input file
     Debug = false;
 }
 
@@ -84,6 +88,10 @@ PrimaryGeneratorAction::~PrimaryGeneratorAction()
 
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event* event)
 {
+    /*
+        Generate primary particles from the input file
+    */
+    
     std::ifstream sFile;
     
     if (Debug) G4cout << "PrimaryGeneratorAction begins:" << G4endl;
@@ -108,13 +116,15 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* event)
     G4String line;
     line.reserve(100);
   
+    // Loop through input file once to find the minimum time, this is
+    // to ensure all particles arrive at a time >= 0 
+    // **************************************************************
     if(!checkedTime)
-        CheckTime(sFile); // Find time offset so all particles arrive >= 0
+        CheckTime(sFile);
     
-    /////////////////////////////////////////////////////////////////////////////////
-    // We want to loop through file, but we only want to shoot one primary event   //
-    // at a time. So use variable startLine to skip previous lines.                //
-    /////////////////////////////////////////////////////////////////////////////////
+    // We want to loop through file, but only want to shoot one primary event   
+    // at a time. So use variable startLine to skip previous lines.                
+    // **************************************************************    
     ReadLine(sFile, line);
     AssignToGun(line, event);
     
@@ -123,13 +133,17 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* event)
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-// Just for convenience to ease iterating the startLine variable
 void PrimaryGeneratorAction::GetLine(std::ifstream& readFile, G4String& readLine)
 {
+    /*
+        Get current line in input file then add one to startLine
+    */
+    
     std::getline(readFile, readLine);
     startLine++;
     
     // To handle looping back to start if EOF reached
+    // **************************************************************
     if( readFile.peek() == EOF)
     {
         if (Debug) G4cout << "    <---- EOF detected on next line, preparing to loop to start on next iteration." << G4endl;            
@@ -137,9 +151,13 @@ void PrimaryGeneratorAction::GetLine(std::ifstream& readFile, G4String& readLine
     }
 }
 
-// To check if line starts with a numeric value, otherwise it is likely a header
 G4bool PrimaryGeneratorAction::CheckNumeric(G4String& str)
 {
+    /*
+        Check if the current line starts with numeric value and try to catch
+        some likely exceptions, like if it is a header
+    */
+    
     try
     {
         size_t size;
@@ -157,10 +175,15 @@ G4bool PrimaryGeneratorAction::CheckNumeric(G4String& str)
         if (Debug) G4cout << "    <---- Out of range of double type." << G4endl;
         return false;        
     }
+    return false;
 }
 
 void PrimaryGeneratorAction::SkipNonNumeric(std::ifstream& readFile, G4String& readLine)
 {
+    /*
+        If it is identified that the current line is not numeric skip to next line
+    */
+    
     while(!CheckNumeric(readLine))
     {
         if (Debug) G4cout << "        ----> Attempting to read line " << startLine+1 << "." << G4endl;
@@ -169,13 +192,18 @@ void PrimaryGeneratorAction::SkipNonNumeric(std::ifstream& readFile, G4String& r
     }
 }
 
-// Obtains the line, skipping as necessary via skipLine
 void PrimaryGeneratorAction::ReadLine(std::ifstream& readFile, G4String& readLine)
 {
+    /*
+        Get to current line via skipping previous lines through skipLine
+    */
+    
     readFile.clear();
     readFile.seekg(0, std::ios::beg);
 
-    // Note line numbers will be reported using 1-based numbering (i.e. very first line is line one not zero)
+    // Note on message output the line numbers will be reported using 1-based numbering 
+    // (i.e. very first line is line one not zero)
+    // **************************************************************
     if (Debug) G4cout << "    ----> Preparing to loop through lines; startLine = " << startLine << "." << G4endl;
     
     if ( startLine == 0 )    // First line
@@ -188,26 +216,32 @@ void PrimaryGeneratorAction::ReadLine(std::ifstream& readFile, G4String& readLin
     else    // Other lines
     {
         // Skipping lines
+        // **************************************************************
         for(int currLine=0; currLine<startLine; currLine++)
         {
             if (Debug) G4cout << "        ----> Skipping line " << currLine+1 << "." << G4endl;
             readFile.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
+        
         // Read Line
+        // **************************************************************
         if (Debug) G4cout << "        ----> Attempt to read line " << startLine+1 << "." << G4endl;
         GetLine(readFile, readLine);
         SkipNonNumeric(readFile, readLine);
         if (Debug) G4cout << "        <---- Line " << startLine << " read." << G4endl;
     }
     
-    if(resetSL) ResetStartLine();
+    if(resetSL) ResetStartLine();       // For looping at EOF
             
     if (Debug) G4cout << "    <---- End of file handling done." << G4endl;
 }
 
-// Reads the line splitting into tokens via tab delimited
 std::vector<G4double> PrimaryGeneratorAction::GetToken(G4String& newline)
 {
+    /*
+        Splits the line into tokens
+    */
+    
     std::istringstream iss(newline);
     std::string token;
     std::vector<G4double> tokens;
@@ -220,22 +254,27 @@ std::vector<G4double> PrimaryGeneratorAction::GetToken(G4String& newline)
     return tokens;
 }
 
-// Assigns the values in the obtained line to the particle gun
 void PrimaryGeneratorAction::AssignToGun(G4String& newline, G4Event* event)
 {
+    /*
+        Assign tokens in current line to particle gun
+    */
+    
     DetectorConstruction* detector = (DetectorConstruction*)fManager->GetUserDetectorConstruction();
     G4double worldZ = detector->GetWorldZ();
 
     std::vector<G4double> tokens = GetToken(newline);
 
-    G4double x0 = tokens[0]*m;  // Specifying unit as meters
-    G4double xp0 = tokens[1];    // Normalised horizontal momentum
-    G4double y0 = tokens[2]*m;  // Specifying unit as meters
-    G4double yp0 = tokens[3];    // Normalised vertical momentum
-    G4double z0 = -worldZ; // Starting at the start of world volume
-    G4double zp0 = sqrt(1-pow(xp0,2)-pow(yp0,2));
-    G4double energy = tokens[4]*MeV; //Specifying unit as MeV
-    G4double dt = (tokens[5] - startTime)*ns; //Specifying unit as nanoseconds
+    // Particle coordinates
+    // **************************************************************
+    G4double x0 = tokens[0]*m;                      // Specifying unit as meters
+    G4double xp0 = tokens[1];                       // Normalised horizontal momentum
+    G4double y0 = tokens[2]*m;                      // Specifying unit as meters
+    G4double yp0 = tokens[3];                       // Normalised vertical momentum
+    G4double z0 = -worldZ;                          // Starting at the start of world volume
+    G4double zp0 = sqrt(1-pow(xp0,2)-pow(yp0,2));   // Normalised longitudinal momentum
+    G4double energy = tokens[4]*MeV;                // Energy
+    G4double dt = (tokens[5] - startTime)*ns;       // Time
     
     fParticleGun->SetParticleEnergy(energy);
     fParticleGun->SetParticlePosition(G4ThreeVector(x0,y0,z0));
@@ -244,9 +283,13 @@ void PrimaryGeneratorAction::AssignToGun(G4String& newline, G4Event* event)
     fParticleGun->GeneratePrimaryVertex(event);
 }
 
-// Scan of the times of input file to find minimum and shift in order that the earliest particle arrives at time = 0
 void PrimaryGeneratorAction::CheckTime(std::ifstream& readFile)
 {
+    /*
+        Scan of the times in the input file to find the minimum and use as offset to ensure that
+        particles arrive at a time >= 0
+    */
+    
     if(Debug)
         G4cout << "    ----> Preparing to loop through file to find the earliest time." << G4endl;
     
@@ -254,7 +297,8 @@ void PrimaryGeneratorAction::CheckTime(std::ifstream& readFile)
     readFile.seekg(0, std::ios::beg);
     G4String fileLine;
    
-    // Check header    
+    // Check header
+    // **************************************************************    
     while( !readFile.eof() )
     {
         GetLine(readFile, fileLine);
@@ -276,6 +320,10 @@ void PrimaryGeneratorAction::CheckTime(std::ifstream& readFile)
 
 void PrimaryGeneratorAction::ResetStartLine()
 {
+    /*
+        Loop back to start of file by resetting startLine to zero
+    */
+    
     startLine = 0;
     resetSL = false;
     if(Debug)
@@ -285,12 +333,15 @@ void PrimaryGeneratorAction::ResetStartLine()
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 // UI commands
+// **************************************************************
 void PrimaryGeneratorAction::DefineCommands()
 {
     // Define /SP/IO command directory with generic messenger class
+    // **************************************************************
     fMessenger = new G4GenericMessenger(this, "/SP/IO/", "I/O control");
     
     // Input file command
+    // **************************************************************
     auto& inputFileCmd = fMessenger->DeclareProperty("inputFile", fInputFile);
     G4String guidance = "Specify input file. Note the z position is set to the start of world volume.\n";
     guidance += "Format is: x [m], x' [rad], y [m], y' [rad], E [MeV], t [ns] \n";
@@ -298,6 +349,7 @@ void PrimaryGeneratorAction::DefineCommands()
     inputFileCmd.SetGuidance(guidance);
     
     // Output file command
+    // **************************************************************
     auto& outputFileCmd = fMessenger->DeclareProperty("outputFile", fOutputFile);
     guidance = "Specify output file name.";
     outputFileCmd.SetGuidance(guidance);

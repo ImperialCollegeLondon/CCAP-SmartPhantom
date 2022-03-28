@@ -4,6 +4,8 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <math.h>
+#include <cmath>
 
 #include "TFile.h"
 #include "TTreeReader.h"
@@ -15,23 +17,39 @@
 #include "TPaveStats.h"
 #include "DataManager.h"
 #include "H5Cpp.h"
+#include "Polyfit/PolyFit.h"
 
-// Class to read from .root files and 
+// Class to read and analyse ROOT files from SmartPhantom (Geant4)
+// **************************************************************    
 class ProcessRoot
 {
 public:
-    ProcessRoot(const std::string& fName, const std::string& outName, std::vector<float>& voxelSize, std::vector<double>& analysisSize);
+    //ProcessRoot(const std::string& fName, const std::string& outName, std::vector<float>& voxelSize, std::vector<double>& analysisSize);
+    ProcessRoot(const std::string& fName);
     ~ProcessRoot();
     
     void Initialise(std::vector<float>& voxelSize, std::vector<double>& analysisSize);
+    void InitialiseAS(std::vector<float>& voxelSize, std::vector<double>& analysisSize);
+
     void ReadFile();
-    void WriteMatFile(const std::string& matFileName, const std::string& datsetName); // Write matlab file
+    void ReadFileAS();
+    void CloseFile();
+
+    void WriteMatFile(const std::string& matEnergyName, const std::string& matEnergyDensityName);
+    void WriteMatFileAS(const std::string& matEnergyName, const std::string& matEnergyDensityName);
+    
     int GetBinHeight() { return nBinsHeight; };
     int GetBinWidth() { return nBinsWidth; };
     int GetBinDepth() { return nBinsDepth; };
-    double* GetEnergySum() { return energySum; };
+    int GetBinPhi() { return nBinsPhi; };
+    int GetBinRadius() { return nBinsR; };
+    double* GetEnergyDensity() { return energyDensitySum; };
+    
     void ReaderForTree(TString treeName);
     void BinTreeData();
+    void BinTreeDataAS(std::vector<double> &coeff);
+    std::vector<double> GetCentreCoeff();
+    std::vector<double> CentreBeam(double* zData, double* xData, double* yData, int numElement, size_t polyOrder);
     
 private:
     std::string fileName;
@@ -46,6 +64,8 @@ private:
     int nBinsWidth;
     int nBinsDepth; 
     int nBinsT;
+    int nBinsR;
+    int nBinsPhi;
     
     TTreeReaderValue<double>* fEdep;
     TTreeReaderValue<double>* fHitTime;
@@ -57,11 +77,16 @@ private:
     TTreeReaderValue<std::string>* fPName;
     
     DataManager* dataMan;
-    double* energySum;
+    double* energyDensitySum;
     double* energySumMat;
+    double* energyDensitySumMat;
 
     std::vector<float> wBox;
     std::vector<float> voxBox;
     std::vector<int> numVox;
+    
+    std::vector<float> dimCyl;
+    std::vector<float> cylVox;
+    std::vector<int> voxCyl;
 };
 #endif // PROCESSROOT_H

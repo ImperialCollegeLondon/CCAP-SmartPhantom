@@ -41,8 +41,12 @@ G4String RootIO::fOutputFile;
 
 RootIO::RootIO():fNevents(0)
 {    
-    // initialize ROOT
+    /*
+        Sets up ROOT file
+    */
     
+    // Initialize ROOT
+    // **************************************************************
     if (instance == 0 )
     {
         G4String rootFileName = GetRootName();
@@ -50,19 +54,20 @@ RootIO::RootIO():fNevents(0)
         fFile = new TFile(rootFileName.c_str(),"RECREATE");
 
         // Store some parameters of phantom geometry
+        // **************************************************************
         TTree* phantomGeo = new TTree("Geometry","Geometry");
         double geomData[3];
         phantomGeo->Branch("Size", &geomData, "Width/D:Height/D:Depth/D");
         
         // Get phantom geometry from DetectorConstruction
+        // **************************************************************
         G4RunManager* fManager = G4RunManager::GetRunManager();
         DetectorConstruction* detector = (DetectorConstruction*)fManager->GetUserDetectorConstruction();
-        geomData[0] = 2*(detector->GetPhantomX()); // Total width
-        geomData[1] = 2*(detector->GetPhantomY()); // Total height
-        geomData[2] = 2*(detector->GetPhantomZ()); // Total depth
-        phantomGeo->Fill();
         
-        //G4cout << "Output to " << rootFileName << G4endl;
+        geomData[0] = 2*(detector->GetPhantomX());          // Total width
+        geomData[1] = 2*(detector->GetPhantomY());          // Total height
+        geomData[2] = 2*(detector->GetPhantomZ());          // Total depth
+        phantomGeo->Fill();        
     }  
 }
 
@@ -75,29 +80,49 @@ RootIO::~RootIO()
 
 RootIO* RootIO::GetInstance(G4String name)
 {
-  if (instance == 0 )
-  {
-    G4cout << "Creating new RootIO instance." << std::endl;
-    fOutputFile = name;
-    instance = new RootIO();
-  }
-  return instance;
+    /*
+        Retrieve current instance or create a new one
+        (I don't remember why I did it this way...)
+    */
+    
+    if (instance == 0 )
+    {
+        G4cout << "Creating new RootIO instance." << G4endl;
+        fOutputFile = name;
+        instance = new RootIO();
+    }
+    return instance;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 TTree* RootIO::CreateTree(TString treeName)
 {
+    /*
+        Create new TTree in ROOT file with the preset branches:     
+                Edep -- Energy deposition
+                HitTime -- Global time of hit event (since start)
+                EventN -- Which primary event hit originates from
+                PosX -- Horizontal position
+                PosY -- Vertical position
+                PosZ -- Longitudinal position
+                Steplength -- Steplength
+                DeltaT -- Duration of hit event
+    */
+    
     TTree* tree = new TTree(treeName,treeName);
     tree->Branch("Data", &data, "Edep/D:HitTime/D:EventN/D:PosX/D:PosY/D:PosZ/D:Steplength/D:DeltaT/D"); // Branch to store numerical data
-    tree->Branch("Name", &name); // Branch to store particle names
+    tree->Branch("Name", &name);                                                                         // Branch to store particle names
     return tree;
 }
 
 void RootIO::WriteToRoot(SciFiHitsCollection* hsf, double evtID, TTree* &tree)
 {        
+    /*
+        Function to write fill TTree with hits
+    */
+    
     int n_hit = hsf->entries();
-    //std::cout << "Writing" << std::endl;
 
     for(int i=0;i<n_hit;i++){
         SciFiHit* hit = (*hsf)[i];
@@ -122,17 +147,25 @@ void RootIO::WriteToRoot(SciFiHitsCollection* hsf, double evtID, TTree* &tree)
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 void RootIO::Close()
-{ 
-  fFile->Write();
-  fFile->Close();
-  instance = 0;
-  delete fFile;  
+{
+    /*
+        Close file and reset instance
+    */
+    
+    fFile->Write();
+    fFile->Close();
+    instance = 0;
+    delete fFile;  
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 std::vector<G4String> RootIO::GetFileExt(const G4String& str)
 {
+    /*
+        Check for file extension if any to output ROOT file
+    */
+    
     std::vector<G4String> file;
     size_t sz = str.rfind('.', str.length());
     if(sz != std::string::npos)
@@ -152,11 +185,17 @@ std::vector<G4String> RootIO::GetFileExt(const G4String& str)
 
 G4String RootIO::GetRootName()
 {
+    /*
+        Gets the specified name of output file and checks if it has a ".root" extension,
+        if not it adds it to the end of filename
+    */
+
     PrimaryGeneratorAction* fPGA = (PrimaryGeneratorAction*)G4RunManager::GetRunManager()->GetUserPrimaryGeneratorAction();
     fOutputFile = fPGA->GetOutputName();
 
-    // Check if a name was specified
-    if(fOutputFile == "") 
+    // Check name specified
+    // **************************************************************
+    if(fOutputFile == "")   // If empty 
     {  
         fOutputFile = "waterhits.root";
         G4cout << "Defaulting to waterhits.root" << G4endl;
@@ -164,13 +203,17 @@ G4String RootIO::GetRootName()
     else
     {
         std::vector<G4String> splitFileName = GetFileExt(fOutputFile);
-        G4String fName = splitFileName[0];
-        G4String ext = splitFileName[1];
-        if( ext == "" || ext == "root") // Check if filename has root extension or not and add as appropriate
+        G4String fName = splitFileName[0];        // Filename
+        G4String ext = splitFileName[1];          // Extension
+        
+        // Check if filename has root extension add one if needed
+        // **************************************************************
+        if( ext == "" || ext == "root") 
         {
             checkedName = fName + ".root";
         }
-        else
+        else // If there is already an extension, don't add root extension and leave name as is, 
+             // but supply a message to inform user
         {
             checkedName = fName + "." + ext;
             G4cout << "Please note the filename extension is not .root" << G4endl;
@@ -178,4 +221,5 @@ G4String RootIO::GetRootName()
     }
     return checkedName;
 }
+
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

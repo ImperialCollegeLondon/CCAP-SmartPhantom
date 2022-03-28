@@ -58,12 +58,19 @@ EventAction::~EventAction()
 
 void EventAction::ResetTreeWriteStatus()
 {
+    /*
+        Reset booleans controlling on whether to write phantom/scifi TTree in file
+    */
     wrotePhantomTree = false;
     wroteSciFiTree = false;
 }
 
 void EventAction::CreateSciFiTree()
 {
+    /*
+        Create the TTree related to SciFi detectors to file and assign to EventData struct
+    */
+    
     station1Epoxy.tree = RootIO::GetInstance()->CreateTree("Station1_Epoxy");
     station1PlaneH.tree = RootIO::GetInstance()->CreateTree("Station1_PlaneH");
     station1PlaneV.tree = RootIO::GetInstance()->CreateTree("Station1_PlaneV");
@@ -83,6 +90,10 @@ void EventAction::CreateSciFiTree()
 
 void EventAction::DeleteSciFiTree()
 {
+    /*
+        Delete TTree from file
+    */
+    
     gDirectory->Delete("Station1_Epoxy");
     gDirectory->Delete("Station1_PlaneH");
     gDirectory->Delete("Station1_PlaneV");
@@ -101,11 +112,15 @@ void EventAction::DeleteSciFiTree()
 
 void EventAction::BeginOfEventAction(const G4Event*)
 {
+    /*
+        At the start of event collect the CollectionID for each sensitive detector
+    */
+    
     G4SDManager* sdManager = G4SDManager::GetSDMpointer();
  
     if( !wrotePhantomTree )
     {
-        phantom.tree = RootIO::GetInstance()->CreateTree("Phantom");
+        phantom.tree = RootIO::GetInstance()->CreateTree("Phantom"); // Assign to Phantom EventData struct
         wrotePhantomTree = true;
     }
     
@@ -141,6 +156,10 @@ void EventAction::BeginOfEventAction(const G4Event*)
 
 void EventAction::EndOfEventAction(const G4Event* event)
 {    
+    /*
+        At end of event get the collection of hits then write to ROOT file
+    */
+    
     G4HCofThisEvent* hce = event->GetHCofThisEvent();
     if (!hce)
     {
@@ -151,6 +170,7 @@ void EventAction::EndOfEventAction(const G4Event* event)
     }
     
     // Get hits collections 
+    // **************************************************************
     phantom.hColl = static_cast<SciFiHitsCollection*>(hce->GetHC(phantom.id));
 
     if( detector->GetToggleScifi() )
@@ -172,9 +192,8 @@ void EventAction::EndOfEventAction(const G4Event* event)
         station4PlaneV.hColl = static_cast<SciFiHitsCollection*>(hce->GetHC(station4PlaneV.id));
     }
 
-    ///////////////////    
-    // Write to Root //
-    ///////////////////        
+    // Write to Root file for each TTree
+    // **************************************************************
     eventID = event->GetEventID();
     RootIO* instance = RootIO::GetInstance();
     instance->WriteToRoot(phantom.hColl,eventID,phantom.tree);

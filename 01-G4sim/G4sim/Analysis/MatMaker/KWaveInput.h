@@ -12,17 +12,16 @@
 #include "Linterp/linterp.h"
 
 // Class to handle writing k-Wave input
+// **************************************************************    
 class KWaveInput
 {
 public:
     KWaveInput();
-    // Create + open .h5 file
     explicit KWaveInput(const std::string& fn);
     ~KWaveInput();
     
     void WriteInput();
 
-    
     void circshift(double *out, const double *in, int xdim, int ydim, int xshift, int yshift);
     void circshift(double *out, const double *in, int xdim, int ydim, int zdim, int xshift, int yshift, int zshift);
 
@@ -35,42 +34,63 @@ public:
     std::vector<double> Linspace(double first, double last, int len);
 
     double* Blackman(int wSize);
+    
+    void CreateFilter(int* adjustData, double* filterCombined);
+    void SliceFilter(int* nArr, int* adjustData, double* filterCombined, double* filterSliced);
+    
+    std::vector<double> CreateRadiusGrid(int* adjustData, double& radius);
+    std::vector<double> CreateWindow(int& L);
+    
+    void CreateRotFilter(int* nArr, int* adjustData, int& L, double& radius, 
+                            std::vector<double>& radiusGrid, std::vector<double>& winLin,
+                            double* rotWin);
+    
     void WindowFilter(int* nArr, fftw_complex* data);
+    void WindowFilterAS(int* nArr, fftw_complex* data);
+
     void RotWindowFilter(int* nArr, fftw_complex* data);
-    float* Smooth(double* energySum, int* binDim, double grueneisen = 1, bool restoreMagnitude = true, bool rotWindow = true);
+    void RotWindowFilterAS(int* nArr, fftw_complex* data);
+
+    float* Smooth(double* energyDensitySum, int* binDim, bool restoreMagnitude = true, bool rotWindow = true);
+    float* SmoothAS(double* energyDensitySum, int* binDim, bool restoreMagnitude = true, bool rotWindow = true);
     
     void WriteHeader();
     
-    // Calculating variables
-    // Calculate dt
-    float CalculateDT(float cfl, float* gridSpacing, float speed);
-
-    // Calculate Nt
+    float         CalculateDT(float cfl, float* gridSpacing, float speed);
     unsigned long CalculateNT(float tend, float dt);
     
-    // For calculating sensor indices (assuming matlab indexing for input which starts from 1)
-    // A rough implementation of sensor.mask() and find(sensor.mask) in matlab
-    std::vector<unsigned long> SensorMaskIndices(unsigned long nx, int senMinX, int senMaxX, int senDx,
-                                                 unsigned long ny, int senMinY, int senMaxY, int senDy,
-                                                 unsigned long nz, int senMinZ, int senMaxZ, int senDz);
+    std::vector<unsigned long> SensorMaskIndices(unsigned long nx, float senMinX, float senMaxX, int senDx,
+                                                 unsigned long ny, float senMinY, float senMaxY, int senDy,
+                                                 unsigned long nz, float senMinZ, float senMaxZ, int senDz);
+    
+    std::vector<unsigned long> SensorMaskIndices(unsigned long nx, float senMinX, float senMaxX, int senDx,
+                                                 unsigned long ny, float senMinY, float senMaxY, int senDy);
     
     // For writing k-wave 1D float variable
+    // **************************************************************    
     void Write1DFloat(std::string datasetName, float val);
 
     // For writing k-wave 1D long variable
+    // **************************************************************    
     void Write1DLong(std::string datasetName, unsigned long val);
 
     // For writing k-wave mult dim long variable (i.e. sensor_mask_index)
+    // **************************************************************    
     void WriteMultDLong(std::string datasetName, std::vector<unsigned long>& indicesVec);
     
     // For writing data (i.e. p0_source_input)
+    // **************************************************************    
     void WritePData(std::string datasetName, int nx, int ny, int nz, float* data);
     
     // For writing file
+    // **************************************************************    
     void WriteFile();
+    void WriteFileAS();
     
-    void SetBinDim(int* dim) { binDim = dim; };
-    void SetEnergyData(double* data) { energyData = data; };
+    // Set functions
+    // **************************************************************    
+    void SetBinDim(int* dim, size_t size) { binDim = dim; binDimSize = size; };
+    void SetEnergyDensity(double* data) { energyDensityData = data; };
     void SetSmooth(bool val) { enableSmooth = val; };
     void SetGrueneisen(double val) { grueneisen = val; };
     void SetRestoreMagnitude(bool val) { restoreMagnitude = val; };
@@ -92,7 +112,9 @@ public:
     void SetTEnd(float val) { tEnd = val; };
     void SetCFL(float val) { cfl = val; };
     void SetSensorMask(std::vector<unsigned long>& val) { sensorMask = val; };
-        
+    
+    // Get functions
+    // **************************************************************    
     unsigned long GetNx() { return Nx; };
     unsigned long GetNy() { return Ny; };
     unsigned long GetNz() { return Nz; };
@@ -116,8 +138,10 @@ private:
     hid_t fileId;
     
     int* binDim;
-    double* energyData;
-    float* fenergyData;
+    size_t binDimSize;
+    
+    double* energyDensityData;
+    float* fenergyDensityData;
     
     bool enableSmooth;
     double grueneisen;
@@ -149,5 +173,6 @@ private:
     unsigned long Nt;
     
     std::vector<unsigned long> sensorMask;
+    double* window;
 };
 #endif // KWAVEINPUT_H

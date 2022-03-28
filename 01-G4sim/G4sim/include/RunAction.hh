@@ -39,7 +39,7 @@
 class G4Run;
 
 /// Run action class
-
+// **************************************************************
 class RunAction : public G4UserRunAction
 {
   public:

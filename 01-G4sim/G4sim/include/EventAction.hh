@@ -39,8 +39,9 @@
 #include "TROOT.h"
 #include "TFile.h"
 #include "TTree.h"
-/// Event action
 
+/// Event action
+// **************************************************************
 struct EventData
 {
     TTree* tree;
