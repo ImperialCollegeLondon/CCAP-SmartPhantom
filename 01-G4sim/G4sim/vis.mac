@@ -18,10 +18,10 @@
 #/vis/viewer/zoom 1.6
 #
 # Specify style (surface or wireframe):
-#/vis/viewer/set/style wireframe
+/vis/viewer/set/style surface
 #
 # Draw coordinate axes:
-#/vis/scene/add/axes 15 0 25 20 cm
+/vis/scene/add/axes 0 0 30 20 cm
 #
 # Draw smooth trajectories at end of event, showing trajectory points
 # as markers 2 pixels wide:

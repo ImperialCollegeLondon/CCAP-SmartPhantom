@@ -27,7 +27,9 @@
 #ifndef PrimaryGeneratorAction_h
 #define PrimaryGeneratorAction_h 1
 
+#include "G4RunManager.hh"
 #include "G4VUserPrimaryGeneratorAction.hh"
+#include "DetectorConstruction.hh"
 #include "globals.hh"
 
 #include "TTreeReader.h"
@@ -39,6 +41,7 @@
 class G4ParticleGun;
 class G4Event;
 class G4ParticleDefinition;
+class G4GenericMessenger;
 
 class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 {
@@ -46,11 +49,33 @@ public:
     PrimaryGeneratorAction();
     virtual ~PrimaryGeneratorAction();
     virtual void GeneratePrimaries(G4Event*);
-        
+    
+    G4bool CheckNumeric(G4String& str);
+    void SkipNonNumeric(std::ifstream& readFile, G4String& readLine);
+    void GetLine(std::ifstream& readFile, G4String& readLine);
+    void ReadLine(std::ifstream& readFile, G4String& readLine);
+    std::vector<G4double> GetToken(G4String& line);
+    void AssignToGun(G4String& line, G4Event* event);
+    void ResetStartLine();
+    void CheckTime(std::ifstream& readFile);
+    
+    G4String GetOutputName() { return fOutputFile; }
+    
 private:
+    void DefineCommands();
+    
     G4ParticleGun* fParticleGun;
     G4ParticleDefinition* fProton;
-    float lineskip = 0;
+    G4RunManager* fManager;
+    G4GenericMessenger* fMessenger;
+    G4String fInputFile;
+    G4String fOutputFile;
+    
+    G4int startLine;
+    G4bool resetSL;
+    G4double startTime;
+    G4bool checkedTime;    
+    G4bool Debug;
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

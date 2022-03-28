@@ -30,13 +30,24 @@
 
 #include "G4UserEventAction.hh"
 #include "globals.hh"
+#include "G4RunManager.hh"
+#include "G4VUserDetectorConstruction.hh"
 #include "DetectorConstruction.hh"
 #include "SciFiHit.hh"
+#include <vector>
 
 #include "TROOT.h"
 #include "TFile.h"
 #include "TTree.h"
+
 /// Event action
+// **************************************************************
+struct EventData
+{
+    TTree* tree;
+    G4int id;
+    SciFiHitsCollection* hColl;
+};
 
 class EventAction : public G4UserEventAction
 {
@@ -46,14 +57,36 @@ public:
     
     virtual void BeginOfEventAction(const G4Event*);
     virtual void EndOfEventAction(const G4Event*);
+    void CreateSciFiTree();
+    void DeleteSciFiTree();
+    void ResetTreeWriteStatus();
     
 private:
-    G4int waterBoxID;
-
-    SciFiHitsCollection* hWaterBox;
-    
-    G4int n_hit;
     G4int eventID;
+
+    G4RunManager* fManager;
+    DetectorConstruction* detector;
+    
+    EventData phantom;
+    
+    EventData station1Epoxy;
+    EventData station1PlaneH;
+    EventData station1PlaneV;
+    
+    EventData station2Epoxy;
+    EventData station2PlaneH;
+    EventData station2PlaneV;
+
+    EventData station3Epoxy;
+    EventData station3PlaneH;
+    EventData station3PlaneV;
+
+    EventData station4Epoxy;
+    EventData station4PlaneH;
+    EventData station4PlaneV;
+    
+    G4bool wrotePhantomTree;
+    G4bool wroteSciFiTree;
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

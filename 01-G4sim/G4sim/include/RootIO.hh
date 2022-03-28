@@ -1,32 +1,41 @@
 #ifndef INCLUDE_ROOTIO_HH 
 #define INCLUDE_ROOTIO_HH 1
 
-// Include files
 #include "TROOT.h"
 #include "TFile.h"
 #include "TSystem.h"
 #include "TTree.h"
 #include "SciFiHit.hh"
 #include "G4String.hh"
+#include "G4RunManager.hh"
+#include "DetectorConstruction.hh"
+#include "PrimaryGeneratorAction.hh"
+
 
 class RootIO 
 {
 public: 
-  virtual ~RootIO();
+    virtual ~RootIO();
   
-  static RootIO* GetInstance();
-  void Write_WBox(SciFiHitsCollection* hsf, double evtID);
-  void Close();
-
+    static RootIO* GetInstance(G4String name = "");
+    TTree* CreateTree(TString treeName);
+    void WriteToRoot(SciFiHitsCollection* hsf, double evtID, TTree* &tree);
+    void Close();
+    static G4String fOutputFile;
+    std::vector<G4String> GetFileExt(const G4String& str);
+    G4String GetRootName();
+    G4String GetCheckedName() { return checkedName; };
+    
 protected:
-  RootIO(); 
+    RootIO(); 
   
 private:
-  TTree* waterBox;
-
-  TFile* fFile;
-  int fNevents;
-  double data[8];
-  std::string name;
+    
+    TFile* fFile;
+    int fNevents;
+    double data[8];
+    std::string name;
+    G4String checkedName;
+    
 };
 #endif // INCLUDE_ROOTIO_HH

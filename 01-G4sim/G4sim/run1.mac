@@ -1,4 +1,14 @@
 /run/verbose 1
 /run/initialize
+
+# IO Commands
+/SP/IO/inputFile "test_file.dat"
+/SP/IO/outputFile "waterhits.root"
+
+# Detector Commands
+/SP/detector/enablePhantomWall true
+/SP/detector/enableScifi true
+
+# Beam Run Commands
 /run/printProgress 1000
 /run/beamOn 10000

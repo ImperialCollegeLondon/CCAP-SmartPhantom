@@ -36,7 +36,7 @@ class G4HCofThisEvent;
 class G4TouchableHistory;
 
 // SciFi Sensitive Detector
-
+// **************************************************************
 class SciFiSD : public G4VSensitiveDetector
 {
 public:

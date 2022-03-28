@@ -40,6 +40,10 @@
 SciFiSD::SciFiSD(G4String name)
 : G4VSensitiveDetector(name), fHitsCollection(0), fHCID(-1)
 {
+    /*
+        Give a name for the collection for all SciFiSD detectors
+    */
+    
     G4String HCname = "SciFiColl";
     collectionName.insert(HCname);
 }
@@ -47,19 +51,25 @@ SciFiSD::SciFiSD(G4String name)
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 SciFiSD::~SciFiSD()
-{}
+{
+    collectionName.clear();
+}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 void SciFiSD::Initialize(G4HCofThisEvent* hce)
 {
+    /*
+        Prepare the hits collection for detector
+    */
+    
     fHitsCollection = new SciFiHitsCollection(SensitiveDetectorName,collectionName[0]);
     if (fHCID<0)
     { fHCID = G4SDManager::GetSDMpointer()->GetCollectionID(fHitsCollection); }
     hce->AddHitsCollection(fHCID,fHitsCollection);
     
     // Fill hits with zero energy GetTotalEnergyDeposit
-    DetectorConstruction detector;
+    // **************************************************************
     SciFiHit* hit = new SciFiHit(0);
     fHitsCollection->insert(hit);    
 }
@@ -68,28 +78,39 @@ void SciFiSD::Initialize(G4HCofThisEvent* hce)
 
 G4bool SciFiSD::ProcessHits(G4Step* step, G4TouchableHistory*)
 {
-    G4double edep = step->GetTotalEnergyDeposit();
-    if (edep==0.) return true;
+    /*
+        When proccessing a hit specify what data to collect
+    */
+    G4double edep = step->GetTotalEnergyDeposit();                                  // Collect energy deposited
+    if (edep==0.) return true;                                                      // If no energy deposited skip
 
+    // Data related to volume
+    // **************************************************************
     G4TouchableHistory* touchable = (G4TouchableHistory*)(step->GetPreStepPoint()->GetTouchable());
     G4VPhysicalVolume* physical = touchable->GetVolume();
     G4int copyNo = physical->GetCopyNo();
+            
+    G4double steplength = step->GetStepLength();                                    // Steplength
     
+    // The point before and after a step
+    // **************************************************************
     G4StepPoint* preStepPoint = step->GetPreStepPoint();
     G4StepPoint* postStepPoint = step->GetPostStepPoint();
-        
-    G4double steplength = step->GetStepLength();
     
     // Randomize energy deposition location to between preStep and postStep
+    // **************************************************************
     G4ThreeVector prePoint = preStepPoint->GetPosition();
     G4ThreeVector postPoint = postStepPoint->GetPosition();
     G4ThreeVector worldPos = prePoint + G4UniformRand()*(postPoint - prePoint);
     
-    G4double postTime = postStepPoint->GetGlobalTime();
-    G4double deltaT = step->GetDeltaTime();
+    G4double postTime = postStepPoint->GetGlobalTime();                             // Get global time at post step
+    G4double deltaT = step->GetDeltaTime();                                         // Get the time of event 
+                                                                                    // (i.e. between preStep and postStep)
     
-    G4String particleName = step->GetTrack()->GetDefinition()->GetParticleName();
+    G4String particleName = step->GetTrack()->GetDefinition()->GetParticleName();   // Particle Name causing hit
     
+    // Write information of hit to SciFiHit for SciFiSD
+    // **************************************************************
     SciFiHit* hit = new SciFiHit(copyNo,postTime,edep,steplength,worldPos,deltaT,particleName);
     fHitsCollection->insert(hit);
     
