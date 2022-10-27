@@ -53,10 +53,10 @@ RM = /vols/ccap/local/cmake/cmake-3.21.2-linux-x86_64/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hep/mm2321/LMU_design/G4sim
+CMAKE_SOURCE_DIR = /home/hep/mm2321/LMU_design_2/G4sim
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hep/mm2321/LMU_design/build
+CMAKE_BINARY_DIR = /home/hep/mm2321/LMU_design_2/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/SmartPhantom.dir/depend.make
@@ -70,158 +70,158 @@ include CMakeFiles/SmartPhantom.dir/progress.make
 include CMakeFiles/SmartPhantom.dir/flags.make
 
 CMakeFiles/SmartPhantom.dir/smartphantom.cc.o: CMakeFiles/SmartPhantom.dir/flags.make
-CMakeFiles/SmartPhantom.dir/smartphantom.cc.o: /home/hep/mm2321/LMU_design/G4sim/smartphantom.cc
+CMakeFiles/SmartPhantom.dir/smartphantom.cc.o: /home/hep/mm2321/LMU_design_2/G4sim/smartphantom.cc
 CMakeFiles/SmartPhantom.dir/smartphantom.cc.o: CMakeFiles/SmartPhantom.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hep/mm2321/LMU_design/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/SmartPhantom.dir/smartphantom.cc.o"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SmartPhantom.dir/smartphantom.cc.o -MF CMakeFiles/SmartPhantom.dir/smartphantom.cc.o.d -o CMakeFiles/SmartPhantom.dir/smartphantom.cc.o -c /home/hep/mm2321/LMU_design/G4sim/smartphantom.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hep/mm2321/LMU_design_2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/SmartPhantom.dir/smartphantom.cc.o"
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SmartPhantom.dir/smartphantom.cc.o -MF CMakeFiles/SmartPhantom.dir/smartphantom.cc.o.d -o CMakeFiles/SmartPhantom.dir/smartphantom.cc.o -c /home/hep/mm2321/LMU_design_2/G4sim/smartphantom.cc
 
 CMakeFiles/SmartPhantom.dir/smartphantom.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SmartPhantom.dir/smartphantom.cc.i"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hep/mm2321/LMU_design/G4sim/smartphantom.cc > CMakeFiles/SmartPhantom.dir/smartphantom.cc.i
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hep/mm2321/LMU_design_2/G4sim/smartphantom.cc > CMakeFiles/SmartPhantom.dir/smartphantom.cc.i
 
 CMakeFiles/SmartPhantom.dir/smartphantom.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SmartPhantom.dir/smartphantom.cc.s"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hep/mm2321/LMU_design/G4sim/smartphantom.cc -o CMakeFiles/SmartPhantom.dir/smartphantom.cc.s
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hep/mm2321/LMU_design_2/G4sim/smartphantom.cc -o CMakeFiles/SmartPhantom.dir/smartphantom.cc.s
 
 CMakeFiles/SmartPhantom.dir/src/ActionInitialization.cc.o: CMakeFiles/SmartPhantom.dir/flags.make
-CMakeFiles/SmartPhantom.dir/src/ActionInitialization.cc.o: /home/hep/mm2321/LMU_design/G4sim/src/ActionInitialization.cc
+CMakeFiles/SmartPhantom.dir/src/ActionInitialization.cc.o: /home/hep/mm2321/LMU_design_2/G4sim/src/ActionInitialization.cc
 CMakeFiles/SmartPhantom.dir/src/ActionInitialization.cc.o: CMakeFiles/SmartPhantom.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hep/mm2321/LMU_design/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/SmartPhantom.dir/src/ActionInitialization.cc.o"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SmartPhantom.dir/src/ActionInitialization.cc.o -MF CMakeFiles/SmartPhantom.dir/src/ActionInitialization.cc.o.d -o CMakeFiles/SmartPhantom.dir/src/ActionInitialization.cc.o -c /home/hep/mm2321/LMU_design/G4sim/src/ActionInitialization.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hep/mm2321/LMU_design_2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/SmartPhantom.dir/src/ActionInitialization.cc.o"
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SmartPhantom.dir/src/ActionInitialization.cc.o -MF CMakeFiles/SmartPhantom.dir/src/ActionInitialization.cc.o.d -o CMakeFiles/SmartPhantom.dir/src/ActionInitialization.cc.o -c /home/hep/mm2321/LMU_design_2/G4sim/src/ActionInitialization.cc
 
 CMakeFiles/SmartPhantom.dir/src/ActionInitialization.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SmartPhantom.dir/src/ActionInitialization.cc.i"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hep/mm2321/LMU_design/G4sim/src/ActionInitialization.cc > CMakeFiles/SmartPhantom.dir/src/ActionInitialization.cc.i
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hep/mm2321/LMU_design_2/G4sim/src/ActionInitialization.cc > CMakeFiles/SmartPhantom.dir/src/ActionInitialization.cc.i
 
 CMakeFiles/SmartPhantom.dir/src/ActionInitialization.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SmartPhantom.dir/src/ActionInitialization.cc.s"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hep/mm2321/LMU_design/G4sim/src/ActionInitialization.cc -o CMakeFiles/SmartPhantom.dir/src/ActionInitialization.cc.s
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hep/mm2321/LMU_design_2/G4sim/src/ActionInitialization.cc -o CMakeFiles/SmartPhantom.dir/src/ActionInitialization.cc.s
 
 CMakeFiles/SmartPhantom.dir/src/DetectorConstruction.cc.o: CMakeFiles/SmartPhantom.dir/flags.make
-CMakeFiles/SmartPhantom.dir/src/DetectorConstruction.cc.o: /home/hep/mm2321/LMU_design/G4sim/src/DetectorConstruction.cc
+CMakeFiles/SmartPhantom.dir/src/DetectorConstruction.cc.o: /home/hep/mm2321/LMU_design_2/G4sim/src/DetectorConstruction.cc
 CMakeFiles/SmartPhantom.dir/src/DetectorConstruction.cc.o: CMakeFiles/SmartPhantom.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hep/mm2321/LMU_design/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/SmartPhantom.dir/src/DetectorConstruction.cc.o"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SmartPhantom.dir/src/DetectorConstruction.cc.o -MF CMakeFiles/SmartPhantom.dir/src/DetectorConstruction.cc.o.d -o CMakeFiles/SmartPhantom.dir/src/DetectorConstruction.cc.o -c /home/hep/mm2321/LMU_design/G4sim/src/DetectorConstruction.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hep/mm2321/LMU_design_2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/SmartPhantom.dir/src/DetectorConstruction.cc.o"
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SmartPhantom.dir/src/DetectorConstruction.cc.o -MF CMakeFiles/SmartPhantom.dir/src/DetectorConstruction.cc.o.d -o CMakeFiles/SmartPhantom.dir/src/DetectorConstruction.cc.o -c /home/hep/mm2321/LMU_design_2/G4sim/src/DetectorConstruction.cc
 
 CMakeFiles/SmartPhantom.dir/src/DetectorConstruction.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SmartPhantom.dir/src/DetectorConstruction.cc.i"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hep/mm2321/LMU_design/G4sim/src/DetectorConstruction.cc > CMakeFiles/SmartPhantom.dir/src/DetectorConstruction.cc.i
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hep/mm2321/LMU_design_2/G4sim/src/DetectorConstruction.cc > CMakeFiles/SmartPhantom.dir/src/DetectorConstruction.cc.i
 
 CMakeFiles/SmartPhantom.dir/src/DetectorConstruction.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SmartPhantom.dir/src/DetectorConstruction.cc.s"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hep/mm2321/LMU_design/G4sim/src/DetectorConstruction.cc -o CMakeFiles/SmartPhantom.dir/src/DetectorConstruction.cc.s
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hep/mm2321/LMU_design_2/G4sim/src/DetectorConstruction.cc -o CMakeFiles/SmartPhantom.dir/src/DetectorConstruction.cc.s
 
 CMakeFiles/SmartPhantom.dir/src/DetectorConstructionMessenger.cc.o: CMakeFiles/SmartPhantom.dir/flags.make
-CMakeFiles/SmartPhantom.dir/src/DetectorConstructionMessenger.cc.o: /home/hep/mm2321/LMU_design/G4sim/src/DetectorConstructionMessenger.cc
+CMakeFiles/SmartPhantom.dir/src/DetectorConstructionMessenger.cc.o: /home/hep/mm2321/LMU_design_2/G4sim/src/DetectorConstructionMessenger.cc
 CMakeFiles/SmartPhantom.dir/src/DetectorConstructionMessenger.cc.o: CMakeFiles/SmartPhantom.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hep/mm2321/LMU_design/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/SmartPhantom.dir/src/DetectorConstructionMessenger.cc.o"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SmartPhantom.dir/src/DetectorConstructionMessenger.cc.o -MF CMakeFiles/SmartPhantom.dir/src/DetectorConstructionMessenger.cc.o.d -o CMakeFiles/SmartPhantom.dir/src/DetectorConstructionMessenger.cc.o -c /home/hep/mm2321/LMU_design/G4sim/src/DetectorConstructionMessenger.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hep/mm2321/LMU_design_2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/SmartPhantom.dir/src/DetectorConstructionMessenger.cc.o"
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SmartPhantom.dir/src/DetectorConstructionMessenger.cc.o -MF CMakeFiles/SmartPhantom.dir/src/DetectorConstructionMessenger.cc.o.d -o CMakeFiles/SmartPhantom.dir/src/DetectorConstructionMessenger.cc.o -c /home/hep/mm2321/LMU_design_2/G4sim/src/DetectorConstructionMessenger.cc
 
 CMakeFiles/SmartPhantom.dir/src/DetectorConstructionMessenger.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SmartPhantom.dir/src/DetectorConstructionMessenger.cc.i"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hep/mm2321/LMU_design/G4sim/src/DetectorConstructionMessenger.cc > CMakeFiles/SmartPhantom.dir/src/DetectorConstructionMessenger.cc.i
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hep/mm2321/LMU_design_2/G4sim/src/DetectorConstructionMessenger.cc > CMakeFiles/SmartPhantom.dir/src/DetectorConstructionMessenger.cc.i
 
 CMakeFiles/SmartPhantom.dir/src/DetectorConstructionMessenger.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SmartPhantom.dir/src/DetectorConstructionMessenger.cc.s"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hep/mm2321/LMU_design/G4sim/src/DetectorConstructionMessenger.cc -o CMakeFiles/SmartPhantom.dir/src/DetectorConstructionMessenger.cc.s
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hep/mm2321/LMU_design_2/G4sim/src/DetectorConstructionMessenger.cc -o CMakeFiles/SmartPhantom.dir/src/DetectorConstructionMessenger.cc.s
 
 CMakeFiles/SmartPhantom.dir/src/EventAction.cc.o: CMakeFiles/SmartPhantom.dir/flags.make
-CMakeFiles/SmartPhantom.dir/src/EventAction.cc.o: /home/hep/mm2321/LMU_design/G4sim/src/EventAction.cc
+CMakeFiles/SmartPhantom.dir/src/EventAction.cc.o: /home/hep/mm2321/LMU_design_2/G4sim/src/EventAction.cc
 CMakeFiles/SmartPhantom.dir/src/EventAction.cc.o: CMakeFiles/SmartPhantom.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hep/mm2321/LMU_design/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/SmartPhantom.dir/src/EventAction.cc.o"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SmartPhantom.dir/src/EventAction.cc.o -MF CMakeFiles/SmartPhantom.dir/src/EventAction.cc.o.d -o CMakeFiles/SmartPhantom.dir/src/EventAction.cc.o -c /home/hep/mm2321/LMU_design/G4sim/src/EventAction.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hep/mm2321/LMU_design_2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/SmartPhantom.dir/src/EventAction.cc.o"
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SmartPhantom.dir/src/EventAction.cc.o -MF CMakeFiles/SmartPhantom.dir/src/EventAction.cc.o.d -o CMakeFiles/SmartPhantom.dir/src/EventAction.cc.o -c /home/hep/mm2321/LMU_design_2/G4sim/src/EventAction.cc
 
 CMakeFiles/SmartPhantom.dir/src/EventAction.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SmartPhantom.dir/src/EventAction.cc.i"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hep/mm2321/LMU_design/G4sim/src/EventAction.cc > CMakeFiles/SmartPhantom.dir/src/EventAction.cc.i
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hep/mm2321/LMU_design_2/G4sim/src/EventAction.cc > CMakeFiles/SmartPhantom.dir/src/EventAction.cc.i
 
 CMakeFiles/SmartPhantom.dir/src/EventAction.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SmartPhantom.dir/src/EventAction.cc.s"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hep/mm2321/LMU_design/G4sim/src/EventAction.cc -o CMakeFiles/SmartPhantom.dir/src/EventAction.cc.s
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hep/mm2321/LMU_design_2/G4sim/src/EventAction.cc -o CMakeFiles/SmartPhantom.dir/src/EventAction.cc.s
 
 CMakeFiles/SmartPhantom.dir/src/PrimaryGeneratorAction.cc.o: CMakeFiles/SmartPhantom.dir/flags.make
-CMakeFiles/SmartPhantom.dir/src/PrimaryGeneratorAction.cc.o: /home/hep/mm2321/LMU_design/G4sim/src/PrimaryGeneratorAction.cc
+CMakeFiles/SmartPhantom.dir/src/PrimaryGeneratorAction.cc.o: /home/hep/mm2321/LMU_design_2/G4sim/src/PrimaryGeneratorAction.cc
 CMakeFiles/SmartPhantom.dir/src/PrimaryGeneratorAction.cc.o: CMakeFiles/SmartPhantom.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hep/mm2321/LMU_design/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/SmartPhantom.dir/src/PrimaryGeneratorAction.cc.o"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SmartPhantom.dir/src/PrimaryGeneratorAction.cc.o -MF CMakeFiles/SmartPhantom.dir/src/PrimaryGeneratorAction.cc.o.d -o CMakeFiles/SmartPhantom.dir/src/PrimaryGeneratorAction.cc.o -c /home/hep/mm2321/LMU_design/G4sim/src/PrimaryGeneratorAction.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hep/mm2321/LMU_design_2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/SmartPhantom.dir/src/PrimaryGeneratorAction.cc.o"
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SmartPhantom.dir/src/PrimaryGeneratorAction.cc.o -MF CMakeFiles/SmartPhantom.dir/src/PrimaryGeneratorAction.cc.o.d -o CMakeFiles/SmartPhantom.dir/src/PrimaryGeneratorAction.cc.o -c /home/hep/mm2321/LMU_design_2/G4sim/src/PrimaryGeneratorAction.cc
 
 CMakeFiles/SmartPhantom.dir/src/PrimaryGeneratorAction.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SmartPhantom.dir/src/PrimaryGeneratorAction.cc.i"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hep/mm2321/LMU_design/G4sim/src/PrimaryGeneratorAction.cc > CMakeFiles/SmartPhantom.dir/src/PrimaryGeneratorAction.cc.i
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hep/mm2321/LMU_design_2/G4sim/src/PrimaryGeneratorAction.cc > CMakeFiles/SmartPhantom.dir/src/PrimaryGeneratorAction.cc.i
 
 CMakeFiles/SmartPhantom.dir/src/PrimaryGeneratorAction.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SmartPhantom.dir/src/PrimaryGeneratorAction.cc.s"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hep/mm2321/LMU_design/G4sim/src/PrimaryGeneratorAction.cc -o CMakeFiles/SmartPhantom.dir/src/PrimaryGeneratorAction.cc.s
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hep/mm2321/LMU_design_2/G4sim/src/PrimaryGeneratorAction.cc -o CMakeFiles/SmartPhantom.dir/src/PrimaryGeneratorAction.cc.s
 
 CMakeFiles/SmartPhantom.dir/src/RootIO.cc.o: CMakeFiles/SmartPhantom.dir/flags.make
-CMakeFiles/SmartPhantom.dir/src/RootIO.cc.o: /home/hep/mm2321/LMU_design/G4sim/src/RootIO.cc
+CMakeFiles/SmartPhantom.dir/src/RootIO.cc.o: /home/hep/mm2321/LMU_design_2/G4sim/src/RootIO.cc
 CMakeFiles/SmartPhantom.dir/src/RootIO.cc.o: CMakeFiles/SmartPhantom.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hep/mm2321/LMU_design/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/SmartPhantom.dir/src/RootIO.cc.o"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SmartPhantom.dir/src/RootIO.cc.o -MF CMakeFiles/SmartPhantom.dir/src/RootIO.cc.o.d -o CMakeFiles/SmartPhantom.dir/src/RootIO.cc.o -c /home/hep/mm2321/LMU_design/G4sim/src/RootIO.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hep/mm2321/LMU_design_2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/SmartPhantom.dir/src/RootIO.cc.o"
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SmartPhantom.dir/src/RootIO.cc.o -MF CMakeFiles/SmartPhantom.dir/src/RootIO.cc.o.d -o CMakeFiles/SmartPhantom.dir/src/RootIO.cc.o -c /home/hep/mm2321/LMU_design_2/G4sim/src/RootIO.cc
 
 CMakeFiles/SmartPhantom.dir/src/RootIO.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SmartPhantom.dir/src/RootIO.cc.i"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hep/mm2321/LMU_design/G4sim/src/RootIO.cc > CMakeFiles/SmartPhantom.dir/src/RootIO.cc.i
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hep/mm2321/LMU_design_2/G4sim/src/RootIO.cc > CMakeFiles/SmartPhantom.dir/src/RootIO.cc.i
 
 CMakeFiles/SmartPhantom.dir/src/RootIO.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SmartPhantom.dir/src/RootIO.cc.s"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hep/mm2321/LMU_design/G4sim/src/RootIO.cc -o CMakeFiles/SmartPhantom.dir/src/RootIO.cc.s
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hep/mm2321/LMU_design_2/G4sim/src/RootIO.cc -o CMakeFiles/SmartPhantom.dir/src/RootIO.cc.s
 
 CMakeFiles/SmartPhantom.dir/src/Run.cc.o: CMakeFiles/SmartPhantom.dir/flags.make
-CMakeFiles/SmartPhantom.dir/src/Run.cc.o: /home/hep/mm2321/LMU_design/G4sim/src/Run.cc
+CMakeFiles/SmartPhantom.dir/src/Run.cc.o: /home/hep/mm2321/LMU_design_2/G4sim/src/Run.cc
 CMakeFiles/SmartPhantom.dir/src/Run.cc.o: CMakeFiles/SmartPhantom.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hep/mm2321/LMU_design/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/SmartPhantom.dir/src/Run.cc.o"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SmartPhantom.dir/src/Run.cc.o -MF CMakeFiles/SmartPhantom.dir/src/Run.cc.o.d -o CMakeFiles/SmartPhantom.dir/src/Run.cc.o -c /home/hep/mm2321/LMU_design/G4sim/src/Run.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hep/mm2321/LMU_design_2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/SmartPhantom.dir/src/Run.cc.o"
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SmartPhantom.dir/src/Run.cc.o -MF CMakeFiles/SmartPhantom.dir/src/Run.cc.o.d -o CMakeFiles/SmartPhantom.dir/src/Run.cc.o -c /home/hep/mm2321/LMU_design_2/G4sim/src/Run.cc
 
 CMakeFiles/SmartPhantom.dir/src/Run.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SmartPhantom.dir/src/Run.cc.i"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hep/mm2321/LMU_design/G4sim/src/Run.cc > CMakeFiles/SmartPhantom.dir/src/Run.cc.i
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hep/mm2321/LMU_design_2/G4sim/src/Run.cc > CMakeFiles/SmartPhantom.dir/src/Run.cc.i
 
 CMakeFiles/SmartPhantom.dir/src/Run.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SmartPhantom.dir/src/Run.cc.s"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hep/mm2321/LMU_design/G4sim/src/Run.cc -o CMakeFiles/SmartPhantom.dir/src/Run.cc.s
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hep/mm2321/LMU_design_2/G4sim/src/Run.cc -o CMakeFiles/SmartPhantom.dir/src/Run.cc.s
 
 CMakeFiles/SmartPhantom.dir/src/RunAction.cc.o: CMakeFiles/SmartPhantom.dir/flags.make
-CMakeFiles/SmartPhantom.dir/src/RunAction.cc.o: /home/hep/mm2321/LMU_design/G4sim/src/RunAction.cc
+CMakeFiles/SmartPhantom.dir/src/RunAction.cc.o: /home/hep/mm2321/LMU_design_2/G4sim/src/RunAction.cc
 CMakeFiles/SmartPhantom.dir/src/RunAction.cc.o: CMakeFiles/SmartPhantom.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hep/mm2321/LMU_design/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/SmartPhantom.dir/src/RunAction.cc.o"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SmartPhantom.dir/src/RunAction.cc.o -MF CMakeFiles/SmartPhantom.dir/src/RunAction.cc.o.d -o CMakeFiles/SmartPhantom.dir/src/RunAction.cc.o -c /home/hep/mm2321/LMU_design/G4sim/src/RunAction.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hep/mm2321/LMU_design_2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/SmartPhantom.dir/src/RunAction.cc.o"
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SmartPhantom.dir/src/RunAction.cc.o -MF CMakeFiles/SmartPhantom.dir/src/RunAction.cc.o.d -o CMakeFiles/SmartPhantom.dir/src/RunAction.cc.o -c /home/hep/mm2321/LMU_design_2/G4sim/src/RunAction.cc
 
 CMakeFiles/SmartPhantom.dir/src/RunAction.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SmartPhantom.dir/src/RunAction.cc.i"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hep/mm2321/LMU_design/G4sim/src/RunAction.cc > CMakeFiles/SmartPhantom.dir/src/RunAction.cc.i
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hep/mm2321/LMU_design_2/G4sim/src/RunAction.cc > CMakeFiles/SmartPhantom.dir/src/RunAction.cc.i
 
 CMakeFiles/SmartPhantom.dir/src/RunAction.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SmartPhantom.dir/src/RunAction.cc.s"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hep/mm2321/LMU_design/G4sim/src/RunAction.cc -o CMakeFiles/SmartPhantom.dir/src/RunAction.cc.s
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hep/mm2321/LMU_design_2/G4sim/src/RunAction.cc -o CMakeFiles/SmartPhantom.dir/src/RunAction.cc.s
 
 CMakeFiles/SmartPhantom.dir/src/SciFiHit.cc.o: CMakeFiles/SmartPhantom.dir/flags.make
-CMakeFiles/SmartPhantom.dir/src/SciFiHit.cc.o: /home/hep/mm2321/LMU_design/G4sim/src/SciFiHit.cc
+CMakeFiles/SmartPhantom.dir/src/SciFiHit.cc.o: /home/hep/mm2321/LMU_design_2/G4sim/src/SciFiHit.cc
 CMakeFiles/SmartPhantom.dir/src/SciFiHit.cc.o: CMakeFiles/SmartPhantom.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hep/mm2321/LMU_design/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/SmartPhantom.dir/src/SciFiHit.cc.o"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SmartPhantom.dir/src/SciFiHit.cc.o -MF CMakeFiles/SmartPhantom.dir/src/SciFiHit.cc.o.d -o CMakeFiles/SmartPhantom.dir/src/SciFiHit.cc.o -c /home/hep/mm2321/LMU_design/G4sim/src/SciFiHit.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hep/mm2321/LMU_design_2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/SmartPhantom.dir/src/SciFiHit.cc.o"
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SmartPhantom.dir/src/SciFiHit.cc.o -MF CMakeFiles/SmartPhantom.dir/src/SciFiHit.cc.o.d -o CMakeFiles/SmartPhantom.dir/src/SciFiHit.cc.o -c /home/hep/mm2321/LMU_design_2/G4sim/src/SciFiHit.cc
 
 CMakeFiles/SmartPhantom.dir/src/SciFiHit.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SmartPhantom.dir/src/SciFiHit.cc.i"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hep/mm2321/LMU_design/G4sim/src/SciFiHit.cc > CMakeFiles/SmartPhantom.dir/src/SciFiHit.cc.i
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hep/mm2321/LMU_design_2/G4sim/src/SciFiHit.cc > CMakeFiles/SmartPhantom.dir/src/SciFiHit.cc.i
 
 CMakeFiles/SmartPhantom.dir/src/SciFiHit.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SmartPhantom.dir/src/SciFiHit.cc.s"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hep/mm2321/LMU_design/G4sim/src/SciFiHit.cc -o CMakeFiles/SmartPhantom.dir/src/SciFiHit.cc.s
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hep/mm2321/LMU_design_2/G4sim/src/SciFiHit.cc -o CMakeFiles/SmartPhantom.dir/src/SciFiHit.cc.s
 
 CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.o: CMakeFiles/SmartPhantom.dir/flags.make
-CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.o: /home/hep/mm2321/LMU_design/G4sim/src/SciFiSD.cc
+CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.o: /home/hep/mm2321/LMU_design_2/G4sim/src/SciFiSD.cc
 CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.o: CMakeFiles/SmartPhantom.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hep/mm2321/LMU_design/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.o"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.o -MF CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.o.d -o CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.o -c /home/hep/mm2321/LMU_design/G4sim/src/SciFiSD.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hep/mm2321/LMU_design_2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.o"
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.o -MF CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.o.d -o CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.o -c /home/hep/mm2321/LMU_design_2/G4sim/src/SciFiSD.cc
 
 CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.i"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hep/mm2321/LMU_design/G4sim/src/SciFiSD.cc > CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.i
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/hep/mm2321/LMU_design_2/G4sim/src/SciFiSD.cc > CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.i
 
 CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.s"
-	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hep/mm2321/LMU_design/G4sim/src/SciFiSD.cc -o CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.s
+	/cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/hep/mm2321/LMU_design_2/G4sim/src/SciFiSD.cc -o CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.s
 
 # Object files for target SmartPhantom
 SmartPhantom_OBJECTS = \
@@ -339,10 +339,10 @@ SmartPhantom: /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/lib64
 SmartPhantom: /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/lib64/libG4global.so
 SmartPhantom: /cvmfs/sft.cern.ch/lcg/releases/clhep/2.4.1.0-2c56f/x86_64-centos7-gcc62-opt/lib/libCLHEP-2.4.1.0.so
 SmartPhantom: CMakeFiles/SmartPhantom.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hep/mm2321/LMU_design/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable SmartPhantom"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hep/mm2321/LMU_design_2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable SmartPhantom"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/SmartPhantom.dir/link.txt --verbose=$(VERBOSE)
-	/vols/ccap/local/cmake/cmake-3.21.2-linux-x86_64/bin/cmake -E copy_directory /home/hep/mm2321/LMU_design/G4sim/Analysis/ /home/hep/mm2321/LMU_design/build
-	/vols/ccap/local/cmake/cmake-3.21.2-linux-x86_64/bin/cmake -E copy_directory /home/hep/mm2321/LMU_design/G4sim/KWave/ /home/hep/mm2321/LMU_design/build
+	/vols/ccap/local/cmake/cmake-3.21.2-linux-x86_64/bin/cmake -E copy_directory /home/hep/mm2321/LMU_design_2/G4sim/Analysis/ /home/hep/mm2321/LMU_design_2/build
+	/vols/ccap/local/cmake/cmake-3.21.2-linux-x86_64/bin/cmake -E copy_directory /home/hep/mm2321/LMU_design_2/G4sim/KWave/ /home/hep/mm2321/LMU_design_2/build
 
 # Rule to build all files generated by this target.
 CMakeFiles/SmartPhantom.dir/build: SmartPhantom
@@ -353,6 +353,6 @@ CMakeFiles/SmartPhantom.dir/clean:
 .PHONY : CMakeFiles/SmartPhantom.dir/clean
 
 CMakeFiles/SmartPhantom.dir/depend:
-	cd /home/hep/mm2321/LMU_design/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/hep/mm2321/LMU_design/G4sim /home/hep/mm2321/LMU_design/G4sim /home/hep/mm2321/LMU_design/build /home/hep/mm2321/LMU_design/build /home/hep/mm2321/LMU_design/build/CMakeFiles/SmartPhantom.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/hep/mm2321/LMU_design_2/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/hep/mm2321/LMU_design_2/G4sim /home/hep/mm2321/LMU_design_2/G4sim /home/hep/mm2321/LMU_design_2/build /home/hep/mm2321/LMU_design_2/build /home/hep/mm2321/LMU_design_2/build/CMakeFiles/SmartPhantom.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/SmartPhantom.dir/depend
 

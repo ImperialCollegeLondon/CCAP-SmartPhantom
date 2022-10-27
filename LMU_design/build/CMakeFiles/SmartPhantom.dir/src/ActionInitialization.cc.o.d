@@ -1,9 +1,9 @@
 CMakeFiles/SmartPhantom.dir/src/ActionInitialization.cc.o: \
- /home/hep/mm2321/LMU_design/G4sim/src/ActionInitialization.cc \
+ /home/hep/mm2321/LMU_design_2/G4sim/src/ActionInitialization.cc \
  /usr/include/stdc-predef.h \
- /home/hep/mm2321/LMU_design/G4sim/include/ActionInitialization.hh \
+ /home/hep/mm2321/LMU_design_2/G4sim/include/ActionInitialization.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VUserActionInitialization.hh \
- /home/hep/mm2321/LMU_design/G4sim/include/PrimaryGeneratorAction.hh \
+ /home/hep/mm2321/LMU_design_2/G4sim/include/PrimaryGeneratorAction.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4RunManager.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4RunManagerKernel.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/globals.hh \
@@ -473,7 +473,7 @@ CMakeFiles/SmartPhantom.dir/src/ActionInitialization.cc.o: \
  /cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/include/c++/11.1.0/bits/stl_list.h \
  /cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/include/c++/11.1.0/bits/list.tcc \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VUserPrimaryGeneratorAction.hh \
- /home/hep/mm2321/LMU_design/G4sim/include/DetectorConstruction.hh \
+ /home/hep/mm2321/LMU_design_2/G4sim/include/DetectorConstruction.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/globals.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VUserDetectorConstruction.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4RotationMatrix.hh \
@@ -1183,7 +1183,7 @@ CMakeFiles/SmartPhantom.dir/src/ActionInitialization.cc.o: \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4SafetyHelper.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4TransportationManager.icc \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4GDMLParser.icc \
- /home/hep/mm2321/LMU_design/G4sim/include/DetectorConstructionMessenger.hh \
+ /home/hep/mm2321/LMU_design_2/G4sim/include/DetectorConstructionMessenger.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UImessenger.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UIdirectory.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UIcmdWith3VectorAndUnit.hh \
@@ -1244,11 +1244,11 @@ CMakeFiles/SmartPhantom.dir/src/ActionInitialization.cc.o: \
  /cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/include/c++/11.1.0/unordered_map \
  /cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/include/c++/11.1.0/bits/unordered_map.h \
  /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TTreeReaderValue.h \
- /home/hep/mm2321/LMU_design/G4sim/include/RunAction.hh \
+ /home/hep/mm2321/LMU_design_2/G4sim/include/RunAction.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UserRunAction.hh \
- /home/hep/mm2321/LMU_design/G4sim/include/EventAction.hh \
+ /home/hep/mm2321/LMU_design_2/G4sim/include/EventAction.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UserEventAction.hh \
- /home/hep/mm2321/LMU_design/G4sim/include/SciFiHit.hh \
+ /home/hep/mm2321/LMU_design_2/G4sim/include/SciFiHit.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VHit.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4THitsCollection.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4Allocator.hh \
@@ -1265,7 +1265,7 @@ CMakeFiles/SmartPhantom.dir/src/ActionInitialization.cc.o: \
  /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/ROOT/TRWSpinLock.hxx \
  /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/ROOT/TSpinMutex.hxx \
  /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TTree.h \
- /home/hep/mm2321/LMU_design/G4sim/include/RootIO.hh \
+ /home/hep/mm2321/LMU_design_2/G4sim/include/RootIO.hh \
  /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TSystem.h \
  /usr/include/fcntl.h /usr/include/bits/fcntl.h \
  /usr/include/bits/fcntl-linux.h /usr/include/bits/uio.h \
@@ -1279,5 +1279,5 @@ CMakeFiles/SmartPhantom.dir/src/ActionInitialization.cc.o: \
  /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TInterpreterValue.h \
  /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TTime.h \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4String.hh \
- /home/hep/mm2321/LMU_design/G4sim/include/PrimaryGeneratorAction.hh \
- /home/hep/mm2321/LMU_design/G4sim/include/EventAction.hh
+ /home/hep/mm2321/LMU_design_2/G4sim/include/PrimaryGeneratorAction.hh \
+ /home/hep/mm2321/LMU_design_2/G4sim/include/EventAction.hh

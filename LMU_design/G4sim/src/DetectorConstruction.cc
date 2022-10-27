@@ -127,10 +127,10 @@ DetectorConstruction::DetectorConstruction()
     
     // Suitable for ~30 MeV Protons
     // **************************************************************
-    std::vector<G4double> vec1 = {0*mm, 0*mm, -waterZ + 11*mm};
+    std::vector<G4double> vec1 = {0*mm, 0*mm, -waterZ + 13*mm};
     std::vector<G4double> vec2 = {0*mm, 0*mm, -waterZ + 15*mm};
-    std::vector<G4double> vec3 = {0*mm, 0*mm, -waterZ + 20*mm};
-    std::vector<G4double> vec4 = {0*mm, 0*mm, -waterZ + 25*mm};
+    std::vector<G4double> vec3 = {0*mm, 0*mm, -waterZ + 17*mm};
+    std::vector<G4double> vec4 = {0*mm, 0*mm, -waterZ + 19*mm};
 
     station1Pos = vec1;                                             // Station 1 depth (at station centre)
     station2Pos = vec2;                                             // Station 2 depth (at station centre)
@@ -157,6 +157,8 @@ DetectorConstruction::DetectorConstruction()
     mptFibre->AddConstProperty("YIELDRATIO", 1.);                               // distribution of photons
     fibreMaterial->SetMaterialPropertiesTable(mptFibre);
 
+    // Set the Birks Constant for the scintillator
+    fibreMaterial->GetIonisation()->SetBirksConstant(0.126*mm/MeV);             // value for polysturene
 
     G4Element* H = new G4Element("Hydrogen","H",1.,1.01*g/mole);
     G4Element* C = new G4Element("Carbon","C",6.,12.01*g/mole);

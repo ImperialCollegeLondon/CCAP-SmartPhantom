@@ -1,7 +1,7 @@
 CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.o: \
- /home/hep/mm2321/LMU_design/G4sim/src/SciFiSD.cc \
+ /home/hep/mm2321/LMU_design_2/G4sim/src/SciFiSD.cc \
  /usr/include/stdc-predef.h \
- /home/hep/mm2321/LMU_design/G4sim/include/SciFiSD.hh \
+ /home/hep/mm2321/LMU_design_2/G4sim/include/SciFiSD.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VSensitiveDetector.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VHit.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/globals.hh \
@@ -323,7 +323,7 @@ CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.o: \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4TouchableHistory.icc \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4CollectionNameVector.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VSDFilter.hh \
- /home/hep/mm2321/LMU_design/G4sim/include/DetectorConstruction.hh \
+ /home/hep/mm2321/LMU_design_2/G4sim/include/DetectorConstruction.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/globals.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VUserDetectorConstruction.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4RotationMatrix.hh \
@@ -1079,7 +1079,7 @@ CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.o: \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4SafetyHelper.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4TransportationManager.icc \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4GDMLParser.icc \
- /home/hep/mm2321/LMU_design/G4sim/include/DetectorConstructionMessenger.hh \
+ /home/hep/mm2321/LMU_design_2/G4sim/include/DetectorConstructionMessenger.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UImessenger.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UIdirectory.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UIcmdWith3VectorAndUnit.hh \
@@ -1088,14 +1088,14 @@ CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.o: \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UIcmdWithAString.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UIcommand.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4Types.hh \
- /home/hep/mm2321/LMU_design/G4sim/include/SciFiHit.hh \
+ /home/hep/mm2321/LMU_design_2/G4sim/include/SciFiHit.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VHit.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4THitsCollection.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4Allocator.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4ThreeVector.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4LogicalVolume.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4Transform3D.hh \
- /home/hep/mm2321/LMU_design/G4sim/include/SciFiHit.hh \
+ /home/hep/mm2321/LMU_design_2/G4sim/include/SciFiHit.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4HCofThisEvent.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4TouchableHistory.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4Track.hh \
@@ -1166,4 +1166,102 @@ CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.o: \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/CLHEP/Random/RandSkewNormal.icc \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/CLHEP/Random/RandStudentT.h \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/CLHEP/Random/RandStudentT.icc \
- /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4OpticalPhoton.hh
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4OpticalPhoton.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4Scintillation.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/Randomize.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4Poisson.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VRestDiscreteProcess.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VProcess.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4PhysicsTable.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4PhysicsTable.icc \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VParticleChange.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4TrackFastVector.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4FastVector.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VParticleChange.icc \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4ForceCondition.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4GPILSelection.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4ParticleChange.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4ParticleChange.icc \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4ProcessType.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4OpticalPhoton.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4EmSaturation.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4ParticleTable.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4ParticleTableIterator.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4ParticleTable.icc \
+ /home/hep/mm2321/LMU_design_2/G4sim/include/EventAction.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UserEventAction.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4RunManager.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4RunManagerKernel.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4EventManager.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/evmandefs.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/trajectoryControl.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4StackManager.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UserStackingAction.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4ClassificationOfNewTrack.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4StackedTrack.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4TrackStack.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4SmartTrackStack.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4TrajectoryContainer.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/evtdefs.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VTrajectory.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4PrimaryTransformer.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4ParticleTable.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4PrimaryParticle.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4TrackingManager.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4SteppingManager.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4ProcessManager.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4ProcessVector.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4ProcessVector.icc \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4ProcessManager.icc \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UserSteppingAction.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VSteppingVerbose.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4TrackingMessenger.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UserTrackingAction.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4Event.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4PrimaryVertex.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4DCofThisEvent.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VDigiCollection.hh \
+ /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VUserEventInformation.hh \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TROOT.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TDirectory.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TBuffer.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TDataType.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TDictionary.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/ESTLType.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TClass.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TObjString.h \
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/include/c++/11.1.0/unordered_set \
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/include/c++/11.1.0/bits/hashtable.h \
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/include/c++/11.1.0/bits/hashtable_policy.h \
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/include/c++/11.1.0/bits/unordered_set.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/ThreadLocalStorage.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/Bytes.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/Byteswap.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TList.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TDatime.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TUUID.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TFile.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/Compression.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TDirectoryFile.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TMap.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/THashTable.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TUrl.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/ROOT/RConcurrentHashColl.hxx \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/Rtypes.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/ROOT/TRWSpinLock.hxx \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/ROOT/TSpinMutex.hxx \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TTree.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/ROOT/TIOFeatures.hxx \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TBasket.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TKey.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TArrayD.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TArray.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TArrayI.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TBranch.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/ROOT/TBulkBranchRead.hxx \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TBranch.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TBranchCacheInfo.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TBits.h \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/ROOT/TBulkBranchRead.icc \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/ROOT/TBulkBranchRead.hxx \
+ /cvmfs/sft.cern.ch/lcg/releases/ROOT/6.18.00-2459b/x86_64-centos7-gcc62-opt/include/TVirtualTreePlayer.h

@@ -1,7 +1,7 @@
 CMakeFiles/SmartPhantom.dir/src/SciFiHit.cc.o: \
- /home/hep/mm2321/LMU_design/G4sim/src/SciFiHit.cc \
+ /home/hep/mm2321/LMU_design_2/G4sim/src/SciFiHit.cc \
  /usr/include/stdc-predef.h \
- /home/hep/mm2321/LMU_design/G4sim/include/SciFiHit.hh \
+ /home/hep/mm2321/LMU_design_2/G4sim/include/SciFiHit.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VHit.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/globals.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4ios.hh \

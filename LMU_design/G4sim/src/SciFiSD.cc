@@ -37,6 +37,9 @@
 #include "Randomize.hh"
 
 #include "G4OpticalPhoton.hh"
+#include "G4Scintillation.hh"
+#include "G4ParticleTable.hh"
+#include "EventAction.hh"
 
 #include <iostream>
 #include <fstream>
@@ -84,6 +87,80 @@ void SciFiSD::Initialize(G4HCofThisEvent* hce)
 
 G4bool SciFiSD::ProcessHits(G4Step* step, G4TouchableHistory*)
 {
+
+     // calculates the number of photons produced in each SciFi station
+    G4VPhysicalVolume* ThisVol = step->GetPreStepPoint()->GetTouchableHandle()->GetVolume();
+	G4VPhysicalVolume* NextVol = step->GetPostStepPoint()->GetTouchableHandle()->GetVolume();
+
+    // double ScifiStation1Photons = null;
+    // double ScifiStation2Photons = null;
+
+    // inside first fibre plane
+    if(NextVol && ThisVol->GetName()=="scifiStation1Physical" && NextVol->GetName()=="scifiStation1Physical"){
+        //cout << "Inside fibre planes " << G4endl;
+        G4double edep = step->GetTotalEnergyDeposit();                       // Collect energy deposited
+        if (edep==0.) return true;                                           // If no energy deposited skip
+        double ScifiStation1Photons = 8000*edep;                             // photons produced in each step, used: 8000 photons/MeV  
+        //cout << "photons produced = " << ScifiStation1Photons << G4endl;  
+
+        ofstream myfile;
+        myfile.open("ScifiStation1Photons.dat", ofstream::app);
+        //myfile << "Writing this to a file.\n";
+        myfile << ScifiStation1Photons << endl;
+        myfile.close();
+    } 
+
+    // inside second fibre plane
+    //if(NextVol && ThisVol->GetName()=="scifiStation2Physical" && NextVol->GetName()=="scifiStation2Physical"){
+    //    //cout << "Inside fibre planes " << G4endl;
+    //    G4double edep = step->GetTotalEnergyDeposit();                       // Collect energy deposited
+    //    if (edep==0.) return true;                                           // If no energy deposited skip
+    //   double  ScifiStation2Photons = 8000*edep;                             // photons produced in each step
+    //    //cout << "photons produced = " << ScifiStation2Photons << G4endl;  
+
+    //    ofstream myfile;
+    //    myfile.open("ScifiStation2Photons.dat", ofstream::app);
+    //    //myfile << "Writing this to a file.\n";
+    //    myfile << ScifiStation2Photons << endl;
+    //    myfile.close();
+    //}
+
+    // inside third fibre plane
+    //if(NextVol && ThisVol->GetName()=="scifiStation3Physical" && NextVol->GetName()=="scifiStation3Physical"){
+    //    //cout << "Inside fibre planes " << G4endl;
+    //    G4double edep = step->GetTotalEnergyDeposit();                       // Collect energy deposited
+    //    if (edep==0.) return true;                                           // If no energy deposited skip
+    //   double  ScifiStation3Photons = 8000*edep;                             // photons produced in each step
+    //    //cout << "photons produced = " << ScifiStation2Photons << G4endl;  
+
+    //    ofstream myfile;
+    //    myfile.open("ScifiStation3Photons.dat", ofstream::app);
+    //    //myfile << "Writing this to a file.\n";
+    //    myfile << ScifiStation3Photons << endl;
+    //    myfile.close();
+    //}
+   
+    // inside fourth fibre plane
+    //if(NextVol && ThisVol->GetName()=="scifiStation4Physical" && NextVol->GetName()=="scifiStation4Physical"){
+    //    //cout << "Inside fibre planes " << G4endl;
+    //    G4double edep = step->GetTotalEnergyDeposit();                       // Collect energy deposited
+    //    if (edep==0.) return true;                                           // If no energy deposited skip
+    //   double  ScifiStation4Photons = 8000*edep;                             // photons produced in each step
+    //    //cout << "photons produced = " << ScifiStation2Photons << G4endl;  
+
+    //    ofstream myfile;
+    //    myfile.open("ScifiStation4Photons.dat", ofstream::app);
+    //    //myfile << "Writing this to a file.\n";
+    //    myfile << ScifiStation4Photons << endl;
+    //    myfile.close();
+    //}
+
+    //else{
+    //    cout << "Material is " << ThisVol->GetName() << G4endl;
+    //}
+
+
+
     /*
         When proccessing a hit specify what data to collect
     */
@@ -120,42 +197,46 @@ G4bool SciFiSD::ProcessHits(G4Step* step, G4TouchableHistory*)
     SciFiHit* hit = new SciFiHit(copyNo,postTime,edep,steplength,worldPos,deltaT,particleName);
     fHitsCollection->insert(hit);
 
-    ofstream myfile;
-    myfile.open("SciFiHits.dat");
-    //myfile << "Writing this to a file.\n";
-    myfile << " " << copyNo << " " << postTime << " " << edep << " " << steplength << 
+    ofstream myFile;
+    myFile.open("SciFiHits.dat", ofstream::app);
+    //myFile << "Writing this to a file.\n";
+    myFile << " " << copyNo << " " << postTime << " " << edep << " " << steplength << 
         " " << worldPos << " " << deltaT << " " << particleName << " " << endl;
-    myfile.close();
+    myFile.close();
 
 
 
+    // Generating scintillating photons  ** doesn't work yet **
+    G4Scintillation* ScintProcess = new G4Scintillation("Scintillation");
+    ScintProcess->SetScintillationByParticleType(true);
+    ScintProcess->SetTrackSecondariesFirst(true);
+    ScintProcess->SetScintillationYieldFactor(1.0);
 
+    G4ParticleTable::G4PTblDicIterator* ParticleIterator = G4ParticleTable::GetParticleTable()->GetIterator();
+    ParticleIterator->reset();
 
-
-    //static G4ParticleDefinition* opticalphoton =
-    //        G4OpticalPhoton::OpticalPhotonDefinition();
-
-    //const G4ParticleDefinition* particleDef =
-    //        step->GetTrack()->GetDynamicParticle()->GetParticleDefinition();
-
-    //if(particleDef == opticalphoton)
-    //    G4cerr << "Photon produced" << G4endl;
-        
-    //else{
-    //    cout << "Particle is " << GetParticleName() << G4endl;
-    //}
-
-
+    while( (*ParticleIterator)() ){
+    G4ParticleDefinition* particle = ParticleIterator->value();
+    //G4ProcessManager* pmanager = particle->GetProcessManager();
+    G4String particlName = particle->GetParticleName();
+    if (ScintProcess->IsApplicable(*particle)) {
+        if (particlName == "opticalphoton") {
+            cout << "Photon produced!" << G4endl;
+            //pmanager->AddProcess(ScintProcess);
+            //pmanager->SetProcessOrderingToLast(ScintProcess, idxAtRest);
+            //pmanager->SetProcessOrderingToLast(ScintProcess, idxPostStep);
+        }
+        //else {
+        //    cout << "no photons produced" << G4endl;
+        //}
+        }
+    }
 
     if (step->GetTrack()->GetDynamicParticle()->GetParticleDefinition()->GetParticleName() == "opticalphoton")
-        G4cerr << "Photon produced" << G4endl;
+        cout << "Photon produced!" << G4endl;
     //else{
     //    cout << "Particle is " << step->GetTrack()->GetDynamicParticle()->GetParticleDefinition()->GetParticleName() << G4endl;
     //}
-
-
-
-
 
     
     return true;

@@ -1,5 +1,5 @@
 CMakeFiles/SmartPhantom.dir/smartphantom.cc.o: \
- /home/hep/mm2321/LMU_design/G4sim/smartphantom.cc \
+ /home/hep/mm2321/LMU_design_2/G4sim/smartphantom.cc \
  /usr/include/stdc-predef.h \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4MTRunManager.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4RunManager.hh \
@@ -477,7 +477,7 @@ CMakeFiles/SmartPhantom.dir/smartphantom.cc.o: \
  /cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/include/c++/11.1.0/bits/deque.tcc \
  /cvmfs/sft.cern.ch/lcg/releases/gcc/11.1.0-e80bf/x86_64-centos7/include/c++/11.1.0/bits/stl_queue.h \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4MTBarrier.hh \
- /home/hep/mm2321/LMU_design/G4sim/include/DetectorConstruction.hh \
+ /home/hep/mm2321/LMU_design_2/G4sim/include/DetectorConstruction.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/globals.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VUserDetectorConstruction.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4RotationMatrix.hh \
@@ -1182,7 +1182,7 @@ CMakeFiles/SmartPhantom.dir/smartphantom.cc.o: \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4SafetyHelper.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4TransportationManager.icc \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4GDMLParser.icc \
- /home/hep/mm2321/LMU_design/G4sim/include/DetectorConstructionMessenger.hh \
+ /home/hep/mm2321/LMU_design_2/G4sim/include/DetectorConstructionMessenger.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UImessenger.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UIdirectory.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UIcmdWith3VectorAndUnit.hh \
@@ -1191,8 +1191,8 @@ CMakeFiles/SmartPhantom.dir/smartphantom.cc.o: \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UIcmdWithAString.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UIcommand.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4Types.hh \
- /home/hep/mm2321/LMU_design/G4sim/include/DetectorConstruction.hh \
- /home/hep/mm2321/LMU_design/G4sim/include/ActionInitialization.hh \
+ /home/hep/mm2321/LMU_design_2/G4sim/include/DetectorConstruction.hh \
+ /home/hep/mm2321/LMU_design_2/G4sim/include/ActionInitialization.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VUserActionInitialization.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UImanager.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/icomsdefs.hh \
