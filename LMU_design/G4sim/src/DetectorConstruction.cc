@@ -103,9 +103,9 @@ DetectorConstruction::DetectorConstruction()
 
     // SmartPhantom Planes
     // **************************************************************
-    scifiN = 40;                                                    // Number of fibres, produced 10 mm planes
+    scifiN = 33;                                                    // Number of fibres, produced 10 mm planes
     scifiFibreRadius = 0.25*mm/2;                                   // Half-radius of fibre
-    scifiPitch = 0.305*mm;                                          // Fibre pitch
+    scifiPitch = 0.305*mm;                                          // Fibre pitch, center-to-center distance
     scifiLength = (scifiPitch*(scifiN/2)+scifiFibreRadius);         // half-length of plane
     scifiStationDepth = 0.8964*mm/2;                                // half-depth of a Station (2 Planes -> 1 Station)
     scifiStationSide = scifiLength;                                 // Transverse face edge length of station
@@ -123,7 +123,7 @@ DetectorConstruction::DetectorConstruction()
     aclockRot->rotateX(theta);
     aclockRot->rotateY(ccRot);
     stationRot = new G4RotationMatrix();                            // Station Rotation
-    stationRot->rotateZ(45*deg);
+    //stationRot->rotateZ(45*deg);
     
     // Suitable for ~30 MeV Protons
     // **************************************************************

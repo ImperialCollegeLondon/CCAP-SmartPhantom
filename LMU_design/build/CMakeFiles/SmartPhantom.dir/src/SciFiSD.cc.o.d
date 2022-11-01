@@ -1,7 +1,7 @@
 CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.o: \
- /home/hep/mm2321/LMU_design_2/G4sim/src/SciFiSD.cc \
+ /home/hep/mm2321/LMU_design/G4sim/src/SciFiSD.cc \
  /usr/include/stdc-predef.h \
- /home/hep/mm2321/LMU_design_2/G4sim/include/SciFiSD.hh \
+ /home/hep/mm2321/LMU_design/G4sim/include/SciFiSD.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VSensitiveDetector.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VHit.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/globals.hh \
@@ -323,7 +323,7 @@ CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.o: \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4TouchableHistory.icc \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4CollectionNameVector.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VSDFilter.hh \
- /home/hep/mm2321/LMU_design_2/G4sim/include/DetectorConstruction.hh \
+ /home/hep/mm2321/LMU_design/G4sim/include/DetectorConstruction.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/globals.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VUserDetectorConstruction.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4RotationMatrix.hh \
@@ -1079,7 +1079,7 @@ CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.o: \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4SafetyHelper.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4TransportationManager.icc \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4GDMLParser.icc \
- /home/hep/mm2321/LMU_design_2/G4sim/include/DetectorConstructionMessenger.hh \
+ /home/hep/mm2321/LMU_design/G4sim/include/DetectorConstructionMessenger.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UImessenger.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UIdirectory.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UIcmdWith3VectorAndUnit.hh \
@@ -1088,14 +1088,14 @@ CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.o: \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UIcmdWithAString.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UIcommand.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4Types.hh \
- /home/hep/mm2321/LMU_design_2/G4sim/include/SciFiHit.hh \
+ /home/hep/mm2321/LMU_design/G4sim/include/SciFiHit.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VHit.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4THitsCollection.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4Allocator.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4ThreeVector.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4LogicalVolume.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4Transform3D.hh \
- /home/hep/mm2321/LMU_design_2/G4sim/include/SciFiHit.hh \
+ /home/hep/mm2321/LMU_design/G4sim/include/SciFiHit.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4HCofThisEvent.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4TouchableHistory.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4Track.hh \
@@ -1188,7 +1188,7 @@ CMakeFiles/SmartPhantom.dir/src/SciFiSD.cc.o: \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4ParticleTable.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4ParticleTableIterator.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4ParticleTable.icc \
- /home/hep/mm2321/LMU_design_2/G4sim/include/EventAction.hh \
+ /home/hep/mm2321/LMU_design/G4sim/include/EventAction.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UserEventAction.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4RunManager.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4RunManagerKernel.hh \

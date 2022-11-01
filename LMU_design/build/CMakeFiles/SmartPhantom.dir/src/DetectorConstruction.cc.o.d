@@ -1,7 +1,7 @@
 CMakeFiles/SmartPhantom.dir/src/DetectorConstruction.cc.o: \
- /home/hep/mm2321/LMU_design_2/G4sim/src/DetectorConstruction.cc \
+ /home/hep/mm2321/LMU_design/G4sim/src/DetectorConstruction.cc \
  /usr/include/stdc-predef.h \
- /home/hep/mm2321/LMU_design_2/G4sim/include/DetectorConstruction.hh \
+ /home/hep/mm2321/LMU_design/G4sim/include/DetectorConstruction.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/globals.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4ios.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4Types.hh \
@@ -1048,7 +1048,7 @@ CMakeFiles/SmartPhantom.dir/src/DetectorConstruction.cc.o: \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4SafetyHelper.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4TransportationManager.icc \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4GDMLParser.icc \
- /home/hep/mm2321/LMU_design_2/G4sim/include/DetectorConstructionMessenger.hh \
+ /home/hep/mm2321/LMU_design/G4sim/include/DetectorConstructionMessenger.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UImessenger.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UIdirectory.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UIcmdWith3VectorAndUnit.hh \
@@ -1057,8 +1057,8 @@ CMakeFiles/SmartPhantom.dir/src/DetectorConstruction.cc.o: \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UIcmdWithAString.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4UIcommand.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4Types.hh \
- /home/hep/mm2321/LMU_design_2/G4sim/include/DetectorConstruction.hh \
- /home/hep/mm2321/LMU_design_2/G4sim/include/SciFiSD.hh \
+ /home/hep/mm2321/LMU_design/G4sim/include/DetectorConstruction.hh \
+ /home/hep/mm2321/LMU_design/G4sim/include/SciFiSD.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VSensitiveDetector.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VHit.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4Step.hh \
@@ -1089,7 +1089,7 @@ CMakeFiles/SmartPhantom.dir/src/DetectorConstruction.cc.o: \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4SensitiveVolumeList.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4CollectionNameVector.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VSDFilter.hh \
- /home/hep/mm2321/LMU_design_2/G4sim/include/SciFiHit.hh \
+ /home/hep/mm2321/LMU_design/G4sim/include/SciFiHit.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VHit.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4THitsCollection.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4Allocator.hh \

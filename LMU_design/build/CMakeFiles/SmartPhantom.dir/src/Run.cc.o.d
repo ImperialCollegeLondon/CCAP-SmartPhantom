@@ -1,7 +1,6 @@
 CMakeFiles/SmartPhantom.dir/src/Run.cc.o: \
- /home/hep/mm2321/LMU_design_2/G4sim/src/Run.cc \
- /usr/include/stdc-predef.h \
- /home/hep/mm2321/LMU_design_2/G4sim/include/Run.hh \
+ /home/hep/mm2321/LMU_design/G4sim/src/Run.cc /usr/include/stdc-predef.h \
+ /home/hep/mm2321/LMU_design/G4sim/include/Run.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4Run.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/globals.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4ios.hh \
@@ -336,7 +335,7 @@ CMakeFiles/SmartPhantom.dir/src/Run.cc.o: \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4CollectionNameVector.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VSDFilter.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4HCtable.hh \
- /home/hep/mm2321/LMU_design_2/G4sim/include/SciFiHit.hh \
+ /home/hep/mm2321/LMU_design/G4sim/include/SciFiHit.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4VHit.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4THitsCollection.hh \
  /cvmfs/sft.cern.ch/lcg/views/LCG_96/x86_64-centos7-gcc62-opt/include/Geant4/G4Allocator.hh \

@@ -1,4 +1,4 @@
-# Install script for directory: /home/hep/mm2321/LMU_design_2/G4sim
+# Install script for directory: /home/hep/mm2321/LMU_design/G4sim
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -49,7 +49,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/SmartPhantom"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/hep/mm2321/LMU_design_2/build/SmartPhantom")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/hep/mm2321/LMU_design/build/SmartPhantom")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/SmartPhantom" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/SmartPhantom")
     file(RPATH_CHANGE
@@ -64,10 +64,10 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/SmartPhantom" TYPE FILE FILES
-    "/home/hep/mm2321/LMU_design_2/G4sim/init_vis.mac"
-    "/home/hep/mm2321/LMU_design_2/G4sim/vis.mac"
-    "/home/hep/mm2321/LMU_design_2/G4sim/run1.mac"
-    "/home/hep/mm2321/LMU_design_2/G4sim/test_file.dat"
+    "/home/hep/mm2321/LMU_design/G4sim/init_vis.mac"
+    "/home/hep/mm2321/LMU_design/G4sim/vis.mac"
+    "/home/hep/mm2321/LMU_design/G4sim/run1.mac"
+    "/home/hep/mm2321/LMU_design/G4sim/test_file.dat"
     )
 endif()
 
@@ -79,5 +79,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/hep/mm2321/LMU_design_2/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/hep/mm2321/LMU_design/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
