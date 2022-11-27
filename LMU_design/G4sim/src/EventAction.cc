@@ -42,7 +42,7 @@
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 EventAction::EventAction()
-: G4UserEventAction()
+: G4UserEventAction(), two_planes(true)
 {
     fManager = G4RunManager::GetRunManager();
     detector = (DetectorConstruction*)fManager->GetUserDetectorConstruction();
@@ -72,19 +72,27 @@ void EventAction::CreateSciFiTree()
     */
     
     station1Epoxy.tree = RootIO::GetInstance()->CreateTree("Station1_Epoxy");
-    station1PlaneH.tree = RootIO::GetInstance()->CreateTree("Station1_PlaneH");
+    if (two_planes == true) {
+        station1PlaneH.tree = RootIO::GetInstance()->CreateTree("Station1_PlaneH");
+    }
     station1PlaneV.tree = RootIO::GetInstance()->CreateTree("Station1_PlaneV");
 
     station2Epoxy.tree = RootIO::GetInstance()->CreateTree("Station2_Epoxy");
-    station2PlaneH.tree = RootIO::GetInstance()->CreateTree("Station2_PlaneH");
+    if (two_planes == true) {
+        station2PlaneH.tree = RootIO::GetInstance()->CreateTree("Station2_PlaneH");
+    }
     station2PlaneV.tree = RootIO::GetInstance()->CreateTree("Station2_PlaneV");
 
     station3Epoxy.tree = RootIO::GetInstance()->CreateTree("Station3_Epoxy");
-    station3PlaneH.tree = RootIO::GetInstance()->CreateTree("Station3_PlaneH");
+    if (two_planes == true) {
+        station3PlaneH.tree = RootIO::GetInstance()->CreateTree("Station3_PlaneH");
+    }
     station3PlaneV.tree = RootIO::GetInstance()->CreateTree("Station3_PlaneV");
 
     station4Epoxy.tree = RootIO::GetInstance()->CreateTree("Station4_Epoxy");
-    station4PlaneH.tree = RootIO::GetInstance()->CreateTree("Station4_PlaneH");
+    if (two_planes == true) {
+        station4PlaneH.tree = RootIO::GetInstance()->CreateTree("Station4_PlaneH");
+    }
     station4PlaneV.tree = RootIO::GetInstance()->CreateTree("Station4_PlaneV");
 }
 
@@ -135,19 +143,27 @@ void EventAction::BeginOfEventAction(const G4Event*)
         }
         
         station1Epoxy.id = sdManager->GetCollectionID("scifi1EpoxySD/SciFiColl");
-        station1PlaneH.id = sdManager->GetCollectionID("scifi1HSD/SciFiColl");
+        if (two_planes == true) {
+            station1PlaneH.id = sdManager->GetCollectionID("scifi1HSD/SciFiColl");
+        }
         station1PlaneV.id = sdManager->GetCollectionID("scifi1VSD/SciFiColl");
 
         station2Epoxy.id = sdManager->GetCollectionID("scifi2EpoxySD/SciFiColl");
-        station2PlaneH.id = sdManager->GetCollectionID("scifi2HSD/SciFiColl");
+        if (two_planes == true) {
+            station2PlaneH.id = sdManager->GetCollectionID("scifi2HSD/SciFiColl");
+        }
         station2PlaneV.id = sdManager->GetCollectionID("scifi2VSD/SciFiColl");
 
         station3Epoxy.id = sdManager->GetCollectionID("scifi3EpoxySD/SciFiColl");
-        station3PlaneH.id = sdManager->GetCollectionID("scifi3HSD/SciFiColl");
+        if (two_planes == true) {
+            station3PlaneH.id = sdManager->GetCollectionID("scifi3HSD/SciFiColl");
+        }
         station3PlaneV.id = sdManager->GetCollectionID("scifi3VSD/SciFiColl");
 
         station4Epoxy.id = sdManager->GetCollectionID("scifi4EpoxySD/SciFiColl");
-        station4PlaneH.id = sdManager->GetCollectionID("scifi4HSD/SciFiColl");
+        if (two_planes == true) {
+            station4PlaneH.id = sdManager->GetCollectionID("scifi4HSD/SciFiColl");
+        }
         station4PlaneV.id = sdManager->GetCollectionID("scifi4VSD/SciFiColl");        
     }
 }
@@ -176,19 +192,27 @@ void EventAction::EndOfEventAction(const G4Event* event)
     if( detector->GetToggleScifi() )
     {
         station1Epoxy.hColl = static_cast<SciFiHitsCollection*>(hce->GetHC(station1Epoxy.id));
-        station1PlaneH.hColl = static_cast<SciFiHitsCollection*>(hce->GetHC(station1PlaneH.id));
+        if (two_planes == true) {
+            station1PlaneH.hColl = static_cast<SciFiHitsCollection*>(hce->GetHC(station1PlaneH.id));
+        }
         station1PlaneV.hColl = static_cast<SciFiHitsCollection*>(hce->GetHC(station1PlaneV.id));
 
         station2Epoxy.hColl = static_cast<SciFiHitsCollection*>(hce->GetHC(station2Epoxy.id));
-        station2PlaneH.hColl = static_cast<SciFiHitsCollection*>(hce->GetHC(station2PlaneH.id));
+        if (two_planes == true) {
+            station2PlaneH.hColl = static_cast<SciFiHitsCollection*>(hce->GetHC(station2PlaneH.id));
+        }
         station2PlaneV.hColl = static_cast<SciFiHitsCollection*>(hce->GetHC(station2PlaneV.id));
 
         station3Epoxy.hColl = static_cast<SciFiHitsCollection*>(hce->GetHC(station3Epoxy.id));
-        station3PlaneH.hColl = static_cast<SciFiHitsCollection*>(hce->GetHC(station3PlaneH.id));
+        if (two_planes == true) {
+            station3PlaneH.hColl = static_cast<SciFiHitsCollection*>(hce->GetHC(station3PlaneH.id));
+        }
         station3PlaneV.hColl = static_cast<SciFiHitsCollection*>(hce->GetHC(station3PlaneV.id));
 
         station4Epoxy.hColl = static_cast<SciFiHitsCollection*>(hce->GetHC(station4Epoxy.id));
-        station4PlaneH.hColl = static_cast<SciFiHitsCollection*>(hce->GetHC(station4PlaneH.id));
+        if (two_planes == true) {
+            station4PlaneH.hColl = static_cast<SciFiHitsCollection*>(hce->GetHC(station4PlaneH.id));
+        }
         station4PlaneV.hColl = static_cast<SciFiHitsCollection*>(hce->GetHC(station4PlaneV.id));
     }
 
@@ -201,19 +225,27 @@ void EventAction::EndOfEventAction(const G4Event* event)
     if( detector->GetToggleScifi() )
     {
         instance->WriteToRoot(station1Epoxy.hColl,eventID,station1Epoxy.tree);
-        instance->WriteToRoot(station1PlaneH.hColl,eventID,station1PlaneH.tree);
+        if (two_planes == true) {
+            instance->WriteToRoot(station1PlaneH.hColl,eventID,station1PlaneH.tree);
+        }
         instance->WriteToRoot(station1PlaneV.hColl,eventID,station1PlaneV.tree);
         
         instance->WriteToRoot(station2Epoxy.hColl,eventID,station2Epoxy.tree);
-        instance->WriteToRoot(station2PlaneH.hColl,eventID,station2PlaneH.tree);
+        if (two_planes == true) {
+            instance->WriteToRoot(station2PlaneH.hColl,eventID,station2PlaneH.tree);
+        }
         instance->WriteToRoot(station2PlaneV.hColl,eventID,station2PlaneV.tree);
 
         instance->WriteToRoot(station3Epoxy.hColl,eventID,station3Epoxy.tree);
-        instance->WriteToRoot(station3PlaneH.hColl,eventID,station3PlaneH.tree);
+        if (two_planes == true) {
+            instance->WriteToRoot(station3PlaneH.hColl,eventID,station3PlaneH.tree);
+        }
         instance->WriteToRoot(station3PlaneV.hColl,eventID,station3PlaneV.tree);
 
         instance->WriteToRoot(station4Epoxy.hColl,eventID,station4Epoxy.tree);
-        instance->WriteToRoot(station4PlaneH.hColl,eventID,station4PlaneH.tree);
+        if (two_planes == true) {
+            instance->WriteToRoot(station4PlaneH.hColl,eventID,station4PlaneH.tree);
+        }
         instance->WriteToRoot(station4PlaneV.hColl,eventID,station4PlaneV.tree);        
     }    
 }

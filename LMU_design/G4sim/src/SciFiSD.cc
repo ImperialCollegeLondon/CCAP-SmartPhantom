@@ -95,20 +95,22 @@ G4bool SciFiSD::ProcessHits(G4Step* step, G4TouchableHistory*)
     // double ScifiStation1Photons = null;
     // double ScifiStation2Photons = null;
 
-    // inside first fibre plane
-    if(NextVol && ThisVol->GetName()=="scifiStation1Physical" && NextVol->GetName()=="scifiStation1Physical"){
-        //cout << "Inside fibre planes " << G4endl;
-        G4double edep = step->GetTotalEnergyDeposit();                       // Collect energy deposited
-        if (edep==0.) return true;                                           // If no energy deposited skip
-        double ScifiStation1Photons = 8000*edep;                             // photons produced in each step, used: 8000 photons/MeV  
-        //cout << "photons produced = " << ScifiStation1Photons << G4endl;  
 
-        ofstream myfile;
-        myfile.open("ScifiStation1Photons.dat", ofstream::app);
-        //myfile << "Writing this to a file.\n";
-        myfile << ScifiStation1Photons << endl;
-        myfile.close();
-    } 
+    // inside first fibre plane
+    // if(NextVol && ThisVol->GetName()=="scifiStation1Physical" && NextVol->GetName()=="scifiStation1Physical"){
+    //     //cout << "Inside fibre planes " << G4endl;
+        
+    //     G4double edep = step->GetTotalEnergyDeposit();                       // Collect energy deposited
+    //     if (edep==0.) return true;                                           // If no energy deposited skip
+    //     double ScifiStation1Photons = 8000*edep;                             // photons produced in each step, used: 8000 photons/MeV  
+    //     //cout << "photons produced = " << ScifiStation1Photons << G4endl;  
+
+    //     ofstream myfile;
+    //     myfile.open("ScifiStation1Photons.dat", ofstream::app);
+    //     //myfile << "Writing this to a file.\n";
+    //     myfile << ScifiStation1Photons << endl;
+    //     myfile.close();
+    // } 
 
     // inside second fibre plane
     //if(NextVol && ThisVol->GetName()=="scifiStation2Physical" && NextVol->GetName()=="scifiStation2Physical"){
@@ -191,12 +193,40 @@ G4bool SciFiSD::ProcessHits(G4Step* step, G4TouchableHistory*)
                                                                                     // (i.e. between preStep and postStep)
     
     G4String particleName = step->GetTrack()->GetDefinition()->GetParticleName();   // Particle Name causing hit
+    //G4int fibreN = GetFibreN(worldPos,step);
     
     // Write information of hit to SciFiHit for SciFiSD
     // **************************************************************
     SciFiHit* hit = new SciFiHit(copyNo,postTime,edep,steplength,worldPos,deltaT,particleName);
     fHitsCollection->insert(hit);
 
+    G4double xPos = worldPos[0];
+    G4double yPos = worldPos[1];
+    G4double zPos = worldPos[2];
+
+    G4int fibreN = 0;
+    G4double fibreSep = 0.300*mm; // [mm]
+    G4int scifiN = 33; // 
+    G4double fibreRadius = 0.250*mm/2; // [mm]
+    G4double fibreLength = 10*mm; // [mm] length of fibres in y direction
+    G4double centerYPos = 0*mm; // [mm]
+    G4double maxYPos = centerYPos + (fibreLength/2);
+    G4double minYPos = centerYPos - (fibreLength/2);
+    G4double centerZPos = (-50+13)*mm; // [mm] z-position of frame
+
+    for (int i = 1; i <= scifiN; ++i) {
+        G4double centerXPos = -(fibreSep * floor(scifiN/2)) + (fibreSep*(i-1)); // calculates centre x-position of fibre i
+        G4double rho = pow(xPos - centerXPos, 2) + pow(zPos - centerZPos, 2); // radial position of energy dep relative to axis of fibre i
+        if (rho <= fibreRadius && minYPos <= yPos && yPos <= maxYPos) {
+            fibreN = i;
+        }
+    }
+
+    G4double sciEff = 8000; // photons per meV
+    G4double transEff = 0.03; // percentage efficiency
+        
+    G4double lightYield = edep * sciEff * transEff;
+    
     ofstream myFile;
     myFile.open("SciFiHits.dat", ofstream::app);
     //myFile << "Writing this to a file.\n";
@@ -205,6 +235,12 @@ G4bool SciFiSD::ProcessHits(G4Step* step, G4TouchableHistory*)
     myFile.close();
 
 
+    // ofstream myFile; // get an error with this in, so trying to delete it and see what happens
+    myFile.open("SciFiHitsFibres.dat", ofstream::app);
+    //myFile << "Writing this to a file.\n";
+    myFile << " " << copyNo << " " << postTime << " " << edep << " " << steplength << 
+        " " << worldPos << " " << deltaT << " " << particleName << " " << fibreN << " " << lightYield << " " << endl;
+    myFile.close();
 
     // Generating scintillating photons  ** doesn't work yet **
     G4Scintillation* ScintProcess = new G4Scintillation("Scintillation");

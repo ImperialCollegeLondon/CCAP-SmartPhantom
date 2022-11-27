@@ -87,6 +87,7 @@ private:
     
     G4bool wrotePhantomTree;
     G4bool wroteSciFiTree;
+    G4bool two_planes;
 };
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

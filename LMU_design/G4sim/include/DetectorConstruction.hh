@@ -97,6 +97,7 @@ private:
     
     G4double phantomThickness;
     G4bool togglePhantom;
+    G4bool two_planes;
     G4bool toggleScifi;
     
     G4int scifiN;
