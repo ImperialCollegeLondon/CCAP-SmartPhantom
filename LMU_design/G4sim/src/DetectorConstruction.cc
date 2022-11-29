@@ -85,8 +85,8 @@ DetectorConstruction::DetectorConstruction()
     waterY = 140*mm/2;                                              // half-y of water
 
     phantomZ = waterZ;                                              // half-z of phantom
-    phantomX = phantomZ;                                            // half-x of phantom
-    phantomY = phantomZ;                                            // half-y of phantom
+    phantomX = waterX;                                              // half-x of phantom
+    phantomY = waterY;                                              // half-y of phantom
     phantomThickness = 5*mm;                                        // Full thickness, overrides water dimensions 
                                                                     // if togglePhantom is true
 

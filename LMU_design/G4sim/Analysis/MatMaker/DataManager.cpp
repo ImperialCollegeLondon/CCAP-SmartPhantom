@@ -1,5 +1,8 @@
 #define _USE_MATH_DEFINES
 #include "DataManager.h"
+#include <iostream>
+#include <fstream>
+using namespace std;
 
 DataManager::DataManager()
 {}
@@ -230,12 +233,30 @@ void DataManager::Plot3Coord(double* binData, std::vector<int>& numVoxels, std::
     c->Divide(1,3);
     
     std::vector<float> offset{0., 0., 0.};
+    const int size = 100;
         
-    // Plotting x
+     // Plotting x
     c->cd(1);
     std::vector<std::vector<double>> sumBin = SumEBin(binData, 0, numVoxels, waterBox, voxelBox, offset[0]);
     double* horBin = &sumBin[0][0];
     double* verBin = &sumBin[1][0];
+    
+    //ofstream myfile1("xaxis_horBin.txt");
+    //if (myfile1.is_open())
+    //{
+    //for(int count = 0; count < size; count ++){
+    //    myfile1 << horBin[count] << " " ;
+    //}
+    //myfile1.close();
+    //}
+    //ofstream myfile2("xaxis_verBin.txt");
+    //if (myfile2.is_open())
+    //{
+    //for(int count = 0; count < size; count ++){
+    //    myfile2 << verBin[count] << " " ;
+    //}
+    //myfile2.close();
+    //}
     TString pltTitle = "Energy density distribution vs binned x";
     TString horAxisName = "x [mm]";
     TString verAxisName = "Energy Density [MeV/mm^{3}]";
@@ -246,6 +267,23 @@ void DataManager::Plot3Coord(double* binData, std::vector<int>& numVoxels, std::
     sumBin = SumEBin(binData, 1, numVoxels, waterBox, voxelBox, offset[1]);
     horBin = &sumBin[0][0];
     verBin = &sumBin[1][0];
+
+    //ofstream myfile3("yaxis_horBin.txt");
+    //if (myfile3.is_open())
+    //{
+    //for(int count = 0; count < size; count ++){
+    //    myfile3 << horBin[count] << " " ;
+    //}
+    //myfile3.close();
+    //}
+    //ofstream myfile4("yaxis_verBin.txt");
+    //if (myfile4.is_open())
+    //{
+    //for(int count = 0; count < size; count ++){
+    //    myfile4 << verBin[count] << " " ;
+    //}
+    //myfile4.close();
+    //}
     pltTitle = "Energy density distribution vs binned y";
     horAxisName = "y [mm]";
     verAxisName = "Energy Density [MeV/mm^{3}]";
@@ -256,6 +294,23 @@ void DataManager::Plot3Coord(double* binData, std::vector<int>& numVoxels, std::
     sumBin = SumEBin(binData, 2, numVoxels, waterBox, voxelBox, offset[2]);
     horBin = &sumBin[0][0];
     verBin = &sumBin[1][0];
+
+    ofstream myfile5("zaxis_horBin.txt");
+    if (myfile5.is_open())
+    {
+    for(int count = 0; count < size; count ++){
+        myfile5 << horBin[count] << " " ;
+    }
+    myfile5.close();
+    }
+    ofstream myfile6("zaxis_verBin.txt");
+    if (myfile6.is_open())
+    {
+    for(int count = 0; count < size; count ++){
+        myfile6 << verBin[count] << " " ;
+    }
+    myfile6.close();
+    }
     pltTitle = "Energy density distribution vs binned z";
     horAxisName = "z [mm]";
     verAxisName = "Energy Density [MeV/mm^{3}]";
