@@ -29,24 +29,17 @@
 #include "RunAction.hh"
 #include "EventAction.hh"
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 ActionInitialization::ActionInitialization()
  : G4VUserActionInitialization()
 {}
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
 ActionInitialization::~ActionInitialization()
 {}
-
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 void ActionInitialization::BuildForMaster() const
 {
     SetUserAction(new RunAction);
 }
-
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 void ActionInitialization::Build() const
 {
@@ -55,4 +48,3 @@ void ActionInitialization::Build() const
   SetUserAction(new EventAction);
 }  
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

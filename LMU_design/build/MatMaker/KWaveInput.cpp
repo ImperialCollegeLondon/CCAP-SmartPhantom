@@ -160,7 +160,6 @@ void KWaveInput::CreateFilter(int* adjustData, double* filterCombined)
         double filterY[adjustData[1]] = {0};
 
         // Getting filter values for each dimension separately
-        // **************************************************************
         for(int axis=0; axis<binDimSize; axis++)
         {
             double* blackman = Blackman(adjustData[axis]);
@@ -175,7 +174,6 @@ void KWaveInput::CreateFilter(int* adjustData, double* filterCombined)
         }
 
         // Multiply filters together
-        // **************************************************************
         for(int i=0; i<adjustData[0]; i++)
         {
             for(int j=0; j<adjustData[1]; j++)
@@ -192,7 +190,6 @@ void KWaveInput::CreateFilter(int* adjustData, double* filterCombined)
         double filterZ[adjustData[2]] = {0};
         
         // Getting filter values for each dimension separately
-        // **************************************************************
         for(int axis=0; axis<binDimSize; axis++)
         {
             double* blackman = Blackman(adjustData[axis]);
@@ -209,7 +206,6 @@ void KWaveInput::CreateFilter(int* adjustData, double* filterCombined)
         }
         
         // Multiply filters together
-        // **************************************************************
         for(int i=0; i<adjustData[0]; i++)
         {
             for(int j=0; j<adjustData[1]; j++)
@@ -384,7 +380,6 @@ void KWaveInput::CreateRotFilter(int* nArr, int* adjustData, int& L, double& rad
     std::vector<double> ll = Linspace(-radius,radius,L);
     
     // Set up interpolator parameters
-    // **************************************************************
     std::vector<std::vector<double>::iterator> gridIterList;
     gridIterList.push_back(ll.begin());
     array<int,1> gridSizes;
@@ -393,7 +388,6 @@ void KWaveInput::CreateRotFilter(int* nArr, int* adjustData, int& L, double& rad
     interp_ML(gridIterList.begin(),gridSizes.begin(),winLin.data(),winLin.data()+L);
 
     // Write interpolated values to rotation window
-    // **************************************************************
     if( binDimSize == 2)
     {
         int rIndex = 0;
@@ -450,7 +444,6 @@ void KWaveInput::WindowFilter(int* nArr, fftw_complex* data)
     */
     
     // Check dimensions are correct
-    // **************************************************************
     if(binDimSize != 3)
     {
         std::cout << "KWaveInput::WindowFilter() only accepts 3D, instead received a size = " << binDimSize << std::endl;
@@ -458,7 +451,6 @@ void KWaveInput::WindowFilter(int* nArr, fftw_complex* data)
     }
 
     // To create Non-symmetrical window for even dimensions
-    // **************************************************************
     int adjustData[binDimSize];
     
     for(int i=0; i<binDimSize; i++)
@@ -470,7 +462,6 @@ void KWaveInput::WindowFilter(int* nArr, fftw_complex* data)
     }
 
     // Functions to create filter, slice to appropriate dimensions, and apply ifftshift
-    // **************************************************************
     double filterCombined[adjustData[0]*adjustData[1]*adjustData[2]];
     double filterSliced[nArr[0]*nArr[1]*nArr[2]];
     double ifftFilterCombined[nArr[0]*nArr[1]*nArr[2]];
@@ -480,7 +471,6 @@ void KWaveInput::WindowFilter(int* nArr, fftw_complex* data)
     ifftshift(ifftFilterCombined, filterSliced, nArr[0], nArr[1], nArr[2]);    
     
     // Apply the filter to the data 
-    // **************************************************************
     for(int i=0; i<nArr[0]; i++)
     {
         for(int j=0; j<nArr[1]; j++)
@@ -506,7 +496,6 @@ void KWaveInput::WindowFilterAS(int* nArr, fftw_complex* data)
     */
 
     // To create Non-symmetrical window for even dimensions
-    // **************************************************************
     if(binDimSize != 2)
     {
         std::cout << "KWaveInput::WindowFilterAS() only accepts 2D, instead received a size = " << binDimSize << std::endl;
@@ -514,7 +503,6 @@ void KWaveInput::WindowFilterAS(int* nArr, fftw_complex* data)
     }
 
     // To create Non-symmetrical window for even dimensions
-    // **************************************************************
     int adjustData[binDimSize];
     
     for(int i=0; i<binDimSize; i++)
@@ -526,7 +514,6 @@ void KWaveInput::WindowFilterAS(int* nArr, fftw_complex* data)
     }
 
     // Functions to create filter, slice to appropriate dimensions, and apply ifftshift
-    // **************************************************************
     double filterCombined[adjustData[0]*adjustData[1]];
     double filterSliced[nArr[0]*nArr[1]];
     double ifftFilterCombined[nArr[0]*nArr[1]];
@@ -536,7 +523,6 @@ void KWaveInput::WindowFilterAS(int* nArr, fftw_complex* data)
     ifftshift(ifftFilterCombined, filterSliced, nArr[0], nArr[1]);    
     
     // Apply the filter to the data 
-    // **************************************************************
     for(int i=0; i<nArr[0]; i++)
     {
         for(int j=0; j<nArr[1]; j++)
@@ -558,7 +544,6 @@ void KWaveInput::RotWindowFilter(int* nArr, fftw_complex* data)
     */
 
     // Check dimensions are correct
-    // **************************************************************
     if(binDimSize != 3)
     {
         std::cout << "KWaveInput::RotWindowFilter() only accepts 3D, instead received a size = " << binDimSize << std::endl;
@@ -566,7 +551,6 @@ void KWaveInput::RotWindowFilter(int* nArr, fftw_complex* data)
     }
     
     // Adjust dimensions to account for nonsymmetric filter if dimension has even number of terms
-    // **************************************************************
     int adjustData[binDimSize];
     for(int i=0; i<binDimSize; i++)
     {
@@ -586,12 +570,10 @@ void KWaveInput::RotWindowFilter(int* nArr, fftw_complex* data)
     double ifftRotWin[nArr[0]*nArr[1]*nArr[2]] = {0};
 
     // Functions to create rotation filter, slice to appropriate dimensions, and apply ifftshift
-    // **************************************************************
     CreateRotFilter(nArr, adjustData, L, radius, radiusGrid, winLin, rotWin);
     ifftshift(ifftRotWin, rotWin, nArr[0], nArr[1], nArr[2]);    
     
     // Apply the filter to the data 
-    // **************************************************************
     for(int i=0; i<nArr[0]; i++)
     {
         for(int j=0; j<nArr[1]; j++)
@@ -616,7 +598,6 @@ void KWaveInput::RotWindowFilterAS(int* nArr, fftw_complex* data)
     */
     
     // Check dimensions are correct
-    // **************************************************************
     if(binDimSize != 2)
     {
         std::cout << "KWaveInput::RotWindowFilterAS() only accepts 2D, instead received a size = " << binDimSize << std::endl;
@@ -624,7 +605,6 @@ void KWaveInput::RotWindowFilterAS(int* nArr, fftw_complex* data)
     }
 
     // Adjust dimensions to account for nonsymmetric filter if dimension has even number of terms
-    // **************************************************************
     int adjustData[binDimSize];
     for(int i=0; i<binDimSize; i++)
     {
@@ -644,12 +624,10 @@ void KWaveInput::RotWindowFilterAS(int* nArr, fftw_complex* data)
     double ifftRotWin[nArr[0]*nArr[1]] = {0};
 
     // Functions to create rotation filter, slice to appropriate dimensions, and apply ifftshift
-    // **************************************************************
     CreateRotFilter(nArr, adjustData, L, radius, radiusGrid, winLin, rotWin);
     ifftshift(ifftRotWin, rotWin, nArr[0], nArr[1]);    
     
     // Apply the filter to the data 
-    // **************************************************************
     for(int i=0; i<nArr[0]; i++)
     {
         for(int j=0; j<nArr[1]; j++)
@@ -678,7 +656,6 @@ float* KWaveInput::Smooth(double* energyDensitySum, int* binDim, bool restoreMag
     double energyDensitySumMax;
 
     // Obtain the max absolute value of 'energyDensitySum'
-    // **************************************************************
     if(restoreMagnitude)
     {
         double* eSumMax = std::max_element(energyDensitySum,energyDensitySum+(binDim[0]*binDim[1]*binDim[2]));
@@ -694,7 +671,6 @@ float* KWaveInput::Smooth(double* energyDensitySum, int* binDim, bool restoreMag
     fftw_complex out[binDim[0]*binDim[1]*binDim[2]];
 
     // Fill 'in' with 'energyDensitySum' values, 
-    // **************************************************************
     for(int i=0; i<binDim[0]; i++)
     {
         for(int j=0; j<binDim[1]; j++)
@@ -702,33 +678,29 @@ float* KWaveInput::Smooth(double* energyDensitySum, int* binDim, bool restoreMag
             for(int k=0; k<binDim[2]; k++)
             {
                 int index = k+binDim[2]*(j+binDim[1]*i);
-                in[index][0] = energyDensitySum[index];            // Real
+                in[index][0] = energyDensitySum[index];     // Real
                 in[index][1] = 0;                           // Imaginary
             }
         }
     }
         
     // Apply DFT from 'in' and write to 'out'
-    // **************************************************************
     plan = fftw_plan_dft_3d(binDim[0],binDim[1],binDim[2],in,out,FFTW_FORWARD,FFTW_ESTIMATE);
     fftw_execute(plan);
     fftw_destroy_plan(plan);
         
     // Which window filter type to multiply by ('smooth' in kWave uses rotated window by default)
-    // **************************************************************
     if( rotWindow )
         RotWindowFilter(binDim,out);    // Rotation method to generate window filter
     else
         WindowFilter(binDim,out);       // Multiply 'out' by window filter
             
     // Inverse DFT transformation and overwrite 'in'
-    // **************************************************************
     plan = fftw_plan_dft_3d(binDim[0],binDim[1],binDim[2],out,in,FFTW_BACKWARD,FFTW_ESTIMATE); 
     fftw_execute(plan);
     fftw_destroy_plan(plan);
     
     // Fill overwrite 'energyDensitySum' (a double array) with 'in' (an fftw_complex), also normalise
-    // **************************************************************
     for(int i=0; i<binDim[0]; i++)
     {
         for(int j=0; j<binDim[1]; j++)
@@ -745,11 +717,9 @@ float* KWaveInput::Smooth(double* energyDensitySum, int* binDim, bool restoreMag
     }
     
     // Restore magnitude to before fourier transform
-    // **************************************************************
     if(restoreMagnitude)
     {
         // Get maximum absolute value of smoothed energyDensitySum
-        // **************************************************************
         double* smoothESumMax = std::max_element(energyDensitySum,energyDensitySum+(binDim[0]*binDim[1]*binDim[2]));
         double* smoothESumMin = std::min_element(energyDensitySum,energyDensitySum+(binDim[0]*binDim[1]*binDim[2])); 
         if(std::abs(*smoothESumMin) > *smoothESumMax)
@@ -760,7 +730,6 @@ float* KWaveInput::Smooth(double* energyDensitySum, int* binDim, bool restoreMag
         double restoreMag = (energyDensitySumMax)/(smoothEnergyDensitySumMax);
 
         // Multiply by each element to restore amplitude
-        // **************************************************************
         for(int i=0; i<binDim[0]; i++)
         {
             for(int j=0; j<binDim[1]; j++)
@@ -777,7 +746,6 @@ float* KWaveInput::Smooth(double* energyDensitySum, int* binDim, bool restoreMag
     fftw_cleanup();
 
     // Convert data from double to float as per k-Wave input    
-    // **************************************************************
     float* fenergyDensitySum = new float[binDim[0]*binDim[1]*binDim[2]]{0}; // Float of data to be written
     std::copy(energyDensitySum, energyDensitySum+(binDim[0]*binDim[1]*binDim[2]), fenergyDensitySum);
     
@@ -801,7 +769,6 @@ float* KWaveInput::SmoothAS(double* energyDensitySum, int* binDim, bool restoreM
     double energyDensitySumMax;
 
     // Obtain the max absolute value of 'energyDensitySum'
-    // **************************************************************
     if(restoreMagnitude)
     {
         double* eSumMax = std::max_element(energyDensitySum,energyDensitySum+(binDim[0]*binDim[1]));
@@ -817,7 +784,6 @@ float* KWaveInput::SmoothAS(double* energyDensitySum, int* binDim, bool restoreM
     fftw_complex out[binDim[0]*binDim[1]];
 
     // Fill 'in' with 'energyDensitySum' values, 
-    // **************************************************************
     for(int i=0; i<binDim[0]; i++)
     {
         for(int j=0; j<binDim[1]; j++)
@@ -829,26 +795,22 @@ float* KWaveInput::SmoothAS(double* energyDensitySum, int* binDim, bool restoreM
     }
             
     // Apply DFT from 'in' and write to 'out'
-    // **************************************************************
     plan = fftw_plan_dft_2d(binDim[0],binDim[1],in,out,FFTW_FORWARD,FFTW_ESTIMATE);
     fftw_execute(plan);
     fftw_destroy_plan(plan);
         
     // Which window filter type to multiply by ('smooth' in kWave uses rotated window by default)
-    // **************************************************************
     if( rotWindow )
         RotWindowFilterAS(binDim,out);  // Rotation method to generate window filter
     else
         WindowFilterAS(binDim,out);     // Multiply 'out' by window filter
             
     // Inverse DFT transformation and overwrite 'in'
-    // **************************************************************
     plan = fftw_plan_dft_2d(binDim[0],binDim[1],out,in,FFTW_BACKWARD,FFTW_ESTIMATE); 
     fftw_execute(plan);
     fftw_destroy_plan(plan);
         
     // Fill overwrite 'energyDensitySum' (a double array) with 'in' (an fftw_complex), also normalise
-    // **************************************************************
     for(int i=0; i<binDim[0]; i++)
     {
         for(int j=0; j<binDim[1]; j++)
@@ -860,11 +822,9 @@ float* KWaveInput::SmoothAS(double* energyDensitySum, int* binDim, bool restoreM
     }
         
     // Restore magnitude to before fftw transform
-    // **************************************************************
     if(restoreMagnitude)
     {
         // Get maximum absolute value of smoothed energyDensitySum
-        // **************************************************************
         double* smoothESumMax = std::max_element(energyDensitySum,energyDensitySum+(binDim[0]*binDim[1]));
         double* smoothESumMin = std::min_element(energyDensitySum,energyDensitySum+(binDim[0]*binDim[1])); 
     
@@ -876,7 +836,6 @@ float* KWaveInput::SmoothAS(double* energyDensitySum, int* binDim, bool restoreM
         double restoreMag = (energyDensitySumMax)/(smoothEnergyDensitySumMax);
 
         // Multiply by each element to restore amplitude
-        // **************************************************************
         for(int i=0; i<binDim[0]; i++)
         {
             for(int j=0; j<binDim[1]; j++)
@@ -890,7 +849,6 @@ float* KWaveInput::SmoothAS(double* energyDensitySum, int* binDim, bool restoreM
     fftw_cleanup();
 
     // Convert data from double to float as per k-Wave input   
-    // **************************************************************
     float* fenergyDensitySum = new float[binDim[0]*binDim[1]]{0}; // Float of data to be written
     std::copy(energyDensitySum, energyDensitySum+(binDim[0]*binDim[1]), fenergyDensitySum);
     
@@ -899,10 +857,7 @@ float* KWaveInput::SmoothAS(double* energyDensitySum, int* binDim, bool restoreM
 
 void KWaveInput::WriteHeader()
 {
-    /*
-        Writes header part for k-Wave input file
-    */
-
+    // Writes header part for k-Wave input file
     time_t ttime = time(0);
     char* dt = ctime(&ttime);
     
@@ -940,7 +895,6 @@ std::vector<unsigned long> KWaveInput::SensorMaskIndices(unsigned long nx, float
     unsigned long index;
     
     // Bad way to handle when senMin = senMax
-    // **************************************************************
     if(senDx == 0) 
         senDx = 1;
     if(senDy == 0)
@@ -949,7 +903,6 @@ std::vector<unsigned long> KWaveInput::SensorMaskIndices(unsigned long nx, float
         senDz = 1;
     
     // Round min/max
-    // **************************************************************
     float minX = std::round(senMinX);
     float maxX = std::round(senMaxX);
     float minY = std::round(senMinY);
@@ -958,7 +911,6 @@ std::vector<unsigned long> KWaveInput::SensorMaskIndices(unsigned long nx, float
     float maxZ = std::round(senMaxZ);
         
     // Calculate the index for sensors
-    // **************************************************************
     for(int senZ = minZ; senZ <= maxZ; senZ += senDz)
     {
         for(int senY = minY; senY <= maxY; senY += senDy)
@@ -990,21 +942,18 @@ std::vector<unsigned long> KWaveInput::SensorMaskIndices(unsigned long nx, float
     unsigned long index;
     
     // Bad way to handle when senMin = senMax
-    // **************************************************************
     if(senDx == 0) 
         senDx = 1;
     if(senDy == 0)
         senDy = 1;
 
     // Round min/max to int values
-    // **************************************************************
     float minX = std::round(senMinX);
     float maxX = std::round(senMaxX);
     float minY = std::round(senMinY);
     float maxY = std::round(senMaxY);
 
     // Calculate the index for sensors
-    // **************************************************************
     for(int senY = minY; senY <= maxY; senY += senDy)
     {
         for(int senX = minX; senX <= maxX; senX += senDx)
@@ -1070,7 +1019,6 @@ void KWaveInput::Write1DFloat(std::string datasetName, float val)
     float value = val;
     
     // Attributes
-    // **************************************************************
     const char *dataType[2] = { "data_type", "float" };
     const char *domainType[2] = { "domain_type", "real" };
 
@@ -1102,8 +1050,7 @@ void KWaveInput::Write1DLong(std::string datasetName, unsigned long val)
 
     unsigned long value = val;
 
-    // Attributes
-    // **************************************************************    
+    // Attributes  
     const char *dataType[2] = { "data_type", "long" };
     const char *domainType[2] = { "domain_type", "real" };
 
@@ -1139,7 +1086,6 @@ void KWaveInput::WriteMultDLong(std::string datasetName, std::vector<unsigned lo
     hsize_t rank = indicesVec.size(); // Number of indices
 
     // H5DWrite doesn't accept vectors so convert to array
-    // **************************************************************    
     unsigned long indicesArr[rank];
     for( int i=0; i<rank; i++)
         indicesArr[i] = indicesVec[i];
@@ -1199,10 +1145,7 @@ void KWaveInput::WritePData(std::string datasetName, int nx, int ny, int nz, flo
 
 void KWaveInput::WriteFile()
 {
-    /*
-        Writes HDF5 file for k-Wave input for C++ binary for 3D data
-    */
-
+    // Writes HDF5 file for k-Wave input for C++ binary for 3D data
     std::cout << "Beginning to write K-Wave Input File." << std::endl;
         
     if(binDimSize != 3)
@@ -1241,8 +1184,7 @@ void KWaveInput::WriteFile()
 
     unsigned long Nt = CalculateNT(tEnd, dt);
 
-    // Writing Variables to Input File
-    // **************************************************************    
+    // Writing Variables to Input File 
     Write1DLong("Nt",Nt);
     Write1DLong("Nx",Nx);
     Write1DLong("Ny",Ny);
@@ -1293,10 +1235,7 @@ void KWaveInput::WriteFile()
 
 void KWaveInput::WriteFileAS()
 {
-    /*
-        Writes HDF5 file for k-Wave input for C++ binary for 2D data (axisymmetric)
-    */
-
+    // Writes HDF5 file for k-Wave input for C++ binary for 2D data (axisymmetric)
     std::cout << "Beginning to write K-Wave Input File." << std::endl;
 
     if(binDimSize != 2)
@@ -1334,7 +1273,6 @@ void KWaveInput::WriteFileAS()
     unsigned long Nt = CalculateNT(tEnd, dt);
 
     // Writing Variables to Input File
-    // **************************************************************    
     Write1DLong("Nt",Nt);
     Write1DLong("Nx",Nx);
     Write1DLong("Ny",Ny);
@@ -1350,11 +1288,9 @@ void KWaveInput::WriteFileAS()
     Write1DLong("nonlinear_flag",0);
     Write1DLong("nonuniform_grid_flag",0);
 
-    
     Write1DLong("p0_source_flag",1);
     WritePData("p0_source_input", Nz, Ny, Nx, fenergyDensityData);
     Write1DLong("p_source_flag",0);
-    
     
     Write1DFloat("pml_x_alpha",pmlAlphaX);
     Write1DLong("pml_x_size",pmlSizeX);

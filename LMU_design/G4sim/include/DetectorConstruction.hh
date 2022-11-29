@@ -50,7 +50,6 @@ class G4VisAttributes;
 class DetectorConstructionMessenger;
 
 /// Detector construction
-
 class DetectorConstruction : public G4VUserDetectorConstruction
 {
 public:
@@ -73,7 +72,6 @@ public:
     G4bool GetToggleScifi() { return toggleScifi; };
     
     // UI Commands
-    // **************************************************************
     void SetWorldVolume(G4ThreeVector vec);
     void SetPhantomVolume(G4ThreeVector vec);
     void SetWaterVolume(G4ThreeVector vec);
@@ -182,7 +180,5 @@ private:
     G4VSensitiveDetector* scifi4HSD;
     G4VSensitiveDetector* scifi4VSD;
 };
-
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 #endif

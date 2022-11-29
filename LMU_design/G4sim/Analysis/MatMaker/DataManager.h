@@ -11,8 +11,7 @@
 #include "TAxis.h"
 #include "TCanvas.h"
 
-// Class to handle and manipulate data
-// **************************************************************    
+// Class to handle and manipulate data  
 class DataManager
 {
 public:

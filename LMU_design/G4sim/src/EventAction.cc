@@ -36,10 +36,8 @@
 #include "G4SDManager.hh"
 #include "G4SystemOfUnits.hh"
 #include "G4ios.hh"
-  
 #include <sstream>
   
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 EventAction::EventAction()
 : G4UserEventAction(), two_planes(true)
@@ -49,27 +47,20 @@ EventAction::EventAction()
     ResetTreeWriteStatus();
 }
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
 EventAction::~EventAction()
 {}
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
 void EventAction::ResetTreeWriteStatus()
 {
-    /*
-        Reset booleans controlling on whether to write phantom/scifi TTree in file
-    */
+
+    // Reset booleans controlling on whether to write phantom/scifi TTree in file
     wrotePhantomTree = false;
     wroteSciFiTree = false;
 }
 
 void EventAction::CreateSciFiTree()
 {
-    /*
-        Create the TTree related to SciFi detectors to file and assign to EventData struct
-    */
+    // Create the TTree related to SciFi detectors to file and assign to EventData struct
     
     station1Epoxy.tree = RootIO::GetInstance()->CreateTree("Station1_Epoxy");
     if (two_planes == true) {
@@ -98,9 +89,7 @@ void EventAction::CreateSciFiTree()
 
 void EventAction::DeleteSciFiTree()
 {
-    /*
-        Delete TTree from file
-    */
+    // Delete TTree from file
     
     gDirectory->Delete("Station1_Epoxy");
     gDirectory->Delete("Station1_PlaneH");
@@ -116,14 +105,9 @@ void EventAction::DeleteSciFiTree()
     gDirectory->Delete("Station4_PlaneV");
 }
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
 void EventAction::BeginOfEventAction(const G4Event*)
 {
-    /*
-        At the start of event collect the CollectionID for each sensitive detector
-    */
-    
+    // At the start of event collect the CollectionID for each sensitive detector
     G4SDManager* sdManager = G4SDManager::GetSDMpointer();
  
     if( !wrotePhantomTree )
@@ -168,14 +152,9 @@ void EventAction::BeginOfEventAction(const G4Event*)
     }
 }
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
 void EventAction::EndOfEventAction(const G4Event* event)
 {    
-    /*
-        At end of event get the collection of hits then write to ROOT file
-    */
-    
+    // At end of event get the collection of hits then write to ROOT file
     G4HCofThisEvent* hce = event->GetHCofThisEvent();
     if (!hce)
     {
@@ -186,7 +165,6 @@ void EventAction::EndOfEventAction(const G4Event* event)
     }
     
     // Get hits collections 
-    // **************************************************************
     phantom.hColl = static_cast<SciFiHitsCollection*>(hce->GetHC(phantom.id));
 
     if( detector->GetToggleScifi() )
@@ -217,7 +195,6 @@ void EventAction::EndOfEventAction(const G4Event* event)
     }
 
     // Write to Root file for each TTree
-    // **************************************************************
     eventID = event->GetEventID();
     RootIO* instance = RootIO::GetInstance();
     instance->WriteToRoot(phantom.hColl,eventID,phantom.tree);
@@ -249,4 +226,4 @@ void EventAction::EndOfEventAction(const G4Event* event)
         instance->WriteToRoot(station4PlaneV.hColl,eventID,station4PlaneV.tree);        
     }    
 }
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+

@@ -41,7 +41,6 @@ int main(int argc, char* argv[])
     KWaveInput kwaveInput(kwaveName);  
 
     // Define bin dimensions
-    // **************************************************************
     int binDim[3];
     binDim[0] = rootFile.GetBinHeight();
     binDim[1] = rootFile.GetBinWidth();
@@ -55,7 +54,6 @@ int main(int argc, char* argv[])
     kwaveInput.SetEnergyDensity(energyDensityData);
 
     // Apply smoothening by multiplying by window filter
-    // **************************************************************
     kwaveInput.SetGrueneisen(0.11);                 // Grueneisen parameter for water
     kwaveInput.SetSmooth(true);                     // Whether or not to smoothen data
     kwaveInput.SetRestoreMagnitude(true);           // Whether to restore magnitude after smooth
@@ -63,7 +61,6 @@ int main(int argc, char* argv[])
                                                     // (K-Wave uses rotational window by default)
     
     // Grid Size (should be consistent with Matlab convention)
-    // **************************************************************
     unsigned long Nx = binDim[0];                   // Height
     unsigned long Ny = binDim[1];                   // Width
     unsigned long Nz = binDim[2];                   // Depth
@@ -79,7 +76,6 @@ int main(int argc, char* argv[])
     kwaveInput.SetDz(dz);
     
     // Thickness of absorbing boundary (PML) around the simulation
-    // **************************************************************
     kwaveInput.SetPMLSizeX(10);                 // Not sure why despite pml_size = 1 in matlab 
                                                 // it still writes default (default = 10)
     kwaveInput.SetPMLSizeY(10);
@@ -90,21 +86,18 @@ int main(int argc, char* argv[])
     kwaveInput.SetPMLAlphaZ(2);
     
     // Define the properties of the propagation medium
-    // **************************************************************
     float mediumSoundSpeed = 1500;                      // [m/s]
     kwaveInput.SetMediumSoundSpeed(mediumSoundSpeed);
     kwaveInput.SetCRef(mediumSoundSpeed);               // reference sound speed used within the
                                                         // k-space operator (phase correction term)
     
     // Set the time limit and time steps
-    // **************************************************************
     float tEnd = (float)Nx*dx/mediumSoundSpeed;  // [s]
     float cfl = 0.3;
     kwaveInput.SetTEnd(tEnd);
     kwaveInput.SetCFL(cfl); 
     
     // Sensor Mask
-    // **************************************************************
     // Following should give the same indices as with: sensor.mask(Nx/2, Ny/4:4:3*Ny/4, 3*Nz/4) = 1
     float senMinX = (float)Nx/2.;       // Minimum for x
     float senMaxX = (float)Nx/2.;       // Maximum for x
@@ -123,8 +116,7 @@ int main(int argc, char* argv[])
                                                                          Nz, senMinZ, senMaxZ, senDz);
     kwaveInput.SetSensorMask(sensorMask);
     
-    // Write HDF5 File
-    // **************************************************************    
+    // Write HDF5 File 
     kwaveInput.WriteFile();
     
     std::cout << "Finished Main" << std::endl;

@@ -39,8 +39,6 @@
 
 class DetectorConstruction;
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
 class DetectorConstructionMessenger : public G4UImessenger
 {
 public:
@@ -67,7 +65,5 @@ private:
     G4UIcmdWith3VectorAndUnit* m_setStation3PosCmd;
     G4UIcmdWith3VectorAndUnit* m_setStation4PosCmd;    
 };
-
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 #endif

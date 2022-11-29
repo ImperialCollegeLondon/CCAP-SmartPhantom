@@ -64,8 +64,6 @@
 #include "G4SystemOfUnits.hh"
 
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
 DetectorConstruction::DetectorConstruction()
 : G4VUserDetectorConstruction(), 
   worldAttr(nullptr), phantomAttr(nullptr), eWindowAttr(nullptr), waterAttr(nullptr), 
@@ -76,12 +74,8 @@ DetectorConstruction::DetectorConstruction()
   scifi2HSD(nullptr), scifi2VSD(nullptr), scifi3EpoxySD(nullptr), scifi3HSD(nullptr), scifi3VSD(nullptr),
   scifi4EpoxySD(nullptr), scifi4HSD(nullptr), scifi4VSD(nullptr), two_planes(true)
 {
-    /*
-        Initialises a bunch of parameters for the simulation
-    */
-    
+    // Initialises a bunch of parameters for the simulation
     // Defining Dimensions
-    // **************************************************************
     worldZ = 100*mm/2;                                              // half-z of world
     worldX = 160*mm/2;                                              // half-x of world
     worldY = 140*mm/2;                                              // half-y of world
@@ -97,12 +91,9 @@ DetectorConstruction::DetectorConstruction()
                                                                     // if togglePhantom is true
 
     eWindowZ = 0.05*mm/2;                                           // half-z of entrance window
-    //eWindowX = 10*mm/2;                                           // half-x of entrance window
-    //eWindowY = 10*mm/2;                                           // half-y of entrance window
-    eWindowRadius = 10*mm/2; 
+    eWindowRadius = 10*mm/2;                                        // half radius of entrance window
 
     // SmartPhantom Planes
-    // **************************************************************
     scifiN = 33;                                                    // Number of fibres, produced 10 mm planes
     scifiFibreRadius = 0.25*mm/2;                                   // Half-radius of fibre
     scifiPitch = 0.300*mm;                                          // Fibre pitch, center-to-center distance
@@ -112,7 +103,6 @@ DetectorConstruction::DetectorConstruction()
     scifiEpoxySide = scifiPlaneSide;                                // Match epoxy resin layer to plane edge length
     
     // Rotating Stations
-    // **************************************************************
     G4double theta = 90*deg;
     cwRot = 0*deg;
     ccRot = 90*deg;
@@ -126,7 +116,6 @@ DetectorConstruction::DetectorConstruction()
     //stationRot->rotateZ(45*deg);
     
     // Suitable for ~30 MeV Protons
-    // **************************************************************
     std::vector<G4double> vec1 = {0*mm, 0*mm, -waterZ + 13*mm};
     std::vector<G4double> vec2 = {0*mm, 0*mm, -waterZ + 15*mm};
     std::vector<G4double> vec3 = {0*mm, 0*mm, -waterZ + 17*mm};
@@ -138,7 +127,6 @@ DetectorConstruction::DetectorConstruction()
     station4Pos = vec4;                                             // Station 4 depth (at station centre)
 
     // Construct Materials
-    // **************************************************************
     worldMaterial = GetNISTMaterial("G4_AIR");                      // Default material for the world volume is G4_AIR
     phantomMaterial = GetNISTMaterial("G4_Al");                     // Default material for phantom walls is G4_PLEXIGLASS
     waterMaterial = GetNISTMaterial("G4_WATER");                    // Default material for water volume is G4_WATER
@@ -168,7 +156,6 @@ DetectorConstruction::DetectorConstruction()
 
     // Create Epoxy Resin from Components (based on Araldite I think?)
     // Used for the glue layer in the station
-    // **************************************************************
     G4double epoxyResinDensity = 1.2*g/cm3;
     epoxyResinMaterial = new G4Material("EpoxyResin",epoxyResinDensity, 4);
     epoxyResinMaterial->AddElement(C, 21);
@@ -185,11 +172,9 @@ DetectorConstruction::DetectorConstruction()
     Kapton->AddElement(O, 0.1749);
         
     // Initialise Messenger
-    // **************************************************************
     m_detectorConstructionMessenger = new DetectorConstructionMessenger(this);
 }
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 DetectorConstruction::~DetectorConstruction()
 {
@@ -218,14 +203,10 @@ DetectorConstruction::~DetectorConstruction()
     delete m_detectorConstructionMessenger;
 }
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 G4VPhysicalVolume* DetectorConstruction::Construct()
 {
-    /*
-        Constructs the various volumes used in the simulation
-    */
-    
+    // Constructs the various volumes used in the simulation
     delete worldSolid;
     delete waterSolid;
     delete eWindowSolid;
@@ -246,8 +227,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     //////////////////////
     
     // World
-    // **************************************************************
-    worldSolid = new G4Box("worldBox", worldX, worldY, worldZ); // Format: G4Box(name, half-x, half-y, half-z)
+    worldSolid = new G4Box("worldBox", worldX, worldY, worldZ); 
     worldLogical = new G4LogicalVolume(worldSolid,worldMaterial,"worldLogical");
     G4VPhysicalVolume* worldPhysical = new G4PVPlacement(0,G4ThreeVector(),worldLogical,"worldPhysical",0,false,0,checkOverlaps);
     worldAttr = new G4VisAttributes(G4Colour(0,0,0));
@@ -257,7 +237,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     if( togglePhantom ) // If phantom walls are enabled
     {
         // Phantom
-        // **************************************************************
         phantomBox = new G4Box("phantomBox", phantomX, phantomY, phantomZ);
         phantomHole = new G4Tubs("phantomHole",0,eWindowRadius,phantomThickness,0,2*M_PI);
 
@@ -269,8 +248,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
         phantomLogical->SetVisAttributes(phantomAttr);
 
         // Entrance Window (Recessed part of wall)
-        // **************************************************************
-        //eWindowSolid = new G4Box("eWindowBox", eWindowX, eWindowY, eWindowZ);
         eWindowSolid = new G4Tubs("eWindowTube",0,eWindowRadius,eWindowZ*2,0,2*M_PI);
         windowMaterial = Kapton;               // Default material for window is Kapton
         eWindowLogical = new G4LogicalVolume(eWindowSolid, windowMaterial, "eWindowLogical");
@@ -279,7 +256,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
         eWindowLogical->SetVisAttributes(eWindowAttr);
         
         // Water Box
-        // **************************************************************
         waterX = phantomX - phantomThickness;
         waterY = phantomY - phantomThickness;
         waterZ = phantomZ - phantomThickness;
@@ -293,7 +269,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     else // If phantom walls not enabled
     {
         // Water Box
-        // **************************************************************
         waterSolid = new G4Box("waterBox", waterX, waterY, waterZ); 
         waterLogical = new G4LogicalVolume(waterSolid,waterMaterial,"waterboxLogical");
         new G4PVPlacement(0,G4ThreeVector(),waterLogical,"waterboxPhysical",worldLogical,false,0,checkOverlaps);
@@ -312,7 +287,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     return worldPhysical;
 }
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 void DetectorConstruction::CreateSciFiStation(G4LogicalVolume** scifiStationLogical, G4LogicalVolume** scifiStationLogicalH, G4LogicalVolume** scifiStationLogicalV, G4String stationName, std::vector<G4double> &pos)
 {    
@@ -330,7 +304,6 @@ void DetectorConstruction::CreateSciFiStation(G4LogicalVolume** scifiStationLogi
     G4VisAttributes* scifiFibreAttributes = new G4VisAttributes(G4Colour(0,1,0,0.3));
     
     // SciFi Station
-    // **************************************************************
     G4VSolid* scifiStationSolid = new G4Box(stationName,scifiStationSide,scifiStationSide,scifiStationDepth);
     
     G4String stationLogicalName = stationName + "Logical";
@@ -339,19 +312,13 @@ void DetectorConstruction::CreateSciFiStation(G4LogicalVolume** scifiStationLogi
     new G4PVPlacement(stationRot,G4ThreeVector(pos[0],pos[1],pos[2]),*scifiStationLogical,stationPhysicalName,waterLogical,false,0,checkOverlaps);
     
     // Assign visual attributes
-    // **************************************************************
     (*scifiStationLogical)->SetVisAttributes(scifiStationAttributes);
 
     // Horizontal and Vertical Fibre Planes
-    // **************************************************************
     G4String stationFibreSolidName = stationName + "Fibre";
-    
     G4String stationFibreLogicalHName = stationName + "LogicalHor";
-    
     G4String stationFibreLogicalVName = stationName + "LogicalVer";
-    
     G4String stationFibrePhysicalHName = stationName + "PhysicalHor";
-    
     G4String stationFibrePhysicalVName = stationName + "PhysicalVer";
 
     G4VSolid* scifiStationFibreSolid = new G4Tubs(stationFibreSolidName,0,scifiFibreRadius,scifiLength,0*deg,360.0*deg);
@@ -361,11 +328,10 @@ void DetectorConstruction::CreateSciFiStation(G4LogicalVolume** scifiStationLogi
     *scifiStationLogicalV = new G4LogicalVolume(scifiStationFibreSolid,fibreMaterial,stationFibreLogicalVName);
 
     // Loop to create individual fibres
-    // **************************************************************
     for(G4int i=0; i<scifiN; i++)
     {
         G4double x = -(scifiPitch * scifiN/2) + scifiPitch*i; // Centre position of fibre
-        G4double xHor = x*cos(cwRot); // Rotate fibre
+        G4double xHor = x*cos(cwRot);                         // Rotate fibre
         G4double xVer = x*cos(ccRot);
         
         G4double yHor = x*sin(cwRot);
@@ -386,14 +352,10 @@ void DetectorConstruction::CreateSciFiStation(G4LogicalVolume** scifiStationLogi
     (*scifiStationLogicalV)->SetVisAttributes(scifiFibreAttributes);
 }
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 void DetectorConstruction::ConstructSDandField()
 {
-    /*
-        Create/Assign Sensitive Detectors (SD) i.e. volumes where data recorded
-    */
-    
+    // Create/Assign Sensitive Detectors (SD) i.e. volumes where data recorded
     delete phantomSD;
     delete scifi1EpoxySD;
     delete scifi1HSD;
@@ -409,7 +371,6 @@ void DetectorConstruction::ConstructSDandField()
     delete scifi4VSD;
  
     // Sensitive detectors
-    // **************************************************************
     G4SDManager* SDman = G4SDManager::GetSDMpointer();
     G4String SDname;
     
@@ -427,7 +388,6 @@ void DetectorConstruction::ConstructSDandField()
     if( toggleScifi ) // If SciFi included add create these sensitive detectors
     {
         // Create sensitive detectors for stations
-        // **************************************************************
         scifi1EpoxySD = new SciFiSD(SDname="/scifi1EpoxySD");
         if (two_planes == true) {
             scifi1HSD = new SciFiSD(SDname="/scifi1HSD");
@@ -453,7 +413,6 @@ void DetectorConstruction::ConstructSDandField()
         scifi4VSD = new SciFiSD(SDname="/scifi4VSD");
 
         // Add to the G4SDManager
-        // **************************************************************
         SDman->AddNewDetector(scifi1EpoxySD);
         if (two_planes == true) {
             SDman->AddNewDetector(scifi1HSD);
@@ -476,7 +435,6 @@ void DetectorConstruction::ConstructSDandField()
         SDman->AddNewDetector(scifi4VSD);
         
         // Assign a logical volume to the sensitive detectors
-        // **************************************************************
         scifiStation1Logical->SetSensitiveDetector(scifi1EpoxySD);
         if (two_planes == true) {
             scifiStation1LogicalHor->SetSensitiveDetector(scifi1HSD);
@@ -503,18 +461,13 @@ void DetectorConstruction::ConstructSDandField()
     }
 }    
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
 G4Material* DetectorConstruction::GetNISTMaterial(G4String name, G4String fallbackName)
 {
-    /*
-        Get material properties from the NIST database
-    */
-    
+    // Get material properties from the NIST database
     G4NistManager* nistManager = G4NistManager::Instance();
     G4Material* material;
     
-    try                         // Check if material in database
+    try     // Check if material in database
     {
         G4Material* checkMat = nistManager->FindOrBuildMaterial(name);
         if( checkMat == 0 )
@@ -532,20 +485,14 @@ G4Material* DetectorConstruction::GetNISTMaterial(G4String name, G4String fallba
     return material;
 }
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
 void DetectorConstruction::SetWorldVolume(G4ThreeVector vector)
 {
-    /*
-        Function for UI command to change the world volume        
-    */
-    
+     //   Function for UI command to change the world volume        
     G4double newX = vector[0];
     G4double newY = vector[1];
     G4double newZ = vector[2];
         
     // Check new volume is bigger than water volume
-    // **************************************************************
     if( newX < waterX || newY < waterY || newZ < waterZ )
     {
         G4ExceptionDescription msg;
@@ -555,13 +502,11 @@ void DetectorConstruction::SetWorldVolume(G4ThreeVector vector)
     }
     
     // Set new values to world
-    // **************************************************************
     worldX = newX;
     worldY = newY;
     worldZ = newZ;
     
     // Modify geometry
-    // **************************************************************
     G4RunManagerKernel::GetRunManagerKernel()->DefineWorldVolume(Construct(),true); // To visualise volume change
     G4RunManager::GetRunManager()->GeometryHasBeenModified();
     G4RunManager::GetRunManager()->ReinitializeGeometry();
@@ -569,16 +514,12 @@ void DetectorConstruction::SetWorldVolume(G4ThreeVector vector)
 
 void DetectorConstruction::SetPhantomVolume(G4ThreeVector vector)
 {
-    /*
-        Function for UI command to change phantom volume 
-    */
-    
+    // Function for UI command to change phantom volume 
     G4double newX = vector[0];
     G4double newY = vector[1];
     G4double newZ = vector[2];
         
     // Check new volume is smaller than the world volume
-    // **************************************************************
     if( newX > worldX || newY > worldY || newZ > worldZ )
     {
         G4ExceptionDescription msg;
@@ -588,7 +529,6 @@ void DetectorConstruction::SetPhantomVolume(G4ThreeVector vector)
     }
 
     // Check whether phantom walls are enabled else it is applied to water volume
-    // **************************************************************
     if(!togglePhantom)
     {
         G4ExceptionDescription msg;
@@ -601,13 +541,11 @@ void DetectorConstruction::SetPhantomVolume(G4ThreeVector vector)
     }
     
     // Set new values
-    // **************************************************************
     phantomX = newX;
     phantomY = newY;
     phantomZ = newZ;
             
     // Modify geometry
-    // **************************************************************
     G4RunManagerKernel::GetRunManagerKernel()->DefineWorldVolume(Construct(),true); // To visualise volume change
     G4RunManager::GetRunManager()->GeometryHasBeenModified();
     G4RunManager::GetRunManager()->ReinitializeGeometry();
@@ -615,16 +553,12 @@ void DetectorConstruction::SetPhantomVolume(G4ThreeVector vector)
 
 void DetectorConstruction::SetWaterVolume(G4ThreeVector vector)
 {
-    /*
-        Function for UI command to change water volume
-    */
-    
+    // Function for UI command to change water volume
     G4double newX = vector[0];
     G4double newY = vector[1];
     G4double newZ = vector[2];
     
     // Check new volume is smaller than world volume
-    // **************************************************************
     if( newX > worldX || newY > worldY || newZ > worldZ )
     {
         G4ExceptionDescription msg;
@@ -633,7 +567,6 @@ void DetectorConstruction::SetWaterVolume(G4ThreeVector vector)
         return;
     }
     // Check new volume is smaller than the phantom volume
-    // **************************************************************
     else if( (newX > phantomX || newY > phantomY || newZ > phantomZ) && togglePhantom == true)
     {
         G4ExceptionDescription msg;
@@ -643,13 +576,11 @@ void DetectorConstruction::SetWaterVolume(G4ThreeVector vector)
     }
     
     // Set new values
-    // **************************************************************
     waterX = newX;
     waterY = newY;
     waterZ = newZ;
             
     // Modify geometry
-    // **************************************************************
     G4RunManagerKernel::GetRunManagerKernel()->DefineWorldVolume(Construct(),true); // To visualise volume change
     G4RunManager::GetRunManager()->GeometryHasBeenModified();
     G4RunManager::GetRunManager()->ReinitializeGeometry();
@@ -657,14 +588,10 @@ void DetectorConstruction::SetWaterVolume(G4ThreeVector vector)
 
 void DetectorConstruction::SetPhantomThickness(G4double val)
 {
-    /*
-        Function for UI command to modify the thickness of phantom walls
-    */
-    
+    // Function for UI command to modify the thickness of phantom walls
     G4double newThickness = val;
     
     // Check new thickness is smaller than the phantom dimensions
-    // **************************************************************
     if( newThickness > phantomX || newThickness > phantomY || newThickness > phantomZ )
     {
         G4ExceptionDescription msg;
@@ -673,7 +600,6 @@ void DetectorConstruction::SetPhantomThickness(G4double val)
     }
     
     // Check if specified thickness is larger than the entrance window
-    // **************************************************************
     if( newThickness <= (2*eWindowZ) )
     {
         G4ExceptionDescription msg;
@@ -683,11 +609,9 @@ void DetectorConstruction::SetPhantomThickness(G4double val)
     }
     
     // Set new values
-    // **************************************************************
     phantomThickness = val;
 
     // Modify geometry
-    // **************************************************************
     G4RunManagerKernel::GetRunManagerKernel()->DefineWorldVolume(Construct(),true); // To visualise volume change
     G4RunManager::GetRunManager()->GeometryHasBeenModified();
     G4RunManager::GetRunManager()->ReinitializeGeometry();
@@ -695,14 +619,10 @@ void DetectorConstruction::SetPhantomThickness(G4double val)
 
 void DetectorConstruction::EnablePhantomWall(G4bool toggle)
 {        
-    /*
-        Function for UI command to toggle phantom wall
-    */
-    
+    // Function for UI command to toggle phantom wall
     togglePhantom = toggle;
     
     // If true then add walls, else water
-    // **************************************************************
     if(togglePhantom == true)
     {
         phantomX = waterX;
@@ -717,7 +637,6 @@ void DetectorConstruction::EnablePhantomWall(G4bool toggle)
     }
     
     // Modify geometry
-    // **************************************************************
     G4RunManagerKernel::GetRunManagerKernel()->DefineWorldVolume(Construct(),true); // To visualise volume change
     G4RunManager::GetRunManager()->GeometryHasBeenModified();
     G4RunManager::GetRunManager()->ReinitializeGeometry();
@@ -725,9 +644,7 @@ void DetectorConstruction::EnablePhantomWall(G4bool toggle)
 
 void DetectorConstruction::SetWorldMaterial(G4String name)
 {
-    /*
-        Function for UI command to change world material
-    */
+    // Function for UI command to change world material
     worldMaterial = GetNISTMaterial(name, worldMaterial->GetName());
     G4RunManager::GetRunManager()->GeometryHasBeenModified();
     G4RunManager::GetRunManager()->ReinitializeGeometry();
@@ -736,9 +653,7 @@ void DetectorConstruction::SetWorldMaterial(G4String name)
 
 void DetectorConstruction::SetPhantomMaterial(G4String name)
 {
-    /*
-        Function for UI command to change phantom material
-    */
+    // Function for UI command to change phantom material
     phantomMaterial = GetNISTMaterial(name, phantomMaterial->GetName());
     G4RunManager::GetRunManager()->GeometryHasBeenModified();
     G4RunManager::GetRunManager()->ReinitializeGeometry();
@@ -747,9 +662,7 @@ void DetectorConstruction::SetPhantomMaterial(G4String name)
 
 void DetectorConstruction::SetWaterMaterial(G4String name)
 {
-    /*
-        Function for UI command to change water material
-    */
+    // Function for UI command to change water material
     waterMaterial = GetNISTMaterial(name, waterMaterial->GetName());
     G4RunManager::GetRunManager()->GeometryHasBeenModified();
     G4RunManager::GetRunManager()->ReinitializeGeometry();
@@ -758,9 +671,7 @@ void DetectorConstruction::SetWaterMaterial(G4String name)
 
 void DetectorConstruction::EnableScifi(G4bool toggle)
 {        
-    /*
-        Function for UI command to enable scifi detectors
-    */
+    // Function for UI command to enable scifi detectors
     toggleScifi = toggle;
         
     G4RunManagerKernel::GetRunManagerKernel()->DefineWorldVolume(Construct(),true); // To visualise volume change
@@ -770,9 +681,7 @@ void DetectorConstruction::EnableScifi(G4bool toggle)
 
 void DetectorConstruction::SetStation1Pos(G4ThreeVector vector)
 {
-    /*
-        Function for UI command to modify station 1 position
-    */
+    // Function for UI command to modify station 1 position
     station1Pos[0] = vector[0];
     station1Pos[1] = vector[1];
     station1Pos[2] = vector[2];
@@ -784,9 +693,7 @@ void DetectorConstruction::SetStation1Pos(G4ThreeVector vector)
 
 void DetectorConstruction::SetStation2Pos(G4ThreeVector vector)
 {
-    /*
-        Function for UI command to modify station 2 position
-    */
+    // Function for UI command to modify station 2 position
     station2Pos[0] = vector[0];
     station2Pos[1] = vector[1];
     station2Pos[2] = vector[2];
@@ -798,9 +705,7 @@ void DetectorConstruction::SetStation2Pos(G4ThreeVector vector)
 
 void DetectorConstruction::SetStation3Pos(G4ThreeVector vector)
 {
-    /*
-        Function for UI command to modify station 3 position
-    */
+    // Function for UI command to modify station 3 position
     station3Pos[0] = vector[0];
     station3Pos[1] = vector[1];
     station3Pos[2] = vector[2];
@@ -812,9 +717,7 @@ void DetectorConstruction::SetStation3Pos(G4ThreeVector vector)
 
 void DetectorConstruction::SetStation4Pos(G4ThreeVector vector)
 {
-    /*
-        Function for UI command to modify station 4 position
-    */
+    // Function for UI command to modify station 4 position
     station4Pos[0] = vector[0];
     station4Pos[1] = vector[1];
     station4Pos[2] = vector[2];
@@ -824,10 +727,7 @@ void DetectorConstruction::SetStation4Pos(G4ThreeVector vector)
     G4RunManager::GetRunManager()->ReinitializeGeometry();
 }
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
 // Functions to return simulation geometry
-// **************************************************************
 G4double DetectorConstruction::GetPhantomX()
 {
     if(togglePhantom)
@@ -851,5 +751,3 @@ G4double DetectorConstruction::GetPhantomZ()
     else
         return waterZ;
 }
-
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

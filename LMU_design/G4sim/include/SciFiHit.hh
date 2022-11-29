@@ -82,6 +82,5 @@ private:
 };
 
 typedef G4THitsCollection<SciFiHit> SciFiHitsCollection;
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 #endif

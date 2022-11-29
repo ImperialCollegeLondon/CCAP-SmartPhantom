@@ -20,7 +20,7 @@ cd ../
 #                Voxel-Height(axis y in Geant4), Voxel-Width(axis x in Geant4), Voxel-Depth(axis z in Geant4),
 #                Analysis-Height(axis y in Geant4), Analysis-Width(axis x in Geant4), Analysis-Depth(axis z in Geant4)
 
-./MatMaker/SP-MatMaker "waterhits.root" "energy_data2_cpp.mat" "energy_density_data2_cpp.mat" "kwave_input_cpp.h5" 0.001 0.001 0.001 100 100 100
+./MatMaker/SP-MatMaker "waterhits.root" "energy_data2_cpp.mat" "energy_density_data2_cpp.mat" "kwave_input_cpp.h5" 1 1 1 100 100 100
 
 ##############
 # Run K-Wave #

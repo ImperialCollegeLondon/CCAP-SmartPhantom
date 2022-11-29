@@ -39,7 +39,6 @@
 class G4Run;
 
 /// Run action class
-// **************************************************************
 class RunAction : public G4UserRunAction
 {
   public:
@@ -50,8 +49,6 @@ class RunAction : public G4UserRunAction
     virtual void   EndOfRunAction(const G4Run*);
     virtual G4Run* GenerateRun();
 };
-
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 #endif
 

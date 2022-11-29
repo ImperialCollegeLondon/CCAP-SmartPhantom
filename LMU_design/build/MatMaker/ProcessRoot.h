@@ -19,8 +19,7 @@
 #include "H5Cpp.h"
 #include "Polyfit/PolyFit.h"
 
-// Class to read and analyse ROOT files from SmartPhantom (Geant4)
-// **************************************************************    
+// Class to read and analyse ROOT files from SmartPhantom (Geant4) 
 class ProcessRoot
 {
 public:

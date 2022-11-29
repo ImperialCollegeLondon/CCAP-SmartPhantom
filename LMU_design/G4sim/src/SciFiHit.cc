@@ -42,27 +42,17 @@
 #include <fstream>
 using namespace std;
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
 SciFiHit::SciFiHit(G4int i, G4double t, G4double e, G4double steplength, G4ThreeVector pos, G4double deltaT, G4String name)
 : G4VHit(), fID(i), fTime(t), fEdep(e), fSteplength(steplength), fPos(pos), fDeltaT(deltaT), fName(name)
 {}
-
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 SciFiHit::SciFiHit()
 : G4VHit(), fID(-1), fTime(0), fEdep(0), fSteplength(0), fPos(0), fDeltaT(0), fName("Unknown")
 {}
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
 SciFiHit::SciFiHit(G4int z)
 : G4VHit(), fID(z), fTime(0), fEdep(0), fSteplength(0), fPos(0), fDeltaT(0), fName("Unknown")
 {}
 
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-
 SciFiHit::~SciFiHit(){}
 
-
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

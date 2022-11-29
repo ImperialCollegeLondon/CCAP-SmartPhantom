@@ -11,7 +11,6 @@
 ProcessRoot::ProcessRoot(const std::string& fName)
 {
     // Specify Name of Trees containing data (i.e. detectors)
-    // **************************************************************
     rTree.push_back("Phantom");
     rTree.push_back("Station1_Epoxy");
     rTree.push_back("Station1_PlaneH");
@@ -93,7 +92,6 @@ void ProcessRoot::Initialise(std::vector<float>& voxelSize, std::vector<double>&
     nBinsT = dataMan->GetNumberOfTimeSteps(tofMax, tStep); // Doesn't do anything at the moment
 
     // Specify phantom and voxels
-    // **************************************************************
     wBox = dataMan->DefinePhantom(analysisSize[0], analysisSize[1], analysisSize[2]);
     voxBox = dataMan->DefineVoxel(voxelSize[0], voxelSize[1], voxelSize[2]);
     numVox = dataMan->GetNumberOfVoxels(wBox, voxBox);
@@ -103,7 +101,6 @@ void ProcessRoot::Initialise(std::vector<float>& voxelSize, std::vector<double>&
     nBinsDepth = numVox[2];
 
     // Initialise array size
-    // **************************************************************
     energyDensitySum    = new double[nBinsHeight*nBinsWidth*nBinsDepth]{0};
     energySumMat        = new double[nBinsDepth*nBinsHeight*nBinsWidth]{0};
     energyDensitySumMat = new double[nBinsDepth*nBinsHeight*nBinsWidth]{0};
@@ -128,7 +125,6 @@ void ProcessRoot::InitialiseAS(std::vector<float>& voxelSize, std::vector<double
     nBinsT = dataMan->GetNumberOfTimeSteps(tofMax, tStep); // Doesn't do anything at the moment
 
     // Define cylindrical volume
-    // **************************************************************
     dimCyl = dataMan->DefineCylinder(analysisSize[0], analysisSize[1]);
     cylVox = dataMan->DefineCylVoxel(voxelSize[0], voxelSize[1], analysisSize[0]);
     voxCyl = dataMan->GetNumberOfVoxelsCyl(dimCyl,cylVox);
@@ -138,7 +134,6 @@ void ProcessRoot::InitialiseAS(std::vector<float>& voxelSize, std::vector<double
     nBinsDepth = voxCyl[2];
 
     // Initialise array size
-    // **************************************************************
     energyDensitySum    = new double[nBinsR*nBinsPhi*nBinsDepth]{0};
     energySumMat        = new double[nBinsR*nBinsDepth]{0};    
     energyDensitySumMat = new double[nBinsR*nBinsDepth]{0};    
@@ -168,7 +163,6 @@ void ProcessRoot::ReaderForTree(TString treeName)
     TString branch = "Data"; // Branch Name
 
     // Reassign Reader variables for given tree
-    // **************************************************************
     fReader = new TTreeReader(treeName, rootFile);
     fEdep = new TTreeReaderValue<double>(*fReader, branch+".Edep");
     fHitTime = new TTreeReaderValue<double>(*fReader, branch+".HitTime");
@@ -191,7 +185,6 @@ void ProcessRoot::BinTreeData()
         int letters = (*fPName).Get()->size(); // Number of letters in particle name
         
         // Assemble particle name
-        // **************************************************************
         std::string pname = "";
         for(int i=0; i<letters; i++)
         {
@@ -199,7 +192,6 @@ void ProcessRoot::BinTreeData()
         }        
     
         // Bin Data
-        // **************************************************************
         //if(pname == "proton") // If you only want interactions involving protons as particle making deposition
                                 // i.e. ignoring secondary interactions of other particles like e-
         //{
@@ -241,7 +233,6 @@ void ProcessRoot::BinTreeDataAS(std::vector<double> &coeff)
         int letters = (*fPName).Get()->size(); // Number of letters in particle name
         
         // Assemble particle name
-        // **************************************************************
         std::string pname = "";
         for(int i=0; i<letters; i++)
         {
@@ -249,7 +240,6 @@ void ProcessRoot::BinTreeDataAS(std::vector<double> &coeff)
         }        
     
         // Bin Data
-        // **************************************************************
         //if(pname == "proton") // If you only want interactions involving protons as particle making deposition
                                 // i.e. ignoring secondary interactions of other particles like e-
         //{
@@ -285,7 +275,6 @@ void ProcessRoot::BinTreeDataAS(std::vector<double> &coeff)
                 radiusBin < nBinsR && phiBin < nBinsPhi && depthBin < nBinsDepth ) 
                 {
                     // Dividing by voxel volume/area to get energy density
-                    // **************************************************************
                     energyDensitySum[depthBin + nBinsDepth * (radiusBin + nBinsR * phiBin)] += (**fEdep)/dV;
                     energySumMat[depthBin + nBinsDepth * (radiusBin)] += (**fEdep);
                     energyDensitySumMat[depthBin + nBinsDepth * (radiusBin)] += (**fEdep)/dA;
@@ -307,13 +296,11 @@ std::vector<double> ProcessRoot::GetCentreCoeff()
         Return:     Coefficients to centre beam for x and y
 
     */
-    
     double widthData[nBinsDepth] = {0.};
     double heightData[nBinsDepth] = {0.};
     double energyData[nBinsDepth] = {0.};
 
     // Write out data
-    // **************************************************************
     while(fReader->Next())
     {        
         int depthBin = dataMan->GetBin(nBinsDepth, -dimCyl[2], dimCyl[2], (**fPosZ));  
@@ -330,7 +317,6 @@ std::vector<double> ProcessRoot::GetCentreCoeff()
     }
     
     // Reset Reader
-    // **************************************************************
     fReader->Restart();
     
     
@@ -341,7 +327,6 @@ std::vector<double> ProcessRoot::GetCentreCoeff()
     }
     
     // Preparing position data for polyfit
-    // **************************************************************
     std::cout << "Preparing position data for polyfit." << std::endl;
     int depthBin = dataMan->GetBin(nBinsDepth, -dimCyl[2], dimCyl[2], 0.);  // Last argument seems to be
                                                                             // an arbitrarily chosen depth
@@ -359,7 +344,6 @@ std::vector<double> ProcessRoot::GetCentreCoeff()
     }
     
     // Calculate coefficients
-    // **************************************************************
     std::vector<double> coeff = CentreBeam(zPoly,xPoly,yPoly,depthBin,1);
     
     return coeff;
@@ -370,12 +354,10 @@ void ProcessRoot::ReadFile()
     /*
         Read ROOT File for 3D
     */
-    
     if(debug)
         std::cout << "\nBeginning to process root file." << std::endl;
     
     // Bin Data
-    // **************************************************************
     for(int i=0; i<rTree.size(); i++)
     {
         ReaderForTree(rTree[i]);
@@ -383,14 +365,12 @@ void ProcessRoot::ReadFile()
     }
 
     // Plot energy vs depth
-    // **************************************************************
      if(debug)
         std::cout << "\nPlotting energy density against binned axes." << std::endl;
     dataMan->Plot3Coord(energyDensitySum, numVox, wBox, voxBox);
 
     
     // Convert energy to Joules
-    // **************************************************************
     if(debug)
         std::cout << "\nConverting energy density from MeV/mm^3 to Joules/m^3." << std::endl;
     
@@ -424,7 +404,6 @@ void ProcessRoot::ReadFileAS()
     /*
         Read ROOT file for 2D (axisymmetric)
     */
-    
     if(debug)
         std::cout << "\nBeginning to process root file." << std::endl;
 
@@ -432,7 +411,6 @@ void ProcessRoot::ReadFileAS()
     std::vector<double> coeff = GetCentreCoeff();
     
     // Bin Data
-    // **************************************************************
     for(int i=0; i<rTree.size(); i++)
     {
         ReaderForTree(rTree[i]);
@@ -440,14 +418,12 @@ void ProcessRoot::ReadFileAS()
     }
 
     // Plot energy
-    // **************************************************************
     if(debug)
         std::cout << "\nPlotting energy density against binned axes." << std::endl;
     
     dataMan->Plot3CoordAS(energyDensitySum, voxCyl, dimCyl, cylVox);
     
     // Convert energy to Joules
-    // **************************************************************
     if(debug)
         std::cout << "\nConverting energy density from MeV/mm^2 to Joules/m^2." << std::endl;
 
@@ -469,8 +445,7 @@ void ProcessRoot::ReadFileAS()
         energyDensitySumMat[i] = scaledEDenMat;
     }
 
-    // Reassign energyDensitySumMat to energyDensitySum
-    // **************************************************************    
+    // Reassign energyDensitySumMat to energyDensitySum 
     delete energyDensitySum;
     energyDensitySum = new double[nBinsR*nBinsDepth]{0};
     
@@ -496,8 +471,7 @@ void ProcessRoot::WriteMatFile(const std::string& matEnergyName, const std::stri
                     matEnergyDensityName -- Name of Matlab file (energy density)        
     */
 
-    // Writing Energy Matlab File
-    // **************************************************************        
+    // Writing Energy Matlab File    
     if(debug) 
         std::cout << "Beginning WriteMatFile to: " << matEnergyName << std::endl;
     
@@ -508,8 +482,7 @@ void ProcessRoot::WriteMatFile(const std::string& matEnergyName, const std::stri
     matFile.Close();
     delete energySumMat;
 
-    // Writing Energy Density Matlab File
-    // **************************************************************        
+    // Writing Energy Density Matlab File   
     if(debug) 
         std::cout << "Beginning WriteMatFile to: " << matEnergyDensityName << std::endl;
 
@@ -533,8 +506,7 @@ void ProcessRoot::WriteMatFileAS(const std::string& matEnergyName, const std::st
                     matEnergyDensityName -- Name of Matlab file (energy density)        
     */
 
-    // Writing Energy Matlab File
-    // **************************************************************        
+    // Writing Energy Matlab File     
     if(debug) 
         std::cout << "Beginning WriteMatFileAS to: " << matEnergyName << std::endl;
 
@@ -545,8 +517,7 @@ void ProcessRoot::WriteMatFileAS(const std::string& matEnergyName, const std::st
     matFile.Close();
     delete energySumMat;
 
-    // Writing Energy Density Matlab File
-    // **************************************************************        
+    // Writing Energy Density Matlab File     
     if(debug) 
         std::cout << "Beginning WriteMatFileAS to: " << matEnergyDensityName << std::endl;
 
@@ -580,8 +551,7 @@ std::vector<double> ProcessRoot::CentreBeam(double* zData, double* xData, double
    
     PolyFit pFit;
     
-    // Input values
-    // **************************************************************    
+    // Input values 
     size_t k = polyOrder;                            // Polynomial order
     bool fixedinter = false;                         // Fixed the intercept (coefficient A0)
     int wtype = 0;                                   // Weight: 0 = none (default), 1 = sigma, 2 = 1/sigma^2
@@ -590,8 +560,7 @@ std::vector<double> ProcessRoot::CentreBeam(double* zData, double* xData, double
     
     double erry[n] = {0.};
 
-    // Definition of other variables
-    // **************************************************************    
+    // Definition of other variables 
     double coefbetaX[k+1];                           // Coefficients of the polynomial (x)
     double coefbetaY[k+1];                           // Coefficients of the polynomial (y)
     double **XTWXInv;                                // Matrix XTWX Inverse [k+1,k+1]
@@ -600,12 +569,10 @@ std::vector<double> ProcessRoot::CentreBeam(double* zData, double* xData, double
     XTWXInv = pFit.Make2DArray(k+1,k+1);
     Weights = pFit.Make2DArray(n, n);
 
-    // Calculate weight (I don't sepcify any)
-    // **************************************************************    
+    // Calculate weight (I don't sepcify any)  
     pFit.CalculateWeights(erry, Weights, n, wtype);
 
-    // Polynomial fit to centre beam for transverse planes
-    // **************************************************************    
+    // Polynomial fit to centre beam for transverse planes  
     pFit.Fit(zData,xData,n,k,fixedinter,fixedinterval,coefbetaX,Weights,XTWXInv);
     pFit.Fit(zData,yData,n,k,fixedinter,fixedinterval,coefbetaY,Weights,XTWXInv);
     

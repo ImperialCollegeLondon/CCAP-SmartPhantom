@@ -12,7 +12,6 @@
 #include "Linterp/linterp.h"
 
 // Class to handle writing k-Wave input
-// **************************************************************    
 class KWaveInput
 {
 public:
@@ -67,28 +66,22 @@ public:
                                                  unsigned long ny, float senMinY, float senMaxY, int senDy);
     
     // For writing k-wave 1D float variable
-    // **************************************************************    
     void Write1DFloat(std::string datasetName, float val);
 
     // For writing k-wave 1D long variable
-    // **************************************************************    
     void Write1DLong(std::string datasetName, unsigned long val);
 
     // For writing k-wave mult dim long variable (i.e. sensor_mask_index)
-    // **************************************************************    
     void WriteMultDLong(std::string datasetName, std::vector<unsigned long>& indicesVec);
     
     // For writing data (i.e. p0_source_input)
-    // **************************************************************    
     void WritePData(std::string datasetName, int nx, int ny, int nz, float* data);
     
-    // For writing file
-    // **************************************************************    
+    // For writing file   
     void WriteFile();
     void WriteFileAS();
     
-    // Set functions
-    // **************************************************************    
+    // Set functions   
     void SetBinDim(int* dim, size_t size) { binDim = dim; binDimSize = size; };
     void SetEnergyDensity(double* data) { energyDensityData = data; };
     void SetSmooth(bool val) { enableSmooth = val; };
@@ -113,8 +106,7 @@ public:
     void SetCFL(float val) { cfl = val; };
     void SetSensorMask(std::vector<unsigned long>& val) { sensorMask = val; };
     
-    // Get functions
-    // **************************************************************    
+    // Get functions   
     unsigned long GetNx() { return Nx; };
     unsigned long GetNy() { return Ny; };
     unsigned long GetNz() { return Nz; };

@@ -346,14 +346,12 @@ void DataManager::Plot3Coord(double* binData, std::vector<int>& numVoxels, std::
     */    
 
     // Create canvas
-    // **************************************************************
     TCanvas *c = new TCanvas("","",1000,1000,1100,950);
     c->Divide(1,3);
     
     std::vector<float> offset{0., 0., 0.};
         
     // Plotting x
-    // **************************************************************
     c->cd(1);
     std::vector<std::vector<double>> sumBin = SumEBin(binData, 0, numVoxels, waterBox, voxelBox, offset[0]);
     double* horBin = &sumBin[0][0];
@@ -364,7 +362,6 @@ void DataManager::Plot3Coord(double* binData, std::vector<int>& numVoxels, std::
     PlotGraph(numVoxels[0],pltTitle,horBin,horAxisName,verBin,verAxisName);
     
     // Plotting y
-    // **************************************************************
     c->cd(2);
     sumBin = SumEBin(binData, 1, numVoxels, waterBox, voxelBox, offset[1]);
     horBin = &sumBin[0][0];
@@ -375,7 +372,6 @@ void DataManager::Plot3Coord(double* binData, std::vector<int>& numVoxels, std::
     PlotGraph(numVoxels[1],pltTitle,horBin,horAxisName,verBin,verAxisName);
 
     // Plotting z
-    // **************************************************************
     c->cd(3);
     sumBin = SumEBin(binData, 2, numVoxels, waterBox, voxelBox, offset[2]);
     horBin = &sumBin[0][0];
@@ -386,7 +382,6 @@ void DataManager::Plot3Coord(double* binData, std::vector<int>& numVoxels, std::
     PlotGraph(numVoxels[2],pltTitle,horBin,horAxisName,verBin,verAxisName);
     
     // Create file
-    // **************************************************************
     c->Print("energydensity-protons.png");
 }
 
@@ -402,14 +397,12 @@ void DataManager::Plot3CoordAS(double* binData, std::vector<int>& numVoxels, std
     */    
 
     // Create canvas
-    // **************************************************************
     TCanvas *c = new TCanvas("","",1000,1000,1100,950);
     c->Divide(1,3);
         
     std::vector<float> offset{waterBox[0], waterBox[1], 0.};
 
     // Plotting radius
-    // **************************************************************
     c->cd(1);
     std::vector<std::vector<double>> sumBin = SumEBin(binData, 0, numVoxels, waterBox, voxelBox, offset[0]);
     double* horBin = &sumBin[0][0];
@@ -420,7 +413,6 @@ void DataManager::Plot3CoordAS(double* binData, std::vector<int>& numVoxels, std
     PlotGraph(numVoxels[0],pltTitle,horBin,horAxisName,verBin,verAxisName);
 
     // Plotting phi
-    // **************************************************************
     c->cd(2);
     sumBin = SumEBin(binData, 1, numVoxels, waterBox, voxelBox, offset[1]);
     horBin = &sumBin[0][0];
@@ -431,7 +423,6 @@ void DataManager::Plot3CoordAS(double* binData, std::vector<int>& numVoxels, std
     PlotGraph(numVoxels[1],pltTitle,horBin,horAxisName,verBin,verAxisName);
 
     // Plotting depth
-    // **************************************************************
     c->cd(3);
     sumBin = SumEBin(binData, 2, numVoxels, waterBox, voxelBox, offset[2]);
     horBin = &sumBin[0][0];
@@ -442,6 +433,5 @@ void DataManager::Plot3CoordAS(double* binData, std::vector<int>& numVoxels, std
     PlotGraph(numVoxels[2],pltTitle,horBin,horAxisName,verBin,verAxisName);
 
     // Create file
-    // **************************************************************
     c->Print("energydensity-protonsAS.png");
 }
