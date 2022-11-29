@@ -28,14 +28,11 @@ public:
     ~ProcessRoot();
     
     void Initialise(std::vector<float>& voxelSize, std::vector<double>& analysisSize);
-    void InitialiseAS(std::vector<float>& voxelSize, std::vector<double>& analysisSize);
 
     void ReadFile();
-    void ReadFileAS();
     void CloseFile();
 
     void WriteMatFile(const std::string& matEnergyName, const std::string& matEnergyDensityName);
-    void WriteMatFileAS(const std::string& matEnergyName, const std::string& matEnergyDensityName);
     
     int GetBinHeight() { return nBinsHeight; };
     int GetBinWidth() { return nBinsWidth; };
@@ -46,8 +43,6 @@ public:
     
     void ReaderForTree(TString treeName);
     void BinTreeData();
-    void BinTreeDataAS(std::vector<double> &coeff);
-    std::vector<double> GetCentreCoeff();
     std::vector<double> CentreBeam(double* zData, double* xData, double* yData, int numElement, size_t polyOrder);
     
 private:
@@ -83,9 +78,6 @@ private:
     std::vector<float> wBox;
     std::vector<float> voxBox;
     std::vector<int> numVox;
-    
-    std::vector<float> dimCyl;
-    std::vector<float> cylVox;
-    std::vector<int> voxCyl;
+
 };
 #endif // PROCESSROOT_H
