@@ -241,25 +241,18 @@ void DataManager::Plot3Coord(double* binData, std::vector<int>& numVoxels, std::
     double* horBin = &sumBin[0][0];
     double* verBin = &sumBin[1][0];
     
-    //ofstream myfile1("xaxis_horBin.txt");
-    //if (myfile1.is_open())
-    //{
-    //for(int count = 0; count < size; count ++){
-    //    myfile1 << horBin[count] << " " ;
-    //}
-    //myfile1.close();
-    //}
-    //ofstream myfile2("xaxis_verBin.txt");
-    //if (myfile2.is_open())
-    //{
-    //for(int count = 0; count < size; count ++){
-    //    myfile2 << verBin[count] << " " ;
-    //}
-    //myfile2.close();
-    //}
-    TString pltTitle = "Energy density distribution vs binned x";
+
+    ofstream myfile1("e0_x.txt");
+    if (myfile1.is_open())
+    {
+    for(int count = 0; count < size; count ++){
+        myfile1 << verBin[count] << " " ;
+    }
+    myfile1.close();
+    }
+    TString pltTitle = "Energy distribution vs binned x";
     TString horAxisName = "x [mm]";
-    TString verAxisName = "Energy Density [MeV/mm^{3}]";
+    TString verAxisName = "Energy [MeV]";
     PlotGraph(numVoxels[0],pltTitle,horBin,horAxisName,verBin,verAxisName);
     
     // Plotting y
@@ -268,25 +261,17 @@ void DataManager::Plot3Coord(double* binData, std::vector<int>& numVoxels, std::
     horBin = &sumBin[0][0];
     verBin = &sumBin[1][0];
 
-    //ofstream myfile3("yaxis_horBin.txt");
-    //if (myfile3.is_open())
-    //{
-    //for(int count = 0; count < size; count ++){
-    //    myfile3 << horBin[count] << " " ;
-    //}
-    //myfile3.close();
-    //}
-    //ofstream myfile4("yaxis_verBin.txt");
-    //if (myfile4.is_open())
-    //{
-    //for(int count = 0; count < size; count ++){
-    //    myfile4 << verBin[count] << " " ;
-    //}
-    //myfile4.close();
-    //}
-    pltTitle = "Energy density distribution vs binned y";
+    ofstream myfile2("e0_y.txt");
+    if (myfile2.is_open())
+    {
+    for(int count = 0; count < size; count ++){
+        myfile2 << verBin[count] << " " ;
+    }
+    myfile2.close();
+    }
+    pltTitle = "Energy distribution vs binned y";
     horAxisName = "y [mm]";
-    verAxisName = "Energy Density [MeV/mm^{3}]";
+    verAxisName = "Energy [MeV]";
     PlotGraph(numVoxels[1],pltTitle,horBin,horAxisName,verBin,verAxisName);
 
     // Plotting z
@@ -295,29 +280,21 @@ void DataManager::Plot3Coord(double* binData, std::vector<int>& numVoxels, std::
     horBin = &sumBin[0][0];
     verBin = &sumBin[1][0];
 
-    ofstream myfile5("zaxis_horBin.txt");
-    if (myfile5.is_open())
+    ofstream myfile3("e0_z.txt");
+    if (myfile3.is_open())
     {
     for(int count = 0; count < size; count ++){
-        myfile5 << horBin[count] << " " ;
+        myfile3 << verBin[count] << " " ;
     }
-    myfile5.close();
+    myfile3.close();
     }
-    ofstream myfile6("zaxis_verBin.txt");
-    if (myfile6.is_open())
-    {
-    for(int count = 0; count < size; count ++){
-        myfile6 << verBin[count] << " " ;
-    }
-    myfile6.close();
-    }
-    pltTitle = "Energy density distribution vs binned z";
+    pltTitle = "Energy distribution vs binned z";
     horAxisName = "z [mm]";
-    verAxisName = "Energy Density [MeV/mm^{3}]";
+    verAxisName = "Energy [MeV]";
     PlotGraph(numVoxels[2],pltTitle,horBin,horAxisName,verBin,verAxisName);
     
     // Create file
-    c->Print("energydensity-protons.png");
+    c->Print("energy-protons.png");
 }
 
 
