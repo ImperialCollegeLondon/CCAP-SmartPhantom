@@ -87,7 +87,7 @@ DetectorConstruction::DetectorConstruction()
     phantomZ = waterZ;                                              // half-z of phantom
     phantomX = waterX;                                              // half-x of phantom
     phantomY = waterY;                                              // half-y of phantom
-    phantomThickness = 5*mm;                                        // Full thickness, overrides water dimensions 
+    phantomThickness = 5/2*mm;                                      // Half wall thickness, overrides water dimensions 
                                                                     // if togglePhantom is true
 
     eWindowZ = 0.05*mm/2;                                           // half-z of entrance window
