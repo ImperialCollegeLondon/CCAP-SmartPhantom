@@ -32,7 +32,7 @@ public:
     void ReadFile();
     void CloseFile();
 
-    void WriteMatFile(const std::string& matEnergyName, const std::string& matEnergyDensityName);
+    void WriteMatFile(const std::string& matEnergyName);
     
     int GetBinHeight() { return nBinsHeight; };
     int GetBinWidth() { return nBinsWidth; };

@@ -173,7 +173,6 @@ void ProcessRoot::BinTreeData()
                     heightBin < nBinsHeight && widthBin < nBinsWidth && depthBin < nBinsDepth) 
                 {
                     // Dividing by voxel volume to get energy density
-                    // **************************************************************
                     energyDensitySum[depthBin + nBinsDepth * (widthBin + nBinsWidth * heightBin)] += (**fEdep)/dV;
                     energySumMat[heightBin + nBinsHeight * (widthBin + nBinsWidth * depthBin)] += (**fEdep);
                     energyDensitySumMat[heightBin + nBinsHeight * (widthBin + nBinsWidth * depthBin)] += (**fEdep)/dV; 
@@ -236,13 +235,12 @@ void ProcessRoot::ReadFile()
         std::cout << "Finished processing root file.\n" << std::endl;
 }
 
-void ProcessRoot::WriteMatFile(const std::string& matEnergyName, const std::string& matEnergyDensityName)
+void ProcessRoot::WriteMatFile(const std::string& matEnergyName)
 {
     /*
         Outputs the Matlab file containing binned energy for 3D
         
-        Input:      matEnergyName        -- Name of Matlab file (energy)
-                    matEnergyDensityName -- Name of Matlab file (energy density)        
+        Input:      matEnergyName        -- Name of Matlab file (energy)       
     */
 
     // Writing Energy Matlab File    
@@ -255,17 +253,6 @@ void ProcessRoot::WriteMatFile(const std::string& matEnergyName, const std::stri
     matFile.Write3Dim(datasetName, nBinsDepth, nBinsWidth, nBinsHeight, energySumMat);          // Write data to .mat
     matFile.Close();
     delete energySumMat;
-
-    // Writing Energy Density Matlab File   
-    if(debug) 
-        std::cout << "Beginning WriteMatFile to: " << matEnergyDensityName << std::endl;
-
-    extIndex = matEnergyDensityName.find_last_of(".");
-    const std::string datasetName2 = matEnergyDensityName.substr(0,extIndex);                   // Name of matlab dataset
-    MatFile matFile2(matEnergyDensityName);                                                     // Create specified .mat file
-    matFile2.Write3Dim(datasetName2, nBinsDepth, nBinsWidth, nBinsHeight, energyDensitySumMat); // Write data to .mat
-    matFile2.Close();
-    delete energyDensitySumMat;
 
     if(debug)
         std::cout << "Finished WriteMatFile.\n" << std::endl;
