@@ -10,7 +10,7 @@ ulimit -s unlimited
 # Compile MatMaker #
 ####################
 cd MatMaker
-h5c++ -o SP-MatMaker SP-MatMaker.cpp ProcessRoot.cpp DataManager.cpp KWaveInput.cpp MatFile/MatFile.cpp Polyfit/PolyFit.cpp -L/vols/ccap/users/htl17/FFTW/lib -L/usr/lib64 -lfftw3 -lm `root-config --cflags --glibs`
+h5c++ -o SP-MatMaker SP-MatMaker.cpp ProcessRoot.cpp DataManager.cpp MatFile/MatFile.cpp Polyfit/PolyFit.cpp -L/vols/ccap/users/htl17/FFTW/lib -L/usr/lib64 -lfftw3 -lm `root-config --cflags --glibs`
 cd ../
 
 ################

@@ -2,7 +2,6 @@
 
 #include "MatFile/MatFile.h"
 #include "ProcessRoot.h"
-#include "KWaveInput.h"
 #include "fftw3.h"
 
 #include "Linterp/linterp.h"
