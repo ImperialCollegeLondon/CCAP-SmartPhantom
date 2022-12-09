@@ -39,7 +39,6 @@ public:
     int GetBinDepth() { return nBinsDepth; };
     int GetBinPhi() { return nBinsPhi; };
     int GetBinRadius() { return nBinsR; };
-    double* GetEnergyDensity() { return energyDensitySum; };
     
     void ReaderForTree(TString treeName);
     void BinTreeData();
@@ -71,9 +70,7 @@ private:
     TTreeReaderValue<std::string>* fPName;
     
     DataManager* dataMan;
-    double* energyDensitySum;
     double* energySumMat;
-    double* energyDensitySumMat;
 
     std::vector<float> wBox;
     std::vector<float> voxBox;

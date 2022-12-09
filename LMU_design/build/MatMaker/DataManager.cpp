@@ -257,7 +257,7 @@ void DataManager::Plot3Coord(double* binData, std::vector<int>& numVoxels, std::
     
     // Plotting y
     c->cd(2);
-    sumBin = SumEBin(binData, 1, numVoxels, waterBox, voxelBox, offset[1]);
+    sumBin = SumEBin(binData, 2, numVoxels, waterBox, voxelBox, offset[1]);
     horBin = &sumBin[0][0];
     verBin = &sumBin[1][0];
 
@@ -276,7 +276,7 @@ void DataManager::Plot3Coord(double* binData, std::vector<int>& numVoxels, std::
 
     // Plotting z
     c->cd(3);
-    sumBin = SumEBin(binData, 2, numVoxels, waterBox, voxelBox, offset[2]);
+    sumBin = SumEBin(binData, 1, numVoxels, waterBox, voxelBox, offset[2]);
     horBin = &sumBin[0][0];
     verBin = &sumBin[1][0];
 

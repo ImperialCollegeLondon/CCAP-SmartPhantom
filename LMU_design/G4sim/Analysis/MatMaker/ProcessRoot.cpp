@@ -59,7 +59,6 @@ ProcessRoot::~ProcessRoot()
     delete fDeltaT;
     delete fPName;
     delete dataMan;
-    delete energyDensitySum;
    
     std::cout << "End of destructor for ProcessRoot.\n" << std::endl;
 }
@@ -101,9 +100,7 @@ void ProcessRoot::Initialise(std::vector<float>& voxelSize, std::vector<double>&
     nBinsDepth = numVox[2];
 
     // Initialise array size
-    energyDensitySum    = new double[nBinsHeight*nBinsWidth*nBinsDepth]{0};
     energySumMat        = new double[nBinsDepth*nBinsHeight*nBinsWidth]{0};
-    energyDensitySumMat = new double[nBinsDepth*nBinsHeight*nBinsWidth]{0};
 }
 
 void ProcessRoot::ReaderForTree(TString treeName)
@@ -167,15 +164,10 @@ void ProcessRoot::BinTreeData()
                 int heightBin = dataMan->GetBin(nBinsHeight, -wBox[1], wBox[1], (**fPosY));
                 int depthBin = dataMan->GetBin(nBinsDepth, -wBox[2], wBox[2], (**fPosZ));
                 
-                float dV = dataMan->GetVoxVol(voxBox);          // Volume element for 3D
-                
                 if(heightBin >= 0 && widthBin >= 0 && depthBin >= 0 &&
                     heightBin < nBinsHeight && widthBin < nBinsWidth && depthBin < nBinsDepth) 
                 {
-                    // Dividing by voxel volume to get energy density
-                    energyDensitySum[depthBin + nBinsDepth * (widthBin + nBinsWidth * heightBin)] += (**fEdep)/dV;
                     energySumMat[heightBin + nBinsHeight * (widthBin + nBinsWidth * depthBin)] += (**fEdep);
-                    energyDensitySumMat[heightBin + nBinsHeight * (widthBin + nBinsWidth * depthBin)] += (**fEdep)/dV; 
                 }
                 else
                 {
@@ -203,32 +195,18 @@ void ProcessRoot::ReadFile()
 
     // Plot energy vs depth
      if(debug)
-        std::cout << "\nPlotting energy density against binned axes." << std::endl;
-    dataMan->Plot3Coord(energyDensitySum, numVox, wBox, voxBox);
+        std::cout << "\nPlotting energy against binned axes." << std::endl;
+    dataMan->Plot3Coord(energySumMat, numVox, wBox, voxBox);
 
     // Convert energy to Joules
     if(debug)
-        std::cout << "\nConverting energy density from MeV/mm^3 to Joules/m^3." << std::endl;
+        std::cout << "\nConverting energy from MeV to Joules." << std::endl;
     
     double scalingFactor = 1.60218e-13;           // Conversion factor to Joules
-    double siFactor = 1000.*1000.*1000.;          // Conversion factor from mm^3 to m^3
     for(int i=0; i<(nBinsHeight*nBinsWidth*nBinsDepth); i++)
     {
-        double scaledEDen = energyDensitySum[i]*scalingFactor*siFactor;
-        double scaledEMat = energySumMat[i]*scalingFactor;
-        double scaledEDenMat = energyDensitySumMat[i]*scalingFactor*siFactor;
-        
-        // Arbitrary cut to energy for values < 1e-15 
-        if(scaledEDen < 1e-15)
-            scaledEDen = 0;
-        if(scaledEMat < 1e-15)
-            scaledEMat = 0;
-        if(scaledEDenMat < 1e-15)
-            scaledEDenMat = 0;
-        
-	    energyDensitySum[i] = scaledEDen;
+        double scaledEMat = energySumMat[i]*scalingFactor;    
         energySumMat[i] = scaledEMat;
-        energyDensitySumMat[i] = scaledEDenMat;
     }
 
     if(debug)
