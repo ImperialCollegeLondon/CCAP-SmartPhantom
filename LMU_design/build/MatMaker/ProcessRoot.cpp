@@ -4,7 +4,6 @@
 #include "ProcessRoot.h"
 #include "fftw3.h"
 
-#include "Linterp/linterp.h"
 
 //ProcessRoot::ProcessRoot(const std::string& fName, const std::string& outName, std::vector<float>& voxelSize, std::vector<double>& analysisSize)
 ProcessRoot::ProcessRoot(const std::string& fName)
