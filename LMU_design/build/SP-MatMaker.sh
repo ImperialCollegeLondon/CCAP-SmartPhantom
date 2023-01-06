@@ -20,5 +20,5 @@ cd ../
 #                Voxel-Height(axis y in Geant4), Voxel-Width(axis x in Geant4), Voxel-Depth(axis z in Geant4),
 #                Analysis-Height(axis y in Geant4), Analysis-Width(axis x in Geant4), Analysis-Depth(axis z in Geant4)
 
-./MatMaker/SP-MatMaker "waterhits.root" "energy_data2_cpp.mat" 0.001 0.001 0.001 100 100 100
+./MatMaker/SP-MatMaker "waterhits.root" "energy_data2_cpp.mat" 1 1 1 100 100 100
 

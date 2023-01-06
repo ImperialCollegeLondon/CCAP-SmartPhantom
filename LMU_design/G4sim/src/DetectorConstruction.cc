@@ -87,11 +87,11 @@ DetectorConstruction::DetectorConstruction()
     phantomZ = waterZ;                                              // half-z of phantom
     phantomX = waterX;                                              // half-x of phantom
     phantomY = waterY;                                              // half-y of phantom
-    phantomThickness = 5/2*mm;                                      // Half wall thickness, overrides water dimensions 
+    phantomThickness = 15/2*mm;                                     // Half wall thickness, overrides water dimensions 
                                                                     // if togglePhantom is true
 
     eWindowZ = 0.05*mm/2;                                           // half-z of entrance window
-    eWindowRadius = 10*mm/2;                                        // half radius of entrance window
+    eWindowRadius = 7.5*mm/2;                                       // half radius of entrance window
 
     // SmartPhantom Planes
     scifiN = 33;                                                    // Number of fibres, produced 10 mm planes
@@ -116,10 +116,10 @@ DetectorConstruction::DetectorConstruction()
     //stationRot->rotateZ(45*deg);
     
     // Suitable for ~30 MeV Protons
-    std::vector<G4double> vec1 = {0*mm, 0*mm, -waterZ + 13*mm};
-    std::vector<G4double> vec2 = {0*mm, 0*mm, -waterZ + 15*mm};
-    std::vector<G4double> vec3 = {0*mm, 0*mm, -waterZ + 17*mm};
-    std::vector<G4double> vec4 = {0*mm, 0*mm, -waterZ + 19*mm};
+    std::vector<G4double> vec1 = {0*mm, 0*mm, -waterZ + 20*mm};
+    std::vector<G4double> vec2 = {0*mm, 0*mm, -waterZ + 22*mm};
+    std::vector<G4double> vec3 = {0*mm, 0*mm, -waterZ + 24*mm};
+    std::vector<G4double> vec4 = {0*mm, 0*mm, -waterZ + 26*mm};
 
     station1Pos = vec1;                                             // Station 1 depth (at station centre)
     station2Pos = vec2;                                             // Station 2 depth (at station centre)
