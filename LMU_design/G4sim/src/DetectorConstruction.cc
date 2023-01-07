@@ -91,7 +91,7 @@ DetectorConstruction::DetectorConstruction()
                                                                     // if togglePhantom is true
 
     eWindowZ = 0.05*mm/2;                                           // half-z of entrance window
-    eWindowRadius = 7.5*mm/2;                                       // half radius of entrance window
+    eWindowRadius = 7.5*mm;                                         // radius of entrance window
 
     // SmartPhantom Planes
     scifiN = 33;                                                    // Number of fibres, produced 10 mm planes
