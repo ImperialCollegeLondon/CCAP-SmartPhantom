@@ -36,17 +36,25 @@
 #include "G4SystemOfUnits.hh"
 #include "G4RunManager.hh"
 
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 RunAction::RunAction()
  : G4UserRunAction()
 {}
 
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
 RunAction::~RunAction()
 {}
 
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
 void RunAction::BeginOfRunAction(const G4Run* /*run*/)
 {
-    // At BeginOfRunAction create new RootIO instance (i.e. new file)   
+    /*
+        At BeginOfRunAction create new RootIO instance (i.e. new file)
+    */
+    
     G4cout << "Begin of RunAction" << G4endl;  
   
     PrimaryGeneratorAction* fPGA = (PrimaryGeneratorAction*)G4RunManager::GetRunManager()->GetUserPrimaryGeneratorAction();
@@ -58,9 +66,14 @@ void RunAction::BeginOfRunAction(const G4Run* /*run*/)
     G4cout << "End of RunAction" << G4endl;  
 }
 
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
 void RunAction::EndOfRunAction(const G4Run* run)
 {   
-    // After simulation finishes reset several parameters
+    /*
+        After simulation finishes reset several parameters
+    */
+    
     const Run* myrun = dynamic_cast<const Run*>(run);
     if ( myrun )
     {
@@ -76,22 +89,27 @@ void RunAction::EndOfRunAction(const G4Run* run)
         G4cout << "Data written to: " << RootIO::GetInstance()->GetCheckedName() << G4endl; 
 
         // Loop input file back to the top for next simulation
+        // **************************************************************
         PrimaryGeneratorAction* fPGA = (PrimaryGeneratorAction*)G4RunManager::GetRunManager()->GetUserPrimaryGeneratorAction();
         fPGA->ResetStartLine();
         
         // For new simulation set to write a new TTree to file
+        // **************************************************************
         EventAction* evtAct = (EventAction*)G4RunManager::GetRunManager()->GetUserEventAction();
         evtAct->ResetTreeWriteStatus();
         
         // Close old instance to prepare for new one
+        // **************************************************************
         RootIO::GetInstance()->Close();
         
         G4cout << "RootIO File Closed." << '\n' << G4endl;
     }
 }
 
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
 G4Run* RunAction::GenerateRun() 
 {
     return new Run;
 }
-
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

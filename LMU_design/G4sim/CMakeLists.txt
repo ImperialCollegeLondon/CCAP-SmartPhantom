@@ -67,3 +67,6 @@ add_custom_command(TARGET SmartPhantom POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
         ${CMAKE_SOURCE_DIR}/Analysis/ $<TARGET_FILE_DIR:SmartPhantom>)
 
+add_custom_command(TARGET SmartPhantom POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/KWave/ $<TARGET_FILE_DIR:SmartPhantom>)

@@ -5,6 +5,7 @@
 #include "TFile.h"
 #include "TSystem.h"
 #include "TTree.h"
+#include "TCanvas.h"
 #include "SciFiHit.hh"
 #include "G4String.hh"
 #include "G4RunManager.hh"
@@ -21,6 +22,7 @@ public:
     TTree* CreateTree(TString treeName);
     void WriteToRoot(SciFiHitsCollection* hsf, double evtID, TTree* &tree);
     void Close();
+    void GetGraph(SciFiHitsCollection* hsf);
     static G4String fOutputFile;
     std::vector<G4String> GetFileExt(const G4String& str);
     G4String GetRootName();
@@ -33,7 +35,7 @@ private:
     
     TFile* fFile;
     int fNevents;
-    double data[8];
+    double data[10];
     std::string name;
     G4String checkedName;
     

@@ -41,6 +41,7 @@
 #include "TTree.h"
 
 /// Event action
+// **************************************************************
 struct EventData
 {
     TTree* tree;
@@ -88,5 +89,7 @@ private:
     G4bool wroteSciFiTree;
     G4bool two_planes;
 };
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 #endif

@@ -78,4 +78,6 @@ private:
     G4bool Debug;
 };
 
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+
 #endif

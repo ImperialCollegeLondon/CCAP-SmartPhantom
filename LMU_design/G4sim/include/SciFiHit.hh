@@ -43,7 +43,7 @@ class SciFiHit : public G4VHit
 public:
     SciFiHit();
     SciFiHit(G4int z);
-    SciFiHit(G4int i,G4double t,G4double e,G4double steplength, G4ThreeVector pos, G4double deltaT, G4String name);
+    SciFiHit(G4int i,G4double t,G4double e,G4double steplength, G4ThreeVector pos, G4double deltaT, G4String name, G4int fibreN, G4double lightYield);
     virtual ~SciFiHit();
         
     // Volume Copy Number
@@ -70,6 +70,15 @@ public:
     // Name
     void SetName(G4String val) { fName = val; }
     G4String GetName() const { return fName; }
+
+    // Fibre number
+    void SetFibreN(G4int num) { fFibreN = num; }
+    G4int GetFibreN() const { return fFibreN; }
+
+    // Light Yield
+    void SetLightYield( G4double yield ) {fLightYield = yield; }
+    G4double GetLightYield() const { return fLightYield; }
+
                 
 private:
     G4int fID;
@@ -79,8 +88,11 @@ private:
     G4ThreeVector fPos;
     G4double fDeltaT;
     G4String fName;
+    G4int fFibreN;
+    G4int fLightYield;
 };
 
 typedef G4THitsCollection<SciFiHit> SciFiHitsCollection;
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 #endif

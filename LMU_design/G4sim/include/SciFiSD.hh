@@ -40,6 +40,7 @@ class G4HCofThisEvent;
 class G4TouchableHistory;
 
 // SciFi Sensitive Detector
+// **************************************************************
 class SciFiSD : public G4VSensitiveDetector
 {
 public:
@@ -48,10 +49,90 @@ public:
     
     virtual void Initialize(G4HCofThisEvent*HCE);
     virtual G4bool ProcessHits(G4Step*aStep,G4TouchableHistory*ROhist);
+
+    // define test function for GetFibreN which outputs integer 1
+    // G4int GetFibreN(G4ThreeVector worldPos, G4Step* step) {
+        
+    //     G4VPhysicalVolume* ThisVol = step->GetPreStepPoint()->GetTouchableHandle()->GetVolume();
+    //     G4VPhysicalVolume* NextVol = step->GetPostStepPoint()->GetTouchableHandle()->GetVolume();
+        
+    //     G4int scifiN = 33;
+    //     G4double fibreSep = 0.300*mm; // define fibre separation (centre to centre distance)
+    //     G4double fibreRadius = 0.25*mm/2; // define fibre radius
+    //     G4double planeZPos = 3*mm; // define z-position of fibre plane
+    //     //G4double fibreLength = 10*mm; //fibre length in the y-direction
+
+
+    //     G4double xPos = worldPos[0];
+    //     G4double yPos = worldPos[1];
+    //     G4double zPos = worldPos[2];
+
+    //     G4double maxYPos = 5*mm; // top of fibre
+    //     G4double minYPos = -5*mm; // bottom of fibre
+
+    //     G4double maxZPos = planeZPos + fibreRadius;
+    //     G4double minZPos = planeZPos - fibreRadius;
+
+    //     if (NextVol && ThisVol->GetName()=="scifiStation1Physical" && NextVol->GetName()=="scifiStation1Physical") {
+    //         //return 1;
+    //         int i = 1;
+    //         G4double centerPos = -(fibreSep * floor(scifiN/2)) + (fibreSep*(i-1));
+    //         G4double maxXPos = centerPos + fibreRadius;
+    //         G4double minXPos = centerPos - fibreRadius;
+    //         // if (xPos >= minXPos && xPos <= maxXPos) {
+    //         //     return i;
+    //         // }
+    //         // else {return 0;}
+            
+    //         for (int i = 1; i <= 33; ++i) {
+    //             G4double centerPos = -(fibreSep * floor(scifiN/2)) + (fibreSep*(i-1));
+    //             G4double maxXPos = centerPos + fibreRadius;
+    //             G4double minXPos = centerPos - fibreRadius; //change to double not Geant
+
+    //             //myFile << "Writing this to a file.\n";
+    //             // cout << " " << centerPos << " " << maxXPos << " " << minXPos << " " << i <<  " " << endl;
+    //             cout << " " << centerPos << " " << maxXPos << " " << minXPos << " " << i <<  " " << endl;
+
+    //             if (xPos >= minXPos && xPos <= maxXPos) {
+    //                 cout << " " << centerPos << " " << maxXPos << " " << minXPos << " " << i <<  " " << endl;
+    //                 return i;
+    //                 // put another print statement here
+    //                 break;  // return fibre number & exit loop
+    //             }
+    //             else {continue;
+    //             // put another print statement here
+    //             }
+    //             // continue go back through loop     
+                
+    //     }
+    //     else {return 0;}
+    //     }}
+        
+    
+
+
+
+
+    // *************************
+    // **** plan for coding ****
+    // *************************
+    // define initial position to start at, which should be the centre of the "left-most" fibre, call this POS
+    //G4double* fibreCenter = ;
+    // define step size (centre to centre distance) CTC
+    // G4double* stepSize = ;
+    // define fibre radius
+    //G4double* = fibreRadius ;
+    // check first energy deposition in list
+    // if energy deposition is within fibre 1 volume, assign it the number 1
+    // if not, POS -> POS + CTC
+    // loop until assigned
+    // if not assigned, assign it 0
     
 private:
     SciFiHitsCollection* fHitsCollection;
     G4int fHCID;
 };
+
+//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 #endif
