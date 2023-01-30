@@ -34,6 +34,7 @@
 #include "G4VUserDetectorConstruction.hh"
 #include "DetectorConstruction.hh"
 #include "SciFiHit.hh"
+#include "ParameterInitialization.hh"
 #include <vector>
 
 #include "TROOT.h"
