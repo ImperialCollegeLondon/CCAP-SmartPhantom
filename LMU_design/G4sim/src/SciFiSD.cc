@@ -26,6 +26,7 @@
 
 #include "SciFiSD.hh"
 #include "SciFiHit.hh"
+#include "ParameterInitialization.hh"
 
 #include "G4HCofThisEvent.hh"
 #include "G4TouchableHistory.hh"
@@ -109,26 +110,18 @@ G4bool SciFiSD::ProcessHits(G4Step* step, G4TouchableHistory*)
     G4double yPos = worldPos[1];
     G4double zPos = worldPos[2];
 
-    G4int fibreN = 0;
-    G4double fibreSep = 0.300*mm;       // [mm]
-    G4int scifiN = 33;  
-    G4double fibreRadius = 0.250*mm/2;  // [mm]
-    G4double fibreLength = 10*mm;       // [mm] length of fibres in y direction
-    G4double centerYPos = 0*mm;         // [mm]
+    G4double fibreN= 0;
+
     G4double maxYPos = centerYPos + (fibreLength/2);
     G4double minYPos = centerYPos - (fibreLength/2);
-    G4double centerZPos = (-50+13)*mm;  // [mm] z-position of frame
 
     for (int i = 1; i <= scifiN; ++i) {
-        G4double centerXPos = -(fibreSep * floor(scifiN/2)) + (fibreSep*(i-1)); // calculates centre x-position of fibre i
+        G4double centerXPos = -(scifiPitch * floor(scifiN/2)) + (scifiPitch*(i-1)); // calculates centre x-position of fibre i
         G4double rho = pow(xPos - centerXPos, 2) + pow(zPos - centerZPos, 2);   // radial position of energy dep relative to axis of fibre i
-        if (rho <= fibreRadius && minYPos <= yPos && yPos <= maxYPos) {
+        if (rho <= scifiFibreRadius && minYPos <= yPos && yPos <= maxYPos) {
             fibreN = i;
         }
     }
-
-    G4double sciEff = 8000;    // photons per meV
-    G4double transEff = 0.03;  // percentage efficiency
         
     G4double lightYield = edep * sciEff * transEff;
     
@@ -141,3 +134,4 @@ G4bool SciFiSD::ProcessHits(G4Step* step, G4TouchableHistory*)
 
     return true;
 }
+

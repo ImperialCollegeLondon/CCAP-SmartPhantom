@@ -25,6 +25,7 @@
 //
 
 #include "DetectorConstructionMessenger.hh"
+#include "ParameterInitialization.hh"
 
 #include "G4UIcommand.hh"
 
@@ -116,8 +117,8 @@ DetectorConstructionMessenger::DetectorConstructionMessenger(DetectorConstructio
     m_setStation4PosCmd->SetGuidance("Modify position for station 4. (In local coordinates WRT water volume)");
     m_setStation4PosCmd->SetParameterName("Pos_X","Pos_Y","Pos_Z",false);    
     m_setStation4PosCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
-}
 
+}
 
 DetectorConstructionMessenger::~DetectorConstructionMessenger()
 {

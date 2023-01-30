@@ -234,8 +234,7 @@ void PrimaryGeneratorAction::AssignToGun(G4String& newline, G4Event* event)
     G4double yp0 = tokens[3];                       // Normalised vertical momentum
     G4double z0 = -worldZ;                          // Starting at the start of world volume
     G4double zp0 = sqrt(1-pow(xp0,2)-pow(yp0,2));   // Normalised longitudinal momentum
-    //G4double energy = tokens[4]*MeV;                // Energy
-    G4double energy = tokens[4]/5*MeV;                // Energy
+    G4double energy = tokens[4]*MeV;                // Energy
     G4double dt = (tokens[5] - startTime)*ns;       // Time
     
     fParticleGun->SetParticleEnergy(energy);
