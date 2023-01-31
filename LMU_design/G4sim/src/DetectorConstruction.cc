@@ -116,10 +116,10 @@ DetectorConstruction::DetectorConstruction()
     //stationRot->rotateZ(45*deg);
     
     // Suitable for ~20 MeV Protons
-    std::vector<G4double> vec1 = {0*mm, 0*mm, -waterZ + 47*mm};
-    std::vector<G4double> vec2 = {0*mm, 0*mm, -waterZ + 49*mm};
-    std::vector<G4double> vec3 = {0*mm, 0*mm, -waterZ + 51*mm};
-    std::vector<G4double> vec4 = {0*mm, 0*mm, -waterZ + 53*mm};
+    std::vector<G4double> vec1 = {0*mm, 0*mm, -worldZ + 47*mm};
+    std::vector<G4double> vec2 = {0*mm, 0*mm, -worldZ + 48*mm};
+    std::vector<G4double> vec3 = {0*mm, 0*mm, -worldZ + 49*mm};
+    std::vector<G4double> vec4 = {0*mm, 0*mm, -worldZ + 50*mm};
 
     station1Pos = vec1;                                             // Station 1 depth (at station centre)
     station2Pos = vec2;                                             // Station 2 depth (at station centre)
