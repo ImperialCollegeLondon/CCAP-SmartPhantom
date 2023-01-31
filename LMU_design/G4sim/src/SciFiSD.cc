@@ -117,7 +117,7 @@ G4bool SciFiSD::ProcessHits(G4Step* step, G4TouchableHistory*)
     G4double centerYPos = 0*mm;         // [mm]
     G4double maxYPos = centerYPos + (fibreLength/2);
     G4double minYPos = centerYPos - (fibreLength/2);
-    G4double centerZPos = (-50+13)*mm;  // [mm] z-position of frame
+    G4double centerZPos = (-3)*mm;      // [mm] z-position of first frame
 
     for (int i = 1; i <= scifiN; ++i) {
         G4double centerXPos = -(fibreSep * floor(scifiN/2)) + (fibreSep*(i-1)); // calculates centre x-position of fibre i
