@@ -228,9 +228,11 @@ void PrimaryGeneratorAction::AssignToGun(G4String& newline, G4Event* event)
     std::vector<G4double> tokens = GetToken(newline);
 
     // Particle coordinates
-    G4double x0 = tokens[0]*m;                      // Specifying unit as meters
+    //G4double x0 = tokens[0]*m;                    // Specifying unit as meters
+    G4double x0 = (tokens[0]/10)*m;                 // Specifying unit as meters
     G4double xp0 = tokens[1];                       // Normalised horizontal momentum
-    G4double y0 = tokens[2]*m;                      // Specifying unit as meters
+    //G4double y0 = tokens[2]*m;                    // Specifying unit as meters
+    G4double y0 = (tokens[2]/10)*m;                 // Specifying unit as meters
     G4double yp0 = tokens[3];                       // Normalised vertical momentum
     //G4double z0 = -worldZ;                        // Starting at the start of world volume
     G4double z0 = -4*mm;                            // Starting at the start of the entrance window
