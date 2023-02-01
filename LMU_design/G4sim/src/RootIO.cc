@@ -159,33 +159,6 @@ void RootIO::WriteToRoot(SciFiHitsCollection* hsf, double evtID, TTree* &tree)
 
 }
 
-void RootIO::GetGraph(SciFiHitsCollection* hsf){
-    int n_hit = hsf->entries();
-
-    int fibs[33] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33};
-    TCanvas *c1 = new TCanvas("c1", "Light Yield in Fibres", 10,10,900,500);
-    
-    gBenchmark->Start("canvas");
-
-    c1->SetGrid();
-    c1->SetTopMargin(0.15);
-    TH1F *h = new TH1F("h","test",3,0,3);
-    h->SetStats(0);
-    h->SetFillColor(38);
-    h->SetCanExtend(TH1::kAllAxes);
-
-    for (Int_t i=0;i<n_hit;i++) {
-        SciFiHit* hit = (*hsf)[i];
-        Int_t fibre = hit->GetFibreN();
-        h->Fill(fibs[fibre]);
-    }
-    h->LabelsDeflate();
-    h->Draw();
-    TObject *c2 = TObject::Clone(c1);
-
-    gBenchmark->Show("canvas");
-
-}
 
 
 

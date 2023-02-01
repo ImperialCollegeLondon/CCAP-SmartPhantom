@@ -245,17 +245,6 @@ G4bool SciFiSD::ProcessHits(G4Step* step, G4TouchableHistory*)
         " " << worldPos << " " << deltaT << " " << particleName << " " << fibreN << " " << lightYield << " " << endl;
     myFile2.close();
 
-    /////// --- Plotting Start --- ///////
-
-    // Set size of output image 1200 x 780 pixels
-    // plt::figure_size(1200, 780);
-    // plt::plot(fibreN, lightYield);
-    // plt::xlim(0, 33);
-    // plt::title("Light yield");
-    // plt::save("./light_yield.png");
-
-    /////// --- Plotting End --- ///////
-
 
 
     // Generating scintillating photons  ** doesn't work yet **

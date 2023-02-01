@@ -22,7 +22,6 @@ public:
     TTree* CreateTree(TString treeName);
     void WriteToRoot(SciFiHitsCollection* hsf, double evtID, TTree* &tree);
     void Close();
-    void GetGraph(SciFiHitsCollection* hsf);
     static G4String fOutputFile;
     std::vector<G4String> GetFileExt(const G4String& str);
     G4String GetRootName();
