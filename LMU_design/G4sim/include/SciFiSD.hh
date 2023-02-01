@@ -111,22 +111,6 @@ public:
     
 
 
-
-
-    // *************************
-    // **** plan for coding ****
-    // *************************
-    // define initial position to start at, which should be the centre of the "left-most" fibre, call this POS
-    //G4double* fibreCenter = ;
-    // define step size (centre to centre distance) CTC
-    // G4double* stepSize = ;
-    // define fibre radius
-    //G4double* = fibreRadius ;
-    // check first energy deposition in list
-    // if energy deposition is within fibre 1 volume, assign it the number 1
-    // if not, POS -> POS + CTC
-    // loop until assigned
-    // if not assigned, assign it 0
     
 private:
     SciFiHitsCollection* fHitsCollection;
