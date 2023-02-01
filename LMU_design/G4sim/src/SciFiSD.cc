@@ -118,10 +118,10 @@ G4bool SciFiSD::ProcessHits(G4Step* step, G4TouchableHistory*)
     G4double maxYPos = centerYPos + (fibreLength/2);
     G4double minYPos = centerYPos - (fibreLength/2);
 
-    G4double centerZPos1 = (-50 + 20)*mm; // [mm] z-position of frame 1
-    G4double centerZPos2 = (-50 + 22)*mm; // [mm] z-position of frame 2
-    G4double centerZPos3 = (-50 + 24)*mm; // [mm] z-position of frame 3
-    G4double centerZPos4 = (-50 + 26)*mm; // [mm] z-position of frame 4
+    G4double centerZPos1 = (-3)*mm;  // [mm] z-position of frame 1
+    G4double centerZPos2 = (-2)*mm;  // [mm] z-position of frame 2
+    G4double centerZPos3 = (-1)*mm;  // [mm] z-position of frame 3
+    G4double centerZPos4 = (0)*mm;   // [mm] z-position of frame 4
 
     // Determine plane number of hit
 
