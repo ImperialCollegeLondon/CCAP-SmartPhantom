@@ -98,7 +98,7 @@ DetectorConstructionMessenger::DetectorConstructionMessenger(DetectorConstructio
     m_setStation1PosCmd->SetGuidance("Modify position for station 1. (In local coordinates WRT water volume)");
     m_setStation1PosCmd->SetParameterName("Pos_X","Pos_Y","Pos_Z",false);    
     m_setStation1PosCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
-
+    
     // Set Station 2 Position
     m_setStation2PosCmd = new G4UIcmdWith3VectorAndUnit("/SP/detector/setStation2Pos",this);
     m_setStation2PosCmd->SetGuidance("Modify position for station 2. (In local coordinates WRT water volume)");

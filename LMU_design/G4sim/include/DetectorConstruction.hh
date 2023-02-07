@@ -70,6 +70,8 @@ public:
     
     G4bool GetTogglePhantom() { return togglePhantom; }; 
     G4bool GetToggleScifi() { return toggleScifi; };
+    G4bool GetToggleHPlane() { return toggleHPlane;};
+    G4bool GetToggleVPlane() {return toggleVPlane;};
     
     // UI Commands
     void SetWorldVolume(G4ThreeVector vec);
@@ -95,7 +97,8 @@ private:
     
     G4double phantomThickness;
     G4bool togglePhantom;
-    G4bool two_planes;
+    G4bool toggleHPlane;
+    G4bool toggleVPlane;
     G4bool toggleScifi;
     
     G4int scifiN;

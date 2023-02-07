@@ -72,7 +72,7 @@ DetectorConstruction::DetectorConstruction()
   worldMaterial(nullptr), phantomMaterial(nullptr), waterMaterial(nullptr), checkOverlaps(false),
   phantomSD(nullptr), scifi1EpoxySD(nullptr), scifi1HSD(nullptr), scifi1VSD(nullptr), scifi2EpoxySD(nullptr),
   scifi2HSD(nullptr), scifi2VSD(nullptr), scifi3EpoxySD(nullptr), scifi3HSD(nullptr), scifi3VSD(nullptr),
-  scifi4EpoxySD(nullptr), scifi4HSD(nullptr), scifi4VSD(nullptr), two_planes(true)
+  scifi4EpoxySD(nullptr), scifi4HSD(nullptr), scifi4VSD(nullptr), toggleHPlane(true), toggleVPlane(true)
 {
     // Initialises a bunch of parameters for the simulation
     // Defining Dimensions
@@ -348,10 +348,14 @@ void DetectorConstruction::CreateSciFiStation(G4LogicalVolume** scifiStationLogi
     G4String stationFibrePhysicalVName = stationName + "PhysicalVer";
 
     G4VSolid* scifiStationFibreSolid = new G4Tubs(stationFibreSolidName,0,scifiFibreRadius,scifiLength,0*deg,360.0*deg);
-    if (two_planes == true) {
+
+    if (toggleHPlane == true){
         *scifiStationLogicalH = new G4LogicalVolume(scifiStationFibreSolid,fibreMaterial,stationFibreLogicalHName);
     }
+
+    if (toggleVPlane == true){
     *scifiStationLogicalV = new G4LogicalVolume(scifiStationFibreSolid,fibreMaterial,stationFibreLogicalVName);
+    }
 
     // Loop to create individual fibres
     for(G4int i=0; i<scifiN; i++)
@@ -366,16 +370,25 @@ void DetectorConstruction::CreateSciFiStation(G4LogicalVolume** scifiStationLogi
         G4double zHor = -scifiFibreRadius;
         G4double zVer = scifiFibreRadius;
         
-        if (two_planes == true) {
+        if (toggleHPlane == true){
             new G4PVPlacement(clockRot,G4ThreeVector(xHor,yHor,zHor),*scifiStationLogicalH,stationFibrePhysicalHName,*scifiStationLogical,false,i,checkOverlaps);
         }
-        new G4PVPlacement(aclockRot,G4ThreeVector(xVer,yVer,zVer),*scifiStationLogicalV,stationFibrePhysicalVName,*scifiStationLogical,false,i,checkOverlaps);         
+
+        if (toggleVPlane == true){
+            new G4PVPlacement(aclockRot,G4ThreeVector(xVer,yVer,zVer),*scifiStationLogicalV,stationFibrePhysicalVName,*scifiStationLogical,false,i,checkOverlaps);         
+        }
+
     }
     
-    if (two_planes == true) {
+    if (toggleHPlane == true){
         (*scifiStationLogicalH)->SetVisAttributes(scifiFibreAttributes);
     }
-    (*scifiStationLogicalV)->SetVisAttributes(scifiFibreAttributes);
+
+    
+    if (toggleVPlane == true){
+        (*scifiStationLogicalV)->SetVisAttributes(scifiFibreAttributes);
+    }
+
 }
 
 
@@ -415,75 +428,120 @@ void DetectorConstruction::ConstructSDandField()
     {
         // Create sensitive detectors for stations
         scifi1EpoxySD = new SciFiSD(SDname="/scifi1EpoxySD");
-        if (two_planes == true) {
+        if (toggleHPlane == true){
             scifi1HSD = new SciFiSD(SDname="/scifi1HSD");
         }
-        scifi1VSD = new SciFiSD(SDname="/scifi1VSD");
-    
+
+        if (toggleVPlane == true){
+            scifi1VSD = new SciFiSD(SDname="/scifi1VSD");
+        }
+        
         scifi2EpoxySD = new SciFiSD(SDname="/scifi2EpoxySD");
-        if (two_planes == true) {
+        if (toggleHPlane == true){
             scifi2HSD = new SciFiSD(SDname="/scifi2HSD");
         }
-        scifi2VSD = new SciFiSD(SDname="/scifi2VSD");
+ 
+        if (toggleVPlane == true){
+            scifi2VSD = new SciFiSD(SDname="/scifi2VSD");
+        }
         
         scifi3EpoxySD = new SciFiSD(SDname="/scifi3EpoxySD");
-        if (two_planes == true) {
+        if (toggleHPlane == true){
             scifi3HSD = new SciFiSD(SDname="/scifi3HSD");
         }
-        scifi3VSD = new SciFiSD(SDname="/scifi3VSD");
+
+        if (toggleVPlane == true){
+            scifi3VSD = new SciFiSD(SDname="/scifi3VSD");
+        }
         
         scifi4EpoxySD = new SciFiSD(SDname="/scifi4EpoxySD");
-        if (two_planes == true) {
+        if (toggleHPlane == true){
             scifi4HSD = new SciFiSD(SDname="/scifi4HSD");
         }
-        scifi4VSD = new SciFiSD(SDname="/scifi4VSD");
+
+        if (toggleVPlane == true){
+            scifi4VSD = new SciFiSD(SDname="/scifi4VSD");
+        }
 
         // Add to the G4SDManager
         SDman->AddNewDetector(scifi1EpoxySD);
-        if (two_planes == true) {
+        if (toggleHPlane == true){
             SDman->AddNewDetector(scifi1HSD);
         }
-        SDman->AddNewDetector(scifi1VSD);
+
+        if (toggleVPlane == true){
+            SDman->AddNewDetector(scifi1VSD);
+        }
+
+        if (toggleVPlane == true){
+            SDman->AddNewDetector(scifi1VSD);
+        }
+
         SDman->AddNewDetector(scifi2EpoxySD);
-        if (two_planes == true) {
+        if (toggleHPlane == true){
             SDman->AddNewDetector(scifi2HSD);
         }
-        SDman->AddNewDetector(scifi2VSD);
+
+        if (toggleVPlane == true){
+                    SDman->AddNewDetector(scifi2VSD);
+        }
+
         SDman->AddNewDetector(scifi3EpoxySD);
-        if (two_planes == true) {
+        if (toggleHPlane == true){
             SDman->AddNewDetector(scifi3HSD);
         }
-        SDman->AddNewDetector(scifi3VSD);
+
+        if (toggleVPlane == true){
+            SDman->AddNewDetector(scifi3VSD);
+        }
+
         SDman->AddNewDetector(scifi4EpoxySD);
-        if (two_planes == true) {
+        if (toggleHPlane == true){
             SDman->AddNewDetector(scifi4HSD);
         }
-        SDman->AddNewDetector(scifi4VSD);
+
+        if (toggleVPlane == true){
+            SDman->AddNewDetector(scifi4VSD);
+        }
         
         // Assign a logical volume to the sensitive detectors
         scifiStation1Logical->SetSensitiveDetector(scifi1EpoxySD);
-        if (two_planes == true) {
+        if (toggleHPlane == true){
             scifiStation1LogicalHor->SetSensitiveDetector(scifi1HSD);
         }        
-        scifiStation1LogicalVer->SetSensitiveDetector(scifi1VSD);        
+
+        if (toggleVPlane == true){
+            scifiStation1LogicalVer->SetSensitiveDetector(scifi1VSD);        
+        }
 
         scifiStation2Logical->SetSensitiveDetector(scifi2EpoxySD);
-        if (two_planes == true) {
+        if (toggleHPlane == true){
             scifiStation2LogicalHor->SetSensitiveDetector(scifi2HSD);   
         }     
-        scifiStation2LogicalVer->SetSensitiveDetector(scifi2VSD);        
+
+        if (toggleVPlane == true){
+            scifiStation2LogicalVer->SetSensitiveDetector(scifi2VSD);        
+        }
 
         scifiStation3Logical->SetSensitiveDetector(scifi3EpoxySD);
-        if (two_planes == true) {
+        if (toggleHPlane == true){
             scifiStation3LogicalHor->SetSensitiveDetector(scifi3HSD);    
         }    
-        scifiStation3LogicalVer->SetSensitiveDetector(scifi3VSD);        
+
+        if (toggleVPlane == true){
+            scifiStation3LogicalVer->SetSensitiveDetector(scifi3VSD);        
+        }
 
         scifiStation4Logical->SetSensitiveDetector(scifi4EpoxySD);
-        if (two_planes == true) {
+        if (toggleHPlane == true){
             scifiStation4LogicalHor->SetSensitiveDetector(scifi4HSD);  
         }      
-        scifiStation4LogicalVer->SetSensitiveDetector(scifi4VSD);  
+
+        if (toggleVPlane == true){
+            scifiStation4LogicalVer->SetSensitiveDetector(scifi4VSD);  
+        }
+
+        
     }
 }    
 
