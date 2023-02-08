@@ -28,7 +28,7 @@
 #include "G4Event.hh"
 #include "G4SDManager.hh"
 #include "SciFiHit.hh"
-#include "SciFiSD.hh"
+#include "Parameters.hh"
 
 Run::Run() :
     G4Run()

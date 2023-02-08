@@ -26,7 +26,7 @@
 
 #include "SciFiSD.hh"
 #include "SciFiHit.hh"
-#include "ParameterInitialization.hh"
+#include "Parameters.hh"
 
 #include "G4HCofThisEvent.hh"
 #include "G4TouchableHistory.hh"
@@ -110,28 +110,75 @@ G4bool SciFiSD::ProcessHits(G4Step* step, G4TouchableHistory*)
     G4double yPos = worldPos[1];
     G4double zPos = worldPos[2];
 
-    G4double fibreN= 0;
-
+    G4int fibreN = 0;
+    G4double fibreSep = scifiPitch;       // [mm]
+    G4int scifiN = scifiN;  
+    G4double fibreRadius = scifiFibreRadius;  // [mm]
+    G4double fibreLength = scifiLength;       // [mm] length of fibres in y direction
+    G4double centerYPos = centerYPos;         // [mm]
     G4double maxYPos = centerYPos + (fibreLength/2);
     G4double minYPos = centerYPos - (fibreLength/2);
 
+    G4double centerZPos1 = (-3)*mm;  // [mm] z-position of frame 1
+    G4double centerZPos2 = (-2)*mm;  // [mm] z-position of frame 2
+    G4double centerZPos3 = (-1)*mm;  // [mm] z-position of frame 3
+    G4double centerZPos4 = (0)*mm;   // [mm] z-position of frame 4
+
+    // Determine plane number of hit
+
+    G4int planeN = 0;
+    if (centerZPos1 - fibreRadius <= zPos && centerZPos1 + fibreRadius >= zPos){
+        planeN = 1;
+    }
+    if (centerZPos2 - fibreRadius <= zPos && centerZPos2 + fibreRadius >= zPos){
+        planeN = 2;
+    }
+    if (centerZPos3 - fibreRadius <= zPos && centerZPos3 + fibreRadius >= zPos){
+        planeN = 3;
+    }
+    if (centerZPos4 - fibreRadius <= zPos && centerZPos4 + fibreRadius >= zPos){
+        planeN = 4;
+    }
+
+    // Determine fibre number of hit within plane
+
     for (int i = 1; i <= scifiN; ++i) {
-        G4double centerXPos = -(scifiPitch * floor(scifiN/2)) + (scifiPitch*(i-1)); // calculates centre x-position of fibre i
-        G4double rho = pow(xPos - centerXPos, 2) + pow(zPos - centerZPos, 2);   // radial position of energy dep relative to axis of fibre i
-        if (rho <= scifiFibreRadius && minYPos <= yPos && yPos <= maxYPos) {
+        G4double centerXPos = -(fibreSep * floor(scifiN/2)) + (fibreSep*(i-1)); // calculates centre x-position of fibre i
+        G4double rho = 0;
+        // Define row for each fibre plane
+        if (planeN == 1){
+            rho = pow(xPos - centerXPos, 2) + pow(zPos - centerZPos1, 2);   // radial position of energy dep relative to axis of fibre i
+        }
+
+        if (planeN == 2){
+            rho = pow(xPos - centerXPos, 2) + pow(zPos - centerZPos2, 2);   // radial position of energy dep relative to axis of fibre i
+        }
+
+        if (planeN == 3){
+            rho = pow(xPos - centerXPos, 2) + pow(zPos - centerZPos3, 2);   // radial position of energy dep relative to axis of fibre i
+        }
+
+        if (planeN == 4){
+            rho = pow(xPos - centerXPos, 2) + pow(zPos - centerZPos4, 2);   // radial position of energy dep relative to axis of fibre i
+        }
+
+        if (planeN != 0 && rho <= fibreRadius && minYPos <= yPos && yPos <= maxYPos) {
             fibreN = i;
         }
     }
+
+    G4double sciEff = sciEff;    // photons per meV
+    G4double transEff = transEff;  // percentage efficiency
         
     G4double lightYield = edep * sciEff * transEff;
     
     ofstream myFile; 
-    myFile.open("SciFiHitsFibres.dat", ofstream::app);
+    myFile.open("SciFiHitsTotal.dat", ofstream::app);
     //myFile << "Writing this to a file.\n";
     myFile << " " << copyNo << " " << postTime << " " << edep << " " << steplength << 
-        " " << worldPos << " " << deltaT << " " << particleName << " " << fibreN << " " << lightYield << " " << endl;
+        " " << xPos << " " << yPos << " " << zPos << " " << deltaT << " " << particleName << " " << fibreN <<
+        " " << lightYield << " " << planeN << " " << endl;
     myFile.close();
 
     return true;
 }
-

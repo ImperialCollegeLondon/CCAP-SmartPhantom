@@ -27,8 +27,7 @@
 #include "EventAction.hh"
 #include "Analysis.hh"
 #include "RootIO.hh"
-#include "ParameterInitialization.hh"
-
+#include "Parameters.hh"
 
 #include "G4Event.hh"
 #include "G4RunManager.hh"

@@ -25,8 +25,8 @@
 //
 
 #include "DetectorConstruction.hh"
-#include "ParameterInitialization.hh"
 #include "SciFiSD.hh"
+#include "Parameters.hh"
 
 #include "G4FieldManager.hh"
 #include "G4TransportationManager.hh"
@@ -75,9 +75,38 @@ DetectorConstruction::DetectorConstruction()
   scifi2HSD(nullptr), scifi2VSD(nullptr), scifi3EpoxySD(nullptr), scifi3HSD(nullptr), scifi3VSD(nullptr),
   scifi4EpoxySD(nullptr), scifi4HSD(nullptr), scifi4VSD(nullptr), two_planes(true)
 {
+    // Initialises a bunch of parameters for the simulation
+    worldZ = worldZ1*mm;                                       // half-z of world
+    worldX = worldX1*mm;                                              // half-x of world
+    worldY = worldY1*mm;                                              // half-y of world
+    
+    waterZ = waterZ1*mm;                                              // half-z of water
+    waterX = waterX1*mm;                                              // half-x of water
+    waterY = waterY1*mm;                                              // half-y of water
 
+    phantomZ = phantomZ1*mm;                                              // half-z of phantom
+    phantomX = phantomX1*mm;                                              // half-x of phantom
+    phantomY = phantomY1*mm;                                              // half-y of phantom
+    
+    phantomThickness = phantomThickness;                                       // wall thickness, overrides water dimensions 
+                                                                    // if togglePhantom is true
+
+    eWindowZ = eWindowZ;                                           // half-z of entrance window
+    eWindowRadius = eWindowRadius;                                         // radius of entrance window
+
+    // SmartPhantom Planes
+    scifiN = scifiN;                                                    // Number of fibres, produced 10 mm planes
+    scifiFibreRadius = scifiFibreRadius;                                   // Half-radius of fibre
+    scifiPitch = scifiPitch;                                          // Fibre pitch, center-to-center distance
+    scifiLength = scifiLength;                                          // half-length of plane
+    scifiStationDepth = scifiStationDepth;                           // half-depth of a Station (2 Planes -> 1 Station)
+    scifiStationSide = scifiStationSide;                                 // Transverse face edge length of station
+    scifiEpoxySide = scifiPlaneSide;                                // Match epoxy resin layer to plane edge length
     
     // Rotating Stations
+    G4double theta = theta;
+    cwRot = cwRot;
+    ccRot = ccRot;
     clockRot = new G4RotationMatrix();                              // Fibre Rotation (clockwise)
     clockRot->rotateX(theta);
     clockRot->rotateY(cwRot);
@@ -86,6 +115,12 @@ DetectorConstruction::DetectorConstruction()
     aclockRot->rotateY(ccRot);
     stationRot = new G4RotationMatrix();                            // Station Rotation
     //stationRot->rotateZ(45*deg);
+    
+    // Suitable for ~20 MeV Protons
+    station1Pos = vec1;                                             // Station 1 depth (at station centre)
+    station2Pos = vec2;                                             // Station 2 depth (at station centre)
+    station3Pos = vec3;                                             // Station 3 depth (at station centre)
+    station4Pos = vec4;                                             // Station 4 depth (at station centre)  
     
     // Construct Materials
     worldMaterial = GetNISTMaterial("G4_AIR");                      // Default material for the world volume is G4_AIR
@@ -160,6 +195,7 @@ DetectorConstruction::~DetectorConstruction()
     delete phantomAttr;
     delete eWindowAttr;
     delete waterAttr;
+    delete airAttr;
 
     delete m_detectorConstructionMessenger;
 }
@@ -182,6 +218,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     delete phantomAttr;
     delete eWindowAttr;
     delete waterAttr;
+    delete airAttr;
           
     //////////////////////
     // Defining Volumes //
@@ -199,33 +236,57 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     {
         // Phantom
         phantomBox = new G4Box("phantomBox", phantomX, phantomY, phantomZ);
-        phantomHole = new G4Tubs("phantomHole",0,eWindowRadius,phantomThickness,0,2*M_PI);
 
-        // makes a hole in phantom to put kapton window
-        phantomSolid = new G4SubtractionSolid("phantomSolid", phantomBox, phantomHole, 0, G4ThreeVector(0., 0., -phantomZ));  
+        // makes a hole in phantom to put window
+        phantomHole = new G4Tubs("phantomHole",0,eWindowRadius,phantomThickness/2,0,2*M_PI);   // half-length
+        phantomSolid = new G4SubtractionSolid("phantomSolid", phantomBox, phantomHole, 0, G4ThreeVector(0., 0., -phantomZ+(phantomThickness/2)));  
         phantomLogical = new G4LogicalVolume(phantomSolid, phantomMaterial, "phantomLogical");
         new G4PVPlacement(0,G4ThreeVector(),phantomLogical,"phantomPhysical",worldLogical,false,0,checkOverlaps);
         phantomAttr = new G4VisAttributes(G4Colour(0.5,0.5,0.5,0.15));
         phantomLogical->SetVisAttributes(phantomAttr);
+        // Fills the gap with air
+        airHoleAluminiumSolid = new G4Tubs("airHoleAluminiumSolid",0,eWindowRadius,phantomThickness/2,0,2*M_PI);    // half-length
+        airAluminiumLogical = new G4LogicalVolume(airHoleAluminiumSolid,  worldMaterial, "airAluminiumLogical");
+        new G4PVPlacement(0,G4ThreeVector(0,0,-phantomZ+(phantomThickness/2)),airAluminiumLogical,"airAluminiumLogical",worldLogical,false,0,checkOverlaps);
+        airAluminiumAttr = new G4VisAttributes(G4Colour(0,0,1,0.15));
+        airAluminiumLogical->SetVisAttributes(airAluminiumAttr);
 
-        // Entrance Window (Recessed part of wall)
-        eWindowSolid = new G4Tubs("eWindowTube",0,eWindowRadius,eWindowZ*2,0,2*M_PI);
-        windowMaterial = Kapton;               // Default material for window is Kapton
-        eWindowLogical = new G4LogicalVolume(eWindowSolid, windowMaterial, "eWindowLogical");
-        new G4PVPlacement(0,G4ThreeVector(0,0,-phantomZ+phantomThickness-eWindowZ),eWindowLogical,"eWindowPhysical",phantomLogical,false,0,checkOverlaps);
-        eWindowAttr = new G4VisAttributes(G4Colour(0.45,0.25,0.0)); // makes window brown (since Kapton)
-        eWindowLogical->SetVisAttributes(eWindowAttr);
-        
         // Water Box
         waterX = phantomX - phantomThickness;
         waterY = phantomY - phantomThickness;
         waterZ = phantomZ - phantomThickness;
-        
-        waterSolid = new G4Box("waterBox", waterX, waterY, waterZ); 
-        waterLogical = new G4LogicalVolume(waterSolid,waterMaterial,"waterboxLogical");
-        new G4PVPlacement(0,G4ThreeVector(),waterLogical,"waterboxPhysical",phantomLogical,false,0,checkOverlaps);
+        waterBox = new G4Box("waterBox", waterX, waterY, waterZ); 
+
+        // makes a hole in water to put window
+        waterHole = new G4Tubs("waterHole",0,eWindowRadius,(waterZ-(4*mm))/2,0,2*M_PI);    // half-length
+        waterSolid = new G4SubtractionSolid("waterSolid", waterBox, waterHole, 0, G4ThreeVector(0., 0., -19.5*mm));   
+        waterLogical = new G4LogicalVolume(waterSolid, waterMaterial, "waterLogical");
+        new G4PVPlacement(0,G4ThreeVector(),waterLogical,"waterPhysical",worldLogical,false,0,checkOverlaps);
         waterAttr = new G4VisAttributes(G4Colour(0,0,1,0.15));
         waterLogical->SetVisAttributes(waterAttr);
+        // Fills the gap with air
+        airHoleSolid = new G4Tubs("airHoleSolid",0,eWindowRadius,(waterZ-(4*mm))/2,0,2*M_PI);    // half-length
+        airLogical = new G4LogicalVolume(airHoleSolid ,  worldMaterial, "airLogical");
+        new G4PVPlacement(0,G4ThreeVector(0,0,-19.5*mm),airLogical,"airLogical",worldLogical,false,0,checkOverlaps);
+        airAttr = new G4VisAttributes(G4Colour(0,0,1,0.15));
+        airLogical->SetVisAttributes(airAttr);
+
+        // Make surface of tube 
+        waterHoleSurfaceSolid = new G4Tubs("waterHoleSurfaceSolid",eWindowRadius,eWindowRadius+1,(waterZ-(4*mm))/2,0,2*M_PI);  // half-length
+        waterHoleSurfaceLogical = new G4LogicalVolume(waterHoleSurfaceSolid, phantomMaterial, "waterHoleSurfaceLogical");
+        new G4PVPlacement(0,G4ThreeVector(0,0,-19.5*mm),waterHoleSurfaceLogical,"waterHoleSurfaceLogical",worldLogical,false,0,checkOverlaps);
+        cylinderAttr = new G4VisAttributes(G4Colour(0.5,0.5,0.5,0.15));
+        waterHoleSurfaceLogical->SetVisAttributes(cylinderAttr);
+
+        // Entrance Window 
+        eWindowSolid = new G4Tubs("eWindowTube",0,eWindowRadius,eWindowZ*2,0,2*M_PI);
+        windowMaterial = Kapton;               // Default material for window is Kapton
+        eWindowLogical = new G4LogicalVolume(eWindowSolid, windowMaterial, "eWindowLogical");
+        //new G4PVPlacement(0,G4ThreeVector(0,0,-phantomZ+phantomThickness+waterZ-(4*mm)-eWindowZ),eWindowLogical,"eWindowPhysical",phantomLogical,false,0,checkOverlaps);
+        new G4PVPlacement(0,G4ThreeVector(0,0,-(4*mm)),eWindowLogical,"eWindowPhysical",phantomLogical,false,0,checkOverlaps);
+        eWindowAttr = new G4VisAttributes(G4Colour(0.45,0.25,0.0)); // makes window brown (since Kapton)
+        eWindowLogical->SetVisAttributes(eWindowAttr);
+
     }
     else // If phantom walls not enabled
     {
@@ -420,7 +481,7 @@ void DetectorConstruction::ConstructSDandField()
         }      
         scifiStation4LogicalVer->SetSensitiveDetector(scifi4VSD);  
     }
-}        
+}    
 
 G4Material* DetectorConstruction::GetNISTMaterial(G4String name, G4String fallbackName)
 {

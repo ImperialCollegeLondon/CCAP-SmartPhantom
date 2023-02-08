@@ -25,6 +25,7 @@
 //
 
 #include "SciFiHit.hh"
+#include "Parameters.hh"
 
 #include "G4VVisManager.hh"
 #include "G4VisAttributes.hh"

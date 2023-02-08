@@ -30,6 +30,8 @@
 #include "Analysis.hh"
 #include "Run.hh"
 #include "RootIO.hh"
+#include "Parameters.hh"
+
 #include <sstream>
 
 #include "G4UnitsTable.hh"
