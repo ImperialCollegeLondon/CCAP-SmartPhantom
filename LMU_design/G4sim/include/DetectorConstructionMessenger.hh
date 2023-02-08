@@ -63,7 +63,7 @@ private:
     G4UIcmdWith3VectorAndUnit* m_setStation1PosCmd;
     G4UIcmdWith3VectorAndUnit* m_setStation2PosCmd;
     G4UIcmdWith3VectorAndUnit* m_setStation3PosCmd;
-    G4UIcmdWith3VectorAndUnit* m_setStation4PosCmd;  
+    G4UIcmdWith3VectorAndUnit* m_setStation4PosCmd;    
 };
 
 #endif

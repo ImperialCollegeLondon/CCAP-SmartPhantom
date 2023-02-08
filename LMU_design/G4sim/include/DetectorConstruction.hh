@@ -29,7 +29,6 @@
 
 #include "globals.hh"
 #include "G4VUserDetectorConstruction.hh"
-#include "ParameterInitialization.hh"
 #include "G4RotationMatrix.hh"
 #include <vector>
 
@@ -85,8 +84,8 @@ public:
     void SetStation1Pos(G4ThreeVector vector);
     void SetStation2Pos(G4ThreeVector vector);
     void SetStation3Pos(G4ThreeVector vector);
-    void SetStation4Pos(G4ThreeVector vector);   
-
+    void SetStation4Pos(G4ThreeVector vector);    
+    
 private:        
     G4double worldZ, worldX, worldY;
     G4double phantomZ, phantomX, phantomY;
@@ -120,14 +119,22 @@ private:
     G4VSolid* eWindowSolid;
     G4VSolid* phantomSolid; 
     G4VSolid* waterSolid;
+    G4VSolid* airHoleSolid;
 
     G4VSolid* phantomBox;
+    G4VSolid* waterBox;
     G4VSolid* phantomHole;
+    G4VSolid* waterHole;
+    G4VSolid* waterHoleSurfaceSolid;
+    G4VSolid* airHoleAluminiumSolid;
     
     G4LogicalVolume* worldLogical;
     G4LogicalVolume* phantomLogical; 
     G4LogicalVolume* eWindowLogical;
     G4LogicalVolume* waterLogical;
+    G4LogicalVolume* waterHoleSurfaceLogical;
+    G4LogicalVolume* airLogical;
+    G4LogicalVolume* airAluminiumLogical;
     
     G4LogicalVolume* scifiStation1Logical;
     G4LogicalVolume* scifiStation1LogicalHor;
@@ -164,6 +171,9 @@ private:
     G4VisAttributes* phantomAttr; 
     G4VisAttributes* eWindowAttr;
     G4VisAttributes* waterAttr;
+    G4VisAttributes* airAttr;
+    G4VisAttributes* cylinderAttr;
+    G4VisAttributes* airAluminiumAttr;
     
     G4bool checkOverlaps;
     

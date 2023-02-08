@@ -9,7 +9,6 @@
 #include "G4String.hh"
 #include "G4RunManager.hh"
 #include "DetectorConstruction.hh"
-#include "ParameterInitialization.hh"
 #include "PrimaryGeneratorAction.hh"
 
 
