@@ -24,6 +24,7 @@
 // ********************************************************************
 //
 
+#include "G4ios.hh"
 #include "Parameters.hh"
 #include "G4SystemOfUnits.hh"
 #include "G4VHit.hh"
@@ -48,22 +49,22 @@ extern const G4double waterY1 = 140/2;                                          
 extern const G4double phantomZ1 = 100/2;                                              // half-z of phantom
 extern const G4double phantomX1 = 160/2;                                              // half-x of phantom
 extern const G4double phantomY1 = 140/2;                                              // half-y of phantom
-extern const G4double phantomThickness = 15/2*mm;                                     // Half wall thickness, overrides water dimensions 
+extern const G4double phantomThickness1 = 15/2;                                     // Half wall thickness, overrides water dimensions 
                                                                
-extern const G4double eWindowZ = 0.05*mm/2;                                           // half-z of entrance window
-extern const G4double eWindowRadius = 7.5*mm;                                         // radius of entrance window
+extern const G4double eWindowZ1 = 0.05/2;                                           // half-z of entrance window
+extern const G4double eWindowRadius1 = 7.5;                                         // radius of entrance window
 
 
 //Station Planes
 
-extern const std::vector<G4double> vec1 = {0*mm, 0*mm, -worldZ1 + 47*mm};
-extern const std::vector<G4double> vec2 = {0*mm, 0*mm, -worldZ1 + 48*mm};
-extern const std::vector<G4double> vec3 = {0*mm, 0*mm, -worldZ1 + 49*mm};
-extern const std::vector<G4double> vec4 = {0*mm, 0*mm, -worldZ1 + 50*mm};
+extern const std::vector<G4double> vec1 = {0, 0, -worldZ1 + 47};
+extern const std::vector<G4double> vec2 = {0, 0, -worldZ1 + 48};
+extern const std::vector<G4double> vec3 = {0, 0, -worldZ1 + 49};
+extern const std::vector<G4double> vec4 = {0, 0, -worldZ1 + 50};
 
-extern const G4double theta = 90*deg;
-extern const G4double cwRot = 0*deg;
-extern const G4double ccRot = 90*deg;
+extern const G4double theta1 = 90*deg;
+extern const G4double cwRot1 = 0*deg;
+extern const G4double ccRot1 = 90*deg;
 
 
 

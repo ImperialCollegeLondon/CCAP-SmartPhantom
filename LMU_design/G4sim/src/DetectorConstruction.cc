@@ -88,11 +88,11 @@ DetectorConstruction::DetectorConstruction()
     phantomX = phantomX1*mm;                                              // half-x of phantom
     phantomY = phantomY1*mm;                                              // half-y of phantom
     
-    phantomThickness = phantomThickness;                                       // wall thickness, overrides water dimensions 
+    phantomThickness = phantomThickness1*mm;                                       // wall thickness, overrides water dimensions 
                                                                     // if togglePhantom is true
 
-    eWindowZ = eWindowZ;                                           // half-z of entrance window
-    eWindowRadius = eWindowRadius;                                         // radius of entrance window
+    eWindowZ = eWindowZ1*mm;                                           // half-z of entrance window
+    eWindowRadius = eWindowRadius1*mm;                                         // radius of entrance window
 
     // SmartPhantom Planes
     scifiN = scifiN;                                                    // Number of fibres, produced 10 mm planes
@@ -104,9 +104,9 @@ DetectorConstruction::DetectorConstruction()
     scifiEpoxySide = scifiPlaneSide;                                // Match epoxy resin layer to plane edge length
     
     // Rotating Stations
-    G4double theta = theta;
-    cwRot = cwRot;
-    ccRot = ccRot;
+    G4double theta = theta1;
+    cwRot = cwRot1;
+    ccRot = ccRot1;
     clockRot = new G4RotationMatrix();                              // Fibre Rotation (clockwise)
     clockRot->rotateX(theta);
     clockRot->rotateY(cwRot);
@@ -117,6 +117,7 @@ DetectorConstruction::DetectorConstruction()
     //stationRot->rotateZ(45*deg);
     
     // Suitable for ~20 MeV Protons
+
     station1Pos = vec1;                                             // Station 1 depth (at station centre)
     station2Pos = vec2;                                             // Station 2 depth (at station centre)
     station3Pos = vec3;                                             // Station 3 depth (at station centre)
@@ -704,9 +705,9 @@ void DetectorConstruction::EnableScifi(G4bool toggle)
 void DetectorConstruction::SetStation1Pos(G4ThreeVector vector)
 {
     // Function for UI command to modify station 1 position
-    station1Pos[0] = vector[0];
-    station1Pos[1] = vector[1];
-    station1Pos[2] = vector[2];
+    station1Pos[0] = vector[0]*mm;
+    station1Pos[1] = vector[1]*mm;
+    station1Pos[2] = vector[2]*mm;
     
     G4RunManagerKernel::GetRunManagerKernel()->DefineWorldVolume(Construct(),true); // To visualise volume change
     G4RunManager::GetRunManager()->GeometryHasBeenModified();
@@ -716,9 +717,9 @@ void DetectorConstruction::SetStation1Pos(G4ThreeVector vector)
 void DetectorConstruction::SetStation2Pos(G4ThreeVector vector)
 {
     // Function for UI command to modify station 2 position
-    station2Pos[0] = vector[0];
-    station2Pos[1] = vector[1];
-    station2Pos[2] = vector[2];
+    station2Pos[0] = vector[0]*mm;
+    station2Pos[1] = vector[1]*mm;
+    station2Pos[2] = vector[2]*mm;
     
     G4RunManagerKernel::GetRunManagerKernel()->DefineWorldVolume(Construct(),true); // To visualise volume change
     G4RunManager::GetRunManager()->GeometryHasBeenModified();
@@ -728,9 +729,9 @@ void DetectorConstruction::SetStation2Pos(G4ThreeVector vector)
 void DetectorConstruction::SetStation3Pos(G4ThreeVector vector)
 {
     // Function for UI command to modify station 3 position
-    station3Pos[0] = vector[0];
-    station3Pos[1] = vector[1];
-    station3Pos[2] = vector[2];
+    station3Pos[0] = vector[0]*mm;
+    station3Pos[1] = vector[1]*mm;
+    station3Pos[2] = vector[2]*mm;
     
     G4RunManagerKernel::GetRunManagerKernel()->DefineWorldVolume(Construct(),true); // To visualise volume change
     G4RunManager::GetRunManager()->GeometryHasBeenModified();
@@ -740,9 +741,9 @@ void DetectorConstruction::SetStation3Pos(G4ThreeVector vector)
 void DetectorConstruction::SetStation4Pos(G4ThreeVector vector)
 {
     // Function for UI command to modify station 4 position
-    station4Pos[0] = vector[0];
-    station4Pos[1] = vector[1];
-    station4Pos[2] = vector[2];
+    station4Pos[0] = vector[0]*mm;
+    station4Pos[1] = vector[1]*mm;
+    station4Pos[2] = vector[2]*mm;
     
     G4RunManagerKernel::GetRunManagerKernel()->DefineWorldVolume(Construct(),true); // To visualise volume change
     G4RunManager::GetRunManager()->GeometryHasBeenModified();
