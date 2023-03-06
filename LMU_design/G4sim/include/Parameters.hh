@@ -46,16 +46,16 @@ extern const G4double waterY1;                                          // half-
 extern const G4double phantomZ1;                                         // half-z of phantom
 extern const G4double phantomX1;                                        // half-x of phantom
 extern const G4double phantomY1;                                        // half-y of phantom
-extern const G4double phantomThickness;                                     // Half wall thickness, overrides water dimensions 
+extern const G4double phantomThickness1;                                     // Half wall thickness, overrides water dimensions 
                                                                 // if togglePhantom is true
-extern const G4double eWindowZ;                                // half-z of entrance window
-extern const G4double eWindowRadius;                                 // radius of entrance window
+extern const G4double eWindowZ1;                                // half-z of entrance window
+extern const G4double eWindowRadius1;                                 // radius of entrance window
 
 
 //Station Planes
-extern const G4double theta;
-extern const G4double cwRot;
-extern const G4double ccRot;
+extern const G4double theta1;
+extern const G4double cwRot1;
+extern const G4double ccRot1;
 
 extern const std::vector<double> vec1;
 extern const std::vector<double> vec2;
